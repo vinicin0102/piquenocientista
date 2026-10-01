@@ -1735,6 +1735,387 @@
         .cta-pulse {
             animation: pulse-subtle 2.5s ease-in-out infinite;
         }
+
+        /* ===== TESTIMONIALS / WHATSAPP SECTION ===== */
+        .testimonials {
+            background: var(--bg-section);
+            padding: 80px 0;
+        }
+
+        .testimonials__headline {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .testimonials__sub {
+            font-size: 1.05rem;
+            color: var(--text-medium);
+            margin-bottom: 48px;
+        }
+
+        /* Photo Gallery */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            max-width: 900px;
+            margin: 0 auto 56px;
+        }
+
+        .photo-gallery__item {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s;
+            aspect-ratio: 4/3;
+        }
+
+        .photo-gallery__item:hover {
+            transform: scale(1.03);
+        }
+
+        .photo-gallery__item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* WhatsApp Chat Bubbles */
+        .whatsapp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .whatsapp-chat {
+            background: #E5DDD5;
+            background-image: url("data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='p' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Ccircle cx='20' cy='20' r='1' fill='%23d4cec3' /%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23p)' width='300' height='300'/%3E%3C/svg%3E");
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        .whatsapp-chat__header {
+            background: #075E54;
+            margin: -16px -16px 16px -16px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        }
+
+        .whatsapp-chat__avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #25D366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .whatsapp-chat__name {
+            color: var(--white);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .whatsapp-chat__status {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.72rem;
+        }
+
+        .wa-bubble {
+            max-width: 88%;
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-bottom: 6px;
+            position: relative;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+
+        .wa-bubble--sent {
+            background: #DCF8C6;
+            margin-left: auto;
+            border-bottom-right-radius: 2px;
+            color: #303030;
+        }
+
+        .wa-bubble--received {
+            background: var(--white);
+            margin-right: auto;
+            border-bottom-left-radius: 2px;
+            color: #303030;
+        }
+
+        .wa-bubble__time {
+            font-size: 0.65rem;
+            color: #999;
+            text-align: right;
+            margin-top: 2px;
+        }
+
+        .wa-bubble__time .check {
+            color: #53BDEB;
+            margin-left: 2px;
+        }
+
+        .wa-bubble img {
+            border-radius: 6px;
+            margin-bottom: 6px;
+            max-width: 100%;
+        }
+
+        .wa-bubble--emoji {
+            font-size: 1.8rem;
+            background: transparent;
+            padding: 2px 0;
+        }
+
+        .wa-audio {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 0;
+        }
+
+        .wa-audio__play {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #075E54;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            flex-shrink: 0;
+        }
+
+        .wa-audio__wave {
+            flex: 1;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .wa-audio__bar {
+            width: 3px;
+            background: #075E54;
+            border-radius: 2px;
+            opacity: 0.5;
+        }
+
+        .wa-audio__dur {
+            font-size: 0.65rem;
+            color: #999;
+            white-space: nowrap;
+        }
+
+        /* Stars rating inside bubble */
+        .wa-stars {
+            color: #F59E0B;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* ===== SALES POPUP ===== */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: popupFadeIn 0.3s ease;
+        }
+
+        .popup-overlay.active {
+            display: flex;
+        }
+
+        @keyframes popupFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes popupSlideIn {
+            from { opacity: 0; transform: scale(0.85) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .popup {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            max-width: 480px;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+            animation: popupSlideIn 0.4s ease 0.1s both;
+            position: relative;
+        }
+
+        .popup__close {
+            position: absolute;
+            top: 12px;
+            right: 14px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.08);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-medium);
+            transition: background 0.2s;
+            z-index: 2;
+        }
+
+        .popup__close:hover {
+            background: rgba(0,0,0,0.15);
+        }
+
+        .popup__header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            padding: 28px 28px 24px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .popup__header-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+        }
+
+        .popup__header h3 {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.4rem;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+
+        .popup__header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .popup__body {
+            padding: 28px;
+            text-align: center;
+        }
+
+        .popup__price-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .popup__price-old {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+
+        .popup__price-new {
+            font-family: 'Baloo 2', cursive;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .popup__price-new small {
+            font-size: 1.1rem;
+            vertical-align: super;
+        }
+
+        .popup__list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .popup__list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 0;
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            font-weight: 600;
+        }
+
+        .popup__list li span {
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+
+        .popup__guarantee {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.82rem;
+            color: var(--text-light);
+            margin-top: 12px;
+        }
+
+        .popup__guarantee span {
+            color: var(--accent-green);
+        }
+
+        @media (max-width: 600px) {
+            .photo-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .whatsapp-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .popup {
+                max-width: 100%;
+                margin: 10px;
+                border-radius: var(--radius-lg);
+            }
+
+            .popup__header {
+                padding: 24px 20px 20px;
+            }
+
+            .popup__body {
+                padding: 20px;
+            }
+
+            .popup__price-new {
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2113,6 +2494,309 @@
                     <div class="benefit-card__title">Alternativas à Tela</div>
                     <div class="benefit-card__desc">Tenha ideias prontas para quando quiser propor outra atividade.</div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS SECTION ===== -->
+    <section class="testimonials text-center">
+        <div class="container">
+            <div class="section-label" style="background:linear-gradient(135deg, #25D366, #128C7E);">💬 AVALIAÇÕES</div>
+            <h2 class="testimonials__headline fade-in">
+                VEJA O QUE PAIS ESTÃO DIZENDO <span class="highlight">SOBRE O GUIA</span>
+            </h2>
+            <p class="testimonials__sub fade-in">Conversas reais de famílias que já estão fazendo experimentos juntas.</p>
+
+            <!-- Photo Gallery -->
+            <div class="photo-gallery fade-in">
+                <div class="photo-gallery__item">
+                    <img src="img/familia1.jpg" alt="Mãe e filha fazendo experimento de cores" loading="lazy">
+                </div>
+                <div class="photo-gallery__item">
+                    <img src="img/familia2.jpg" alt="Pai e filha fazendo vulcão caseiro" loading="lazy">
+                </div>
+                <div class="photo-gallery__item">
+                    <img src="img/familia3.jpg" alt="Família fazendo experimento com balão" loading="lazy">
+                </div>
+                <div class="photo-gallery__item">
+                    <img src="img/experimento_maos.jpg" alt="Crianças misturando cores em potes" loading="lazy">
+                </div>
+            </div>
+
+            <!-- WhatsApp Conversations Grid -->
+            <div class="whatsapp-grid fade-in">
+
+                <!-- Chat 1: Maria -->
+                <div class="whatsapp-chat">
+                    <div class="whatsapp-chat__header">
+                        <div class="whatsapp-chat__avatar">M</div>
+                        <div>
+                            <div class="whatsapp-chat__name">Maria Oliveira</div>
+                            <div class="whatsapp-chat__status">online</div>
+                        </div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Gente, ontem fizemos o vulcão caseiro com a Isabela e ela ficou MALUCA 😂🌋
+                        <div class="wa-bubble__time">18:42</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Ela pediu pra repetir TRÊS VEZES
+                        <div class="wa-bubble__time">18:42</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        <img src="img/familia2.jpg" alt="Vulcão caseiro" loading="lazy">
+                        Olha a cara dela 😍
+                        <div class="wa-bubble__time">18:43</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--sent">
+                        Que lindo!! Qual experimento vcs fizeram?
+                        <div class="wa-bubble__time">18:45 <span class="check">✓✓</span></div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Tá naquele guia dos 100 experimentos. Tem tudo explicadinho, super fácil
+                        <div class="wa-bubble__time">18:46</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Melhor coisa que comprei esse mês. E custou menos que um lanche 🤷‍♀️
+                        <div class="wa-bubble__time">18:46</div>
+                    </div>
+                </div>
+
+                <!-- Chat 2: Carlos -->
+                <div class="whatsapp-chat">
+                    <div class="whatsapp-chat__header">
+                        <div class="whatsapp-chat__avatar">C</div>
+                        <div>
+                            <div class="whatsapp-chat__name">Carlos Eduardo</div>
+                            <div class="whatsapp-chat__status">online</div>
+                        </div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Cara, preciso te contar uma coisa
+                        <div class="wa-bubble__time">20:15</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Sabe aquele guia de experimentos? Então, fiz um com o Davi no sábado
+                        <div class="wa-bubble__time">20:15</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        O menino não quis nem saber de videogame depois 😅
+                        <div class="wa-bubble__time">20:16</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--sent">
+                        Sério?? O Davi que não larga o tablet?
+                        <div class="wa-bubble__time">20:18 <span class="check">✓✓</span></div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        SIM! Fizemos o de inflar o balão com vinagre e bicarbonato
+                        <div class="wa-bubble__time">20:18</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Ele já quer fazer o próximo amanhã. Pai e filho cientistas agora 🧪😂
+                        <div class="wa-bubble__time">20:19</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        <div class="wa-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="wa-bubble__time">20:19</div>
+                    </div>
+                </div>
+
+                <!-- Chat 3: Ana -->
+                <div class="whatsapp-chat">
+                    <div class="whatsapp-chat__header">
+                        <div class="whatsapp-chat__avatar">A</div>
+                        <div>
+                            <div class="whatsapp-chat__name">Ana Beatriz</div>
+                            <div class="whatsapp-chat__status">online</div>
+                        </div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Amiga, te mandei uma foto
+                        <div class="wa-bubble__time">14:30</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        <img src="img/familia1.jpg" alt="Experimento de cores" loading="lazy">
+                        Sábado chuvoso produtivo ☔🌈
+                        <div class="wa-bubble__time">14:31</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--sent">
+                        QUE LINDOOO!! Como vc fez isso??
+                        <div class="wa-bubble__time">14:33 <span class="check">✓✓</span></div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Tá num guia que comprei, tem mais de 100 experiências assim
+                        <div class="wa-bubble__time">14:34</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Cada uma explica o passo a passo e os materiais. A maioria já tem em casa
+                        <div class="wa-bubble__time">14:34</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        O Pedro ficou fascinado com as cores se misturando. Me perguntou POR QUE acontecia aquilo e o guia já tinha a explicação 🥹
+                        <div class="wa-bubble__time">14:35</div>
+                    </div>
+                </div>
+
+                <!-- Chat 4: Rafael -->
+                <div class="whatsapp-chat">
+                    <div class="whatsapp-chat__header">
+                        <div class="whatsapp-chat__avatar">R</div>
+                        <div>
+                            <div class="whatsapp-chat__name">Rafael Santos</div>
+                            <div class="whatsapp-chat__status">online</div>
+                        </div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Mano, lembra que eu reclamava que a Laura só queria celular?
+                        <div class="wa-bubble__time">19:02</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--sent">
+                        Lembro sim, tava preocupado com isso né
+                        <div class="wa-bubble__time">19:05 <span class="check">✓✓</span></div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Então, comecei a fazer uns experimentos com ela do guia que minha esposa comprou
+                        <div class="wa-bubble__time">19:06</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        <img src="img/familia3.jpg" alt="Família fazendo experimento" loading="lazy">
+                        Olha que domingo diferente 👆
+                        <div class="wa-bubble__time">19:06</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Ela já nem pediu o celular. Ficou a tarde toda querendo fazer "mais um só pai" 😂❤️
+                        <div class="wa-bubble__time">19:07</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--sent">
+                        Caramba, que massa! Me manda esse guia
+                        <div class="wa-bubble__time">19:08 <span class="check">✓✓</span></div>
+                    </div>
+                </div>
+
+                <!-- Chat 5: Juliana -->
+                <div class="whatsapp-chat">
+                    <div class="whatsapp-chat__header">
+                        <div class="whatsapp-chat__avatar">J</div>
+                        <div>
+                            <div class="whatsapp-chat__name">Juliana Costa</div>
+                            <div class="whatsapp-chat__status">online</div>
+                        </div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Preciso agradecer quem indicou esse guia de experimentos aqui no grupo
+                        <div class="wa-bubble__time">10:20</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Meu filho de 6 anos não parava de dizer "não tem nada pra fazer"
+                        <div class="wa-bubble__time">10:20</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Agora ele acorda e já pergunta: "mãe, qual experimento a gente vai fazer hoje?" 🥰
+                        <div class="wa-bubble__time">10:21</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        <img src="img/experimento_maos.jpg" alt="Mãos fazendo experimento" loading="lazy">
+                        <div class="wa-bubble__time">10:21</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--sent">
+                        Que fofo!! Qual ele mais gostou?
+                        <div class="wa-bubble__time">10:25 <span class="check">✓✓</span></div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        O de misturar cores! Ficou uns 40 minutos testando combinações diferentes. Nunca vi ele tão concentrado 😂
+                        <div class="wa-bubble__time">10:26</div>
+                    </div>
+                </div>
+
+                <!-- Chat 6: Pedro Henrique -->
+                <div class="whatsapp-chat">
+                    <div class="whatsapp-chat__header">
+                        <div class="whatsapp-chat__avatar">P</div>
+                        <div>
+                            <div class="whatsapp-chat__name">Pedro Henrique</div>
+                            <div class="whatsapp-chat__status">online</div>
+                        </div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Amor, olha o que eu e o Gui fizemos hoje na cozinha
+                        <div class="wa-bubble__time">17:33</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        <div class="wa-audio">
+                            <div class="wa-audio__play">▶</div>
+                            <div class="wa-audio__wave">
+                                <div class="wa-audio__bar" style="height:6px"></div>
+                                <div class="wa-audio__bar" style="height:12px"></div>
+                                <div class="wa-audio__bar" style="height:8px"></div>
+                                <div class="wa-audio__bar" style="height:16px"></div>
+                                <div class="wa-audio__bar" style="height:10px"></div>
+                                <div class="wa-audio__bar" style="height:18px"></div>
+                                <div class="wa-audio__bar" style="height:14px"></div>
+                                <div class="wa-audio__bar" style="height:8px"></div>
+                                <div class="wa-audio__bar" style="height:12px"></div>
+                                <div class="wa-audio__bar" style="height:6px"></div>
+                                <div class="wa-audio__bar" style="height:14px"></div>
+                                <div class="wa-audio__bar" style="height:10px"></div>
+                                <div class="wa-audio__bar" style="height:8px"></div>
+                            </div>
+                            <div class="wa-audio__dur">0:23</div>
+                        </div>
+                        <div class="wa-bubble__time">17:33</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--sent">
+                        KKKKK amei! Ele tá virando um cientista de verdade 🔬
+                        <div class="wa-bubble__time">17:40 <span class="check">✓✓</span></div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Saiu do guia dos experimentos. Esse final de semana a gente fez 4 já
+                        <div class="wa-bubble__time">17:41</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Melhor investimento. Ele tá aprendendo sem nem perceber 💡
+                        <div class="wa-bubble__time">17:41</div>
+                    </div>
+                </div>
+
+                <!-- Chat 7: Fernanda -->
+                <div class="whatsapp-chat">
+                    <div class="whatsapp-chat__header">
+                        <div class="whatsapp-chat__avatar">F</div>
+                        <div>
+                            <div class="whatsapp-chat__name">Fernanda Lima</div>
+                            <div class="whatsapp-chat__status">online</div>
+                        </div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Meninas, férias sem crise aqui em casa 🙏
+                        <div class="wa-bubble__time">11:15</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Comprei aquele guia de experimentos e tô fazendo um por dia com as crianças
+                        <div class="wa-bubble__time">11:15</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--sent">
+                        Mas dá pra fazer com os dois? O Lucas e a Sophia têm idades diferentes né
+                        <div class="wa-bubble__time">11:18 <span class="check">✓✓</span></div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Sim!! Ela tem 5 e ele 9, os dois adoram. O Lucas já quer ler a explicação científica sozinho 📖
+                        <div class="wa-bubble__time">11:19</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        E a Sophia fica encantada com as reações. Cada um curte de um jeito
+                        <div class="wa-bubble__time">11:19</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        Tô fazendo uma experiência por dia nas férias. Já fiz 12 e tem mais de 100 no guia 🤩
+                        <div class="wa-bubble__time">11:20</div>
+                    </div>
+                    <div class="wa-bubble wa-bubble--received">
+                        <div class="wa-stars">⭐⭐⭐⭐⭐</div>
+                        Recomendo demais!
+                        <div class="wa-bubble__time">11:20</div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -2579,6 +3263,89 @@
                 }
             });
         });
+
+        // ===== SALES POPUP =====
+        const popupOverlay = document.getElementById('salesPopup');
+        const popupCloseBtn = document.getElementById('popupClose');
+        let popupShown = false;
+
+        function showPopup() {
+            if (popupShown) return;
+            popupShown = true;
+            popupOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePopup() {
+            popupOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        popupCloseBtn.addEventListener('click', closePopup);
+
+        popupOverlay.addEventListener('click', function(e) {
+            if (e.target === popupOverlay) closePopup();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closePopup();
+        });
+
+        // Trigger 1: Exit intent (desktop - mouse leaves top of page)
+        document.addEventListener('mouseleave', function(e) {
+            if (e.clientY < 5) {
+                showPopup();
+            }
+        });
+
+        // Trigger 2: Timer - show after 45 seconds on page
+        setTimeout(function() {
+            showPopup();
+        }, 45000);
+
+        // Trigger 3: Scroll past 65% of the page
+        window.addEventListener('scroll', function() {
+            const scrollPercent = (window.scrollY + window.innerHeight) / document.body.scrollHeight;
+            if (scrollPercent > 0.65) {
+                showPopup();
+            }
+        }, { passive: true });
+
+        // Observe new testimonials fade-in elements
+        document.querySelectorAll('.testimonials .fade-in').forEach(el => {
+            observer.observe(el);
+        });
     </script>
+
+    <!-- ===== SALES POPUP ===== -->
+    <div class="popup-overlay" id="salesPopup">
+        <div class="popup">
+            <button class="popup__close" id="popupClose">✕</button>
+            <div class="popup__header">
+                <div class="popup__header-emoji">🧪✨</div>
+                <h3>ESPERA! VOCÊ ESTÁ PRESTES A DESCOBRIR +100 EXPERIÊNCIAS INCRÍVEIS</h3>
+                <p>Não perca a chance de transformar as tardes com seu filho</p>
+            </div>
+            <div class="popup__body">
+                <div class="popup__price-row">
+                    <div class="popup__price-new"><small>R$</small> 9,90</div>
+                </div>
+                <ul class="popup__list">
+                    <li><span>✓</span> +100 experimentos científicos</li>
+                    <li><span>✓</span> Passo a passo ilustrado</li>
+                    <li><span>✓</span> Materiais simples do dia a dia</li>
+                    <li><span>✓</span> 4 bônus exclusivos inclusos</li>
+                    <li><span>✓</span> Garantia de 7 dias</li>
+                </ul>
+                <a href="#oferta" class="cta-button cta-button--large cta-pulse" style="width:100%;max-width:100%;" onclick="closePopup()">
+                    QUERO MEU GUIA AGORA
+                </a>
+                <div class="popup__guarantee">
+                    <span>🛡️</span> Garantia de 7 dias · Acesso imediato
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
