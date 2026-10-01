@@ -1,0 +1,2584 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia +100 Experimentos Científicos para Fazer com Seu Filho</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --primary: #6C3CE1;
+            --primary-dark: #5A2DC5;
+            --primary-light: #8B5CF6;
+            --secondary: #FF6B35;
+            --secondary-dark: #E55A2B;
+            --accent-green: #10B981;
+            --accent-blue: #3B82F6;
+            --accent-pink: #EC4899;
+            --accent-yellow: #F59E0B;
+            --accent-cyan: #06B6D4;
+            --accent-red: #EF4444;
+            --bg-light: #FEFCFF;
+            --bg-section: #F8F5FF;
+            --bg-warm: #FFFBF5;
+            --bg-dark: #1E1145;
+            --text-dark: #1F2937;
+            --text-medium: #4B5563;
+            --text-light: #6B7280;
+            --white: #FFFFFF;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+            --shadow-xl: 0 20px 50px rgba(0,0,0,0.15);
+            --shadow-glow: 0 0 40px rgba(108,60,225,0.15);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --max-width: 1100px;
+        }
+
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Baloo 2', cursive;
+            line-height: 1.2;
+        }
+
+        /* ===== UTILITY ===== */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .text-center { text-align: center; }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--secondary), #FF8A5C);
+            color: var(--white);
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.25rem;
+            font-weight: 700;
+            padding: 18px 48px;
+            border-radius: 60px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 25px rgba(255,107,53,0.35);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.15), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(255,107,53,0.45);
+        }
+
+        .cta-button:hover::after {
+            left: 100%;
+        }
+
+        .cta-button--large {
+            font-size: 1.4rem;
+            padding: 22px 56px;
+        }
+
+        .cta-button--purple {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            box-shadow: 0 6px 25px rgba(108,60,225,0.35);
+        }
+
+        .cta-button--purple:hover {
+            box-shadow: 0 10px 35px rgba(108,60,225,0.45);
+        }
+
+        .section-label {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--white);
+            font-family: 'Baloo 2', cursive;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 6px 20px;
+            border-radius: 30px;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .highlight {
+            color: var(--primary);
+        }
+
+        .highlight-orange {
+            color: var(--secondary);
+        }
+
+        /* ===== FLOATING ELEMENTS ===== */
+        .floating-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.12;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            position: relative;
+            background: linear-gradient(165deg, #F0EAFF 0%, #FFF5EE 40%, #E8F8F0 100%);
+            padding: 60px 0 80px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(108,60,225,0.06), transparent 70%);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,107,53,0.06), transparent 70%);
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero__content {
+            max-width: 560px;
+        }
+
+        .hero__headline {
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            line-height: 1.15;
+        }
+
+        .hero__headline .em {
+            color: var(--primary);
+            display: block;
+        }
+
+        .hero__subheadline {
+            font-size: 1.15rem;
+            color: var(--text-medium);
+            margin-bottom: 28px;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+
+        .hero__badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 32px;
+        }
+
+        .hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--white);
+            border: 2px solid rgba(108,60,225,0.12);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hero__badge span {
+            font-size: 1.1rem;
+        }
+
+        .hero__visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero__mockup {
+            position: relative;
+            z-index: 2;
+        }
+
+        .mockup-container {
+            background: linear-gradient(145deg, var(--primary), var(--primary-light));
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: var(--shadow-xl), var(--shadow-glow);
+            max-width: 380px;
+            position: relative;
+            transform: perspective(800px) rotateY(-5deg) rotateX(2deg);
+            transition: transform 0.4s ease;
+        }
+
+        .mockup-container:hover {
+            transform: perspective(800px) rotateY(0deg) rotateX(0deg);
+        }
+
+        .mockup-cover {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 30px 24px;
+            text-align: center;
+        }
+
+        .mockup-cover__icon {
+            font-size: 3.5rem;
+            margin-bottom: 12px;
+        }
+
+        .mockup-cover__title {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .mockup-cover__subtitle {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .mockup-cover__number {
+            font-family: 'Baloo 2', cursive;
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--secondary), var(--accent-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin: 10px 0;
+        }
+
+        .mockup-cover__exp {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-medium);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .mockup-floating-badge {
+            position: absolute;
+            background: var(--white);
+            border-radius: 14px;
+            padding: 10px 16px;
+            box-shadow: var(--shadow-lg);
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 3;
+        }
+
+        .mockup-floating-badge--top {
+            top: -15px;
+            right: -30px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .mockup-floating-badge--bottom {
+            bottom: 20px;
+            left: -35px;
+            animation: float 5s ease-in-out infinite 1s;
+        }
+
+        .mockup-floating-badge span {
+            font-size: 1.3rem;
+        }
+
+        /* ===== PAIN SECTION ===== */
+        .pain {
+            background: var(--white);
+            padding: 80px 0;
+        }
+
+        .pain__headline {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .pain__story {
+            max-width: 600px;
+            margin: 0 auto 48px;
+            text-align: left;
+        }
+
+        .pain__story p {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+
+        .pain__story .dialogue {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            padding-left: 20px;
+            border-left: 3px solid var(--primary-light);
+            margin: 20px 0;
+        }
+
+        .pain__story .emphasis {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .pain-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            max-width: 900px;
+            margin: 0 auto 48px;
+        }
+
+        .pain-card {
+            background: #FFF5F5;
+            border: 1px solid #FFE5E5;
+            border-radius: var(--radius-md);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .pain-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .pain-card__icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .pain-card__text {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .pain__resolution {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .pain__resolution h3 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            font-weight: 800;
+        }
+
+        .pain__resolution h3:first-child {
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .pain__resolution h3:last-child {
+            color: var(--primary);
+        }
+
+        /* ===== SOLUTION SECTION ===== */
+        .solution {
+            background: linear-gradient(165deg, #F5F0FF, #FFF8F3);
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .solution__headline {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .solution__text {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            max-width: 650px;
+            margin: 0 auto 48px;
+            line-height: 1.8;
+        }
+
+        .solution__steps {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .solution__step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .solution__step-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .solution__step-icon--1 { background: linear-gradient(135deg, #E0D4FF, #F0EAFF); }
+        .solution__step-icon--2 { background: linear-gradient(135deg, #FFE8D4, #FFF5EE); }
+        .solution__step-icon--3 { background: linear-gradient(135deg, #D4F0E0, #E8F8F0); }
+        .solution__step-icon--4 { background: linear-gradient(135deg, #D4E8FF, #E8F0FF); }
+
+        .solution__step-label {
+            font-family: 'Baloo 2', cursive;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .solution__arrow {
+            font-size: 1.5rem;
+            color: var(--primary-light);
+            margin-top: -20px;
+        }
+
+        /* ===== PRODUCT SECTION ===== */
+        .product {
+            background: var(--white);
+            padding: 80px 0;
+        }
+
+        .product__headline {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .product__subheadline {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            max-width: 600px;
+            margin: 0 auto 48px;
+        }
+
+        .product__showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .product__pages {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .product__page {
+            background: var(--white);
+            border: 1px solid #E5E7EB;
+            border-radius: var(--radius-md);
+            padding: 16px;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product__page:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .product__page-icon {
+            font-size: 1.5rem;
+            margin-bottom: 6px;
+        }
+
+        .product__page-title {
+            font-family: 'Baloo 2', cursive;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .product__page-desc {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-top: 2px;
+        }
+
+        .product__features {
+            text-align: left;
+        }
+
+        .product__feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .product__feature-icon {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #F0EAFF, #E0D4FF);
+        }
+
+        .product__feature-text h4 {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .product__feature-text p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* ===== CATEGORIES SECTION ===== */
+        .categories {
+            background: linear-gradient(165deg, #F8F5FF, #FFF5EE);
+            padding: 80px 0;
+        }
+
+        .categories__headline {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .categories__sub {
+            font-size: 1.05rem;
+            color: var(--text-medium);
+            margin-bottom: 48px;
+        }
+
+        .categories__grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto 48px;
+        }
+
+        .category-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px 20px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .category-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+
+        .category-card__icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        .category-card__title {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .category-card__desc {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* ===== EXPERIMENT EXAMPLE ===== */
+        .experiment-example {
+            background: var(--white);
+            padding: 80px 0;
+        }
+
+        .experiment-example__headline {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .experiment-example__sub {
+            font-size: 1rem;
+            color: var(--text-medium);
+            margin-bottom: 40px;
+        }
+
+        .experiment-card {
+            max-width: 700px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, #FEFAFF, #FFF8F3);
+            border: 2px solid #E8E0F5;
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .experiment-card__header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+            border-bottom: 2px dashed #E8E0F5;
+        }
+
+        .experiment-card__header-icon {
+            font-size: 2.5rem;
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(108,60,225,0.2);
+        }
+
+        .experiment-card__header h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .experiment-card__header p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .experiment-card__section {
+            margin-bottom: 24px;
+        }
+
+        .experiment-card__section h4 {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .experiment-card__section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .experiment-card__section ul li {
+            padding: 6px 0 6px 24px;
+            position: relative;
+            font-size: 0.95rem;
+            color: var(--text-medium);
+        }
+
+        .experiment-card__section ul li::before {
+            content: '•';
+            position: absolute;
+            left: 8px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .experiment-card__section ol {
+            padding-left: 20px;
+        }
+
+        .experiment-card__section ol li {
+            padding: 6px 0;
+            font-size: 0.95rem;
+            color: var(--text-medium);
+        }
+
+        .experiment-card__explanation {
+            background: #F0EAFF;
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .experiment-card__explanation h4 {
+            color: var(--primary);
+        }
+
+        .experiment-card__explanation p {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            line-height: 1.7;
+        }
+
+        .experiment-card__challenge {
+            background: #FFF5EE;
+            border-radius: var(--radius-md);
+            padding: 20px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .experiment-card__challenge h4 {
+            color: var(--secondary);
+        }
+
+        .experiment-card__challenge p {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            font-style: italic;
+        }
+
+        .experiment-card__safety {
+            margin-top: 16px;
+            background: #FFF9E6;
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: #92400E;
+            font-weight: 600;
+        }
+
+        /* ===== BENEFITS SECTION ===== */
+        .benefits {
+            background: linear-gradient(165deg, #F0EAFF, #E8F8F0);
+            padding: 80px 0;
+        }
+
+        .benefits__headline {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 48px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .benefits__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+
+        .benefit-card__icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .benefit-card__title {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .benefit-card__desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* ===== OBJECTION SECTIONS ===== */
+        .objection {
+            padding: 80px 0;
+        }
+
+        .objection--alt {
+            background: var(--bg-section);
+        }
+
+        .objection__headline {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 24px;
+        }
+
+        .objection__text {
+            font-size: 1.05rem;
+            color: var(--text-medium);
+            max-width: 650px;
+            margin: 0 auto 32px;
+            line-height: 1.8;
+        }
+
+        .objection__highlight {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 28px;
+        }
+
+        .objection__steps {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .objection__step {
+            text-align: center;
+        }
+
+        .objection__step-num {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--white);
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+        }
+
+        .objection__step-text {
+            font-size: 0.82rem;
+            color: var(--text-medium);
+            font-weight: 600;
+        }
+
+        .materials-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .material-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            box-shadow: var(--shadow-sm);
+            min-width: 90px;
+        }
+
+        .material-item__icon {
+            font-size: 1.8rem;
+        }
+
+        .material-item__label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-medium);
+        }
+
+        /* ===== WHO IS IT FOR ===== */
+        .who {
+            background: var(--white);
+            padding: 80px 0;
+        }
+
+        .who__headline {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 40px;
+        }
+
+        .who__list {
+            max-width: 650px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .who__item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 18px;
+            padding: 14px 20px;
+            background: #F8FFF8;
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--accent-green);
+        }
+
+        .who__item-check {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .who__item-text {
+            font-size: 1.02rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        /* ===== MOMENTS SECTION ===== */
+        .moments {
+            background: linear-gradient(165deg, #FFF5EE, #F0EAFF);
+            padding: 80px 0;
+        }
+
+        .moments__headline {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 40px;
+        }
+
+        .moments__grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .moment-tag {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--white);
+            padding: 14px 24px;
+            border-radius: 50px;
+            box-shadow: var(--shadow-sm);
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            transition: all 0.3s;
+        }
+
+        .moment-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .moment-tag__icon {
+            font-size: 1.3rem;
+        }
+
+        /* ===== OFFER SECTION ===== */
+        .offer {
+            background: linear-gradient(165deg, var(--bg-dark), #2A1760);
+            padding: 80px 0;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .offer .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .offer__headline {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+        }
+
+        .offer__card {
+            max-width: 550px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+        }
+
+        .offer__mockup-mini {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .offer__list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 32px;
+            text-align: left;
+            max-width: 380px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .offer__list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            font-size: 1rem;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .offer__list li:last-child {
+            border-bottom: none;
+        }
+
+        .offer__list-check {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .offer__price-container {
+            margin-bottom: 24px;
+        }
+
+        .offer__price-label {
+            font-size: 0.95rem;
+            opacity: 0.7;
+            margin-bottom: 4px;
+        }
+
+        .offer__price {
+            font-family: 'Baloo 2', cursive;
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .offer__price small {
+            font-size: 1.5rem;
+            vertical-align: super;
+        }
+
+        .offer__access-info {
+            font-size: 0.85rem;
+            opacity: 0.6;
+            margin-top: 16px;
+        }
+
+        /* ===== BONUS SECTION ===== */
+        .bonus {
+            background: var(--bg-warm);
+            padding: 80px 0;
+        }
+
+        .bonus__headline {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .bonus__sub {
+            font-size: 1.05rem;
+            color: var(--text-medium);
+            margin-bottom: 40px;
+        }
+
+        .bonus__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .bonus-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .bonus-card:hover {
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .bonus-card__gift {
+            flex-shrink: 0;
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #FFF0E6, #FFE0CC);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .bonus-card__info h4 {
+            font-family: 'Baloo 2', cursive;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .bonus-card__info h3 {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        /* ===== GUARANTEE SECTION ===== */
+        .guarantee {
+            background: var(--white);
+            padding: 80px 0;
+        }
+
+        .guarantee__card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, #F0FFF0, #F8FFF8);
+            border: 2px solid #C6F0C6;
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .guarantee__seal {
+            flex-shrink: 0;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-green), #34D399);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            box-shadow: 0 6px 20px rgba(16,185,129,0.3);
+        }
+
+        .guarantee__seal-icon {
+            font-size: 1.8rem;
+        }
+
+        .guarantee__seal-days {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.6rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .guarantee__seal-text {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .guarantee__content h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .guarantee__content p {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            line-height: 1.7;
+        }
+
+        /* ===== FAQ SECTION ===== */
+        .faq {
+            background: var(--bg-section);
+            padding: 80px 0;
+        }
+
+        .faq__headline {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 40px;
+        }
+
+        .faq__list {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .faq__item {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            margin-bottom: 12px;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            border: 1px solid #E5E7EB;
+        }
+
+        .faq__question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 20px 24px;
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            transition: background 0.2s;
+        }
+
+        .faq__question:hover {
+            background: #F9FAFB;
+        }
+
+        .faq__question-icon {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: transform 0.3s;
+        }
+
+        .faq__item.active .faq__question-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq__answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+        }
+
+        .faq__item.active .faq__answer {
+            max-height: 300px;
+        }
+
+        .faq__answer-inner {
+            padding: 0 24px 20px;
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            line-height: 1.7;
+        }
+
+        /* ===== EMOTIONAL CTA ===== */
+        .emotional-cta {
+            background: linear-gradient(165deg, #F5F0FF, #FFF5EE);
+            padding: 80px 0;
+        }
+
+        .emotional-cta__headline {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            max-width: 650px;
+            margin: 0 auto 8px;
+        }
+
+        .emotional-cta__headline--purple {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 32px;
+        }
+
+        .emotional-cta__text {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            max-width: 550px;
+            margin: 0 auto 12px;
+            line-height: 1.8;
+        }
+
+        .emotional-cta__dialogue {
+            font-size: 1.15rem;
+            font-style: italic;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .emotional-cta__price {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .emotional-cta__price-value {
+            font-size: 2.5rem;
+        }
+
+        /* ===== STICKY CTA ===== */
+        .sticky-cta {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            padding: 12px 20px;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+            text-align: center;
+            border-top: 2px solid var(--primary);
+        }
+
+        .sticky-cta__inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .sticky-cta__price {
+            font-family: 'Baloo 2', cursive;
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 1.3rem;
+            white-space: nowrap;
+        }
+
+        .sticky-cta .cta-button {
+            font-size: 0.95rem;
+            padding: 12px 28px;
+        }
+
+        .sticky-cta.visible {
+            display: block;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--bg-dark);
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .footer p {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.8rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .hero__grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero__content {
+                max-width: 100%;
+            }
+
+            .hero__badges {
+                justify-content: center;
+            }
+
+            .hero__headline {
+                font-size: 2rem;
+            }
+
+            .mockup-container {
+                max-width: 280px;
+                margin: 0 auto;
+                transform: none;
+            }
+
+            .mockup-floating-badge--top {
+                right: -10px;
+            }
+
+            .mockup-floating-badge--bottom {
+                left: -10px;
+            }
+
+            .categories__grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .benefits__grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .product__showcase {
+                grid-template-columns: 1fr;
+            }
+
+            .bonus__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .guarantee__card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .objection__steps {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .section-padding {
+                padding: 60px 0;
+            }
+
+            h2, .pain__headline, .solution__headline, .product__headline,
+            .categories__headline, .benefits__headline, .who__headline,
+            .moments__headline, .offer__headline, .bonus__headline,
+            .faq__headline {
+                font-size: 1.6rem !important;
+            }
+
+            .hero {
+                padding: 40px 0 60px;
+            }
+
+            .hero__headline {
+                font-size: 1.65rem;
+            }
+
+            .hero__subheadline {
+                font-size: 1rem;
+            }
+
+            .hero__badges {
+                gap: 8px;
+            }
+
+            .hero__badge {
+                font-size: 0.78rem;
+                padding: 6px 12px;
+            }
+
+            .cta-button {
+                font-size: 1.05rem;
+                padding: 16px 36px;
+                width: 100%;
+                max-width: 360px;
+            }
+
+            .cta-button--large {
+                font-size: 1.15rem;
+                padding: 18px 36px;
+            }
+
+            .pain-cards {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .categories__grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .benefits__grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .objection__steps {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 6px;
+            }
+
+            .objection__step-text {
+                font-size: 0.7rem;
+            }
+
+            .experiment-card {
+                padding: 24px;
+            }
+
+            .offer__price {
+                font-size: 2.8rem;
+            }
+
+            .offer__card {
+                padding: 28px;
+            }
+
+            .product__pages {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            body {
+                padding-bottom: 70px;
+            }
+
+            .emotional-cta__headline {
+                font-size: 1.4rem;
+            }
+
+            .emotional-cta__headline--purple {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Pulse animation for CTA */
+        @keyframes pulse-subtle {
+            0%, 100% { box-shadow: 0 6px 25px rgba(255,107,53,0.35); }
+            50% { box-shadow: 0 6px 35px rgba(255,107,53,0.55); }
+        }
+
+        .cta-pulse {
+            animation: pulse-subtle 2.5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero">
+        <div class="floating-icons">
+            <span class="floating-icon" style="top:10%;left:5%;animation-delay:0s">🧪</span>
+            <span class="floating-icon" style="top:20%;right:8%;animation-delay:1s">🔬</span>
+            <span class="floating-icon" style="top:60%;left:3%;animation-delay:2s">💡</span>
+            <span class="floating-icon" style="top:70%;right:5%;animation-delay:0.5s">🌈</span>
+            <span class="floating-icon" style="top:40%;left:12%;animation-delay:3s">⭐</span>
+            <span class="floating-icon" style="bottom:15%;right:12%;animation-delay:1.5s">🎈</span>
+        </div>
+        <div class="container">
+            <div class="hero__grid">
+                <div class="hero__content">
+                    <div class="section-label">GUIA DIGITAL</div>
+                    <h1 class="hero__headline">
+                        SEU FILHO NÃO PRECISA DE MAIS UMA HORA NO CELULAR.
+                        <span class="em">ELE PRECISA DE UMA EXPERIÊNCIA PARA VIVER COM VOCÊ.</span>
+                    </h1>
+                    <p class="hero__subheadline">
+                        Descubra <strong>+100 experimentos científicos</strong> simples e divertidos para fazer em casa e transformar momentos comuns em brincadeiras que despertam <strong>curiosidade, criatividade e aprendizado.</strong>
+                    </p>
+                    <div class="hero__badges">
+                        <div class="hero__badge"><span>🧪</span> +100 Experimentos</div>
+                        <div class="hero__badge"><span>✅</span> Fáceis de Fazer</div>
+                        <div class="hero__badge"><span>🏠</span> Em Casa</div>
+                        <div class="hero__badge"><span>👨‍👩‍👧</span> Para Fazer Juntos</div>
+                    </div>
+                    <a href="#oferta" class="cta-button cta-pulse">QUERO DESCOBRIR OS EXPERIMENTOS</a>
+                </div>
+                <div class="hero__visual">
+                    <div class="hero__mockup">
+                        <div class="mockup-container">
+                            <div class="mockup-floating-badge mockup-floating-badge--top">
+                                <span>✨</span> Acesso Imediato
+                            </div>
+                            <div class="mockup-cover">
+                                <div class="mockup-cover__icon">🧪🔬</div>
+                                <div class="mockup-cover__title">GUIA<br>EXPERIMENTOS CIENTÍFICOS</div>
+                                <div class="mockup-cover__number">+100</div>
+                                <div class="mockup-cover__exp">EXPERIÊNCIAS</div>
+                                <div class="mockup-cover__subtitle">Para fazer com seu filho</div>
+                            </div>
+                            <div class="mockup-floating-badge mockup-floating-badge--bottom">
+                                <span>🎉</span> Só R$ 9,90
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PAIN SECTION ===== -->
+    <section class="pain text-center">
+        <div class="container">
+            <h2 class="pain__headline fade-in">
+                VOCÊ TAMBÉM SENTE QUE ESTÁ FALTANDO <span class="highlight">TEMPO DE QUALIDADE</span> COM SEU FILHO?
+            </h2>
+
+            <div class="pain__story fade-in">
+                <p>Você chega em casa cansado.</p>
+                <p>Seu filho quer atenção.</p>
+                <p>Você pergunta:</p>
+                <p class="dialogue">"Quer fazer alguma coisa?"</p>
+                <p>E muitas vezes a resposta é:</p>
+                <p class="dialogue">"Não sei..."</p>
+                <p>Pouco depois, o celular, o tablet ou a televisão acabam virando a opção mais fácil.</p>
+                <p>E não é porque você não quer brincar.</p>
+                <p class="emphasis">É porque, muitas vezes, você simplesmente não sabe o que fazer.</p>
+            </div>
+
+            <div class="pain-cards fade-in">
+                <div class="pain-card">
+                    <div class="pain-card__icon">📱</div>
+                    <div class="pain-card__text">"Pai, posso mexer no celular?"</div>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-card__icon">😩</div>
+                    <div class="pain-card__text">"Não sei o que brincar..."</div>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-card__icon">⏰</div>
+                    <div class="pain-card__text">"Hoje não deu tempo..."</div>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-card__icon">🧸</div>
+                    <div class="pain-card__text">"Ele enjoa rápido das mesmas brincadeiras."</div>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-card__icon">💭</div>
+                    <div class="pain-card__text">"Queria fazer mais coisas com meu filho."</div>
+                </div>
+            </div>
+
+            <div class="pain__resolution fade-in">
+                <h3>O problema não é falta de vontade.</h3>
+                <h3>É falta de ideias.</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SOLUTION SECTION ===== -->
+    <section class="solution text-center">
+        <div class="container">
+            <div class="section-label">A SOLUÇÃO</div>
+            <h2 class="solution__headline fade-in">
+                FOI POR ISSO QUE CRIAMOS O<br><span class="highlight">GUIA +100 EXPERIMENTOS</span>
+            </h2>
+            <p class="solution__text fade-in">
+                Em vez de passar horas procurando atividades na internet, você terá uma coleção organizada de experiências para escolher, preparar e fazer com seu filho.
+            </p>
+
+            <div class="solution__steps fade-in">
+                <div class="solution__step">
+                    <div class="solution__step-icon solution__step-icon--1">📋</div>
+                    <div class="solution__step-label">Escolha</div>
+                </div>
+                <div class="solution__arrow">→</div>
+                <div class="solution__step">
+                    <div class="solution__step-icon solution__step-icon--2">🧹</div>
+                    <div class="solution__step-label">Prepare</div>
+                </div>
+                <div class="solution__arrow">→</div>
+                <div class="solution__step">
+                    <div class="solution__step-icon solution__step-icon--3">🧪</div>
+                    <div class="solution__step-label">Experimente</div>
+                </div>
+                <div class="solution__arrow">→</div>
+                <div class="solution__step">
+                    <div class="solution__step-icon solution__step-icon--4">🌟</div>
+                    <div class="solution__step-label">Descubra</div>
+                </div>
+            </div>
+
+            <a href="#oferta" class="cta-button cta-button--purple">QUERO ACESSAR O GUIA</a>
+        </div>
+    </section>
+
+    <!-- ===== PRODUCT SECTION ===== -->
+    <section class="product text-center">
+        <div class="container">
+            <div class="section-label">O PRODUTO</div>
+            <h2 class="product__headline fade-in">
+                MAIS DE 100 EXPERIÊNCIAS PARA <span class="highlight">DESCOBRIR JUNTOS</span>
+            </h2>
+            <p class="product__subheadline fade-in">
+                Uma biblioteca de atividades para aqueles momentos em que você pensa: <strong>"O que vamos fazer hoje?"</strong>
+            </p>
+
+            <div class="product__showcase fade-in">
+                <div class="product__pages">
+                    <div class="product__page">
+                        <div class="product__page-icon">📖</div>
+                        <div class="product__page-title">Passo a Passo</div>
+                        <div class="product__page-desc">Instruções claras e simples</div>
+                    </div>
+                    <div class="product__page">
+                        <div class="product__page-icon">📝</div>
+                        <div class="product__page-title">Lista de Materiais</div>
+                        <div class="product__page-desc">Tudo que você precisa</div>
+                    </div>
+                    <div class="product__page">
+                        <div class="product__page-icon">🔎</div>
+                        <div class="product__page-title">Explicações</div>
+                        <div class="product__page-desc">Ciência de forma simples</div>
+                    </div>
+                    <div class="product__page">
+                        <div class="product__page-icon">🎯</div>
+                        <div class="product__page-title">Desafios</div>
+                        <div class="product__page-desc">Perguntas para pensar</div>
+                    </div>
+                    <div class="product__page">
+                        <div class="product__page-icon">🎨</div>
+                        <div class="product__page-title">Ilustrações</div>
+                        <div class="product__page-desc">Visual atrativo</div>
+                    </div>
+                    <div class="product__page">
+                        <div class="product__page-icon">⚠️</div>
+                        <div class="product__page-title">Segurança</div>
+                        <div class="product__page-desc">Orientações quando necessário</div>
+                    </div>
+                </div>
+                <div class="product__features">
+                    <div class="product__feature">
+                        <div class="product__feature-icon">✅</div>
+                        <div class="product__feature-text">
+                            <h4>+100 Experimentos Organizados</h4>
+                            <p>Divididos por categoria para facilitar a escolha.</p>
+                        </div>
+                    </div>
+                    <div class="product__feature">
+                        <div class="product__feature-icon">📋</div>
+                        <div class="product__feature-text">
+                            <h4>Instruções Simples</h4>
+                            <p>Qualquer adulto consegue seguir, sem necessidade de conhecimento prévio.</p>
+                        </div>
+                    </div>
+                    <div class="product__feature">
+                        <div class="product__feature-icon">💡</div>
+                        <div class="product__feature-text">
+                            <h4>Explicações Científicas</h4>
+                            <p>Linguagem simples para que a criança entenda o que está acontecendo.</p>
+                        </div>
+                    </div>
+                    <div class="product__feature">
+                        <div class="product__feature-icon">🏠</div>
+                        <div class="product__feature-text">
+                            <h4>Materiais do Dia a Dia</h4>
+                            <p>A maioria dos experimentos usa itens comuns.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <a href="#oferta" class="cta-button">QUERO AS +100 EXPERIÊNCIAS</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CATEGORIES SECTION ===== -->
+    <section class="categories text-center">
+        <div class="container">
+            <div class="section-label">O QUE TEM DENTRO</div>
+            <h2 class="categories__headline fade-in">
+                CATEGORIAS DE <span class="highlight">EXPERIMENTOS</span>
+            </h2>
+            <p class="categories__sub fade-in">
+                Uma variedade de atividades para diferentes interesses e momentos.
+            </p>
+
+            <div class="categories__grid fade-in">
+                <div class="category-card">
+                    <div class="category-card__icon">🧪</div>
+                    <div class="category-card__title">Experimentos com Água</div>
+                    <div class="category-card__desc">Experiências simples usando água e materiais comuns.</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-card__icon">🌈</div>
+                    <div class="category-card__title">Cores e Misturas</div>
+                    <div class="category-card__desc">Atividades para descobrir cores, combinações e reações.</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-card__icon">🎈</div>
+                    <div class="category-card__title">Ar e Pressão</div>
+                    <div class="category-card__desc">Experimentos divertidos para entender fenômenos do cotidiano.</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-card__icon">🧲</div>
+                    <div class="category-card__title">Magnetismo</div>
+                    <div class="category-card__desc">Descobertas envolvendo ímãs e objetos do dia a dia.</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-card__icon">🌋</div>
+                    <div class="category-card__title">Reações</div>
+                    <div class="category-card__desc">Experiências visuais e divertidas que mostram conceitos científicos.</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-card__icon">💡</div>
+                    <div class="category-card__title">Luz e Som</div>
+                    <div class="category-card__desc">Atividades para explorar fenômenos presentes no cotidiano.</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-card__icon">🌱</div>
+                    <div class="category-card__title">Natureza</div>
+                    <div class="category-card__desc">Experimentos e observações relacionados ao mundo natural.</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-card__icon">🔬</div>
+                    <div class="category-card__title">Descobertas do Dia a Dia</div>
+                    <div class="category-card__desc">Experiências que transformam objetos comuns em pequenas descobertas.</div>
+                </div>
+            </div>
+
+            <a href="#oferta" class="cta-button cta-button--purple">QUERO DESCOBRIR OS EXPERIMENTOS</a>
+        </div>
+    </section>
+
+    <!-- ===== EXPERIMENT EXAMPLE ===== -->
+    <section class="experiment-example text-center">
+        <div class="container">
+            <div class="section-label">EXEMPLO DE EXPERIMENTO</div>
+            <h2 class="experiment-example__headline fade-in">
+                VEJA COMO FUNCIONA <span class="highlight">NA PRÁTICA</span>
+            </h2>
+            <p class="experiment-example__sub fade-in">Cada experimento segue essa mesma estrutura clara e fácil de acompanhar.</p>
+
+            <div class="experiment-card fade-in">
+                <div class="experiment-card__header">
+                    <div class="experiment-card__header-icon">🌋</div>
+                    <div>
+                        <h3>EXPERIMENTO: O VULCÃO CASEIRO</h3>
+                        <p>Categoria: Reações</p>
+                    </div>
+                </div>
+
+                <div class="experiment-card__section">
+                    <h4>🧹 VOCÊ VAI PRECISAR:</h4>
+                    <ul>
+                        <li>Bicarbonato de sódio</li>
+                        <li>Vinagre</li>
+                        <li>Corante alimentício (opcional)</li>
+                        <li>Um recipiente (garrafa pequena, copo ou pote)</li>
+                        <li>Uma bandeja ou superfície fácil de limpar</li>
+                        <li>Detergente (poucas gotas)</li>
+                    </ul>
+                </div>
+
+                <div class="experiment-card__section">
+                    <h4>📋 COMO FAZER:</h4>
+                    <ol>
+                        <li>Coloque o recipiente sobre a bandeja.</li>
+                        <li>Adicione 2 colheres de bicarbonato de sódio no recipiente.</li>
+                        <li>Adicione algumas gotas de corante e detergente.</li>
+                        <li>Despeje o vinagre devagar e observe a reação!</li>
+                    </ol>
+                </div>
+
+                <div class="experiment-card__explanation">
+                    <h4>🔎 O QUE ESTÁ ACONTECENDO?</h4>
+                    <p>Quando o vinagre (um ácido) entra em contato com o bicarbonato de sódio (uma base), ocorre uma reação química que produz gás carbônico. Esse gás forma as bolhas e a espuma que parecem uma erupção vulcânica!</p>
+                </div>
+
+                <div class="experiment-card__challenge">
+                    <h4>💡 DESAFIO:</h4>
+                    <p>O que acontece se você usar mais vinagre? E se colocar menos bicarbonato? Teste e veja como a "erupção" muda!</p>
+                </div>
+
+                <div class="experiment-card__safety">
+                    <span>⚠️</span>
+                    Realize a atividade em uma superfície fácil de limpar. Evite contato dos materiais com os olhos. Supervisão de um adulto é recomendada.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BENEFITS SECTION ===== -->
+    <section class="benefits text-center">
+        <div class="container">
+            <h2 class="benefits__headline fade-in">
+                MAIS DO QUE EXPERIMENTOS.<br><span class="highlight">MOMENTOS PARA VOCÊS VIVEREM JUNTOS.</span>
+            </h2>
+
+            <div class="benefits__grid fade-in">
+                <div class="benefit-card">
+                    <div class="benefit-card__icon">❤️</div>
+                    <div class="benefit-card__title">Tempo de Qualidade</div>
+                    <div class="benefit-card__desc">Transforme momentos comuns em atividades compartilhadas.</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-card__icon">🧠</div>
+                    <div class="benefit-card__title">Curiosidade</div>
+                    <div class="benefit-card__desc">Estimule a criança a perguntar, observar e descobrir.</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-card__icon">🎨</div>
+                    <div class="benefit-card__title">Criatividade</div>
+                    <div class="benefit-card__desc">Dê espaço para testar ideias e imaginar possibilidades.</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-card__icon">🔎</div>
+                    <div class="benefit-card__title">Aprendizado na Prática</div>
+                    <div class="benefit-card__desc">A criança aprende enquanto experimenta.</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-card__icon">👨‍👩‍👧</div>
+                    <div class="benefit-card__title">Momentos em Família</div>
+                    <div class="benefit-card__desc">Atividades que podem envolver pais, filhos e irmãos.</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-card__icon">📵</div>
+                    <div class="benefit-card__title">Alternativas à Tela</div>
+                    <div class="benefit-card__desc">Tenha ideias prontas para quando quiser propor outra atividade.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== OBJECTION: SCIENCE ===== -->
+    <section class="objection text-center">
+        <div class="container">
+            <h2 class="objection__headline fade-in">
+                <span class="highlight-orange">"MAS EU NÃO ENTENDO NADA DE CIÊNCIA..."</span>
+            </h2>
+            <p class="objection__highlight fade-in">
+                VOCÊ NÃO PRECISA SER PROFESSOR DE CIÊNCIAS.
+            </p>
+            <p class="objection__text fade-in">
+                O guia foi pensado para que o adulto consiga conduzir cada atividade de forma simples. A experiência acontece junto com vocês.
+            </p>
+
+            <div class="objection__steps fade-in">
+                <div class="objection__step">
+                    <div class="objection__step-num">1</div>
+                    <div class="objection__step-text">Escolha a experiência</div>
+                </div>
+                <div class="objection__step">
+                    <div class="objection__step-num">2</div>
+                    <div class="objection__step-text">Separe os materiais</div>
+                </div>
+                <div class="objection__step">
+                    <div class="objection__step-num">3</div>
+                    <div class="objection__step-text">Siga o passo a passo</div>
+                </div>
+                <div class="objection__step">
+                    <div class="objection__step-num">4</div>
+                    <div class="objection__step-text">Faça junto com a criança</div>
+                </div>
+                <div class="objection__step">
+                    <div class="objection__step-num">5</div>
+                    <div class="objection__step-text">Descubra a explicação</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== OBJECTION: MATERIALS ===== -->
+    <section class="objection objection--alt text-center">
+        <div class="container">
+            <h2 class="objection__headline fade-in">
+                VOCÊ NÃO PRECISA TRANSFORMAR SUA CASA <span class="highlight">EM UM LABORATÓRIO.</span>
+            </h2>
+            <p class="objection__text fade-in">
+                Os experimentos priorizam materiais simples e fáceis de encontrar. Quando alguma atividade exigir materiais específicos, isso estará indicado de forma clara.
+            </p>
+
+            <div class="materials-grid fade-in">
+                <div class="material-item">
+                    <div class="material-item__icon">🥛</div>
+                    <div class="material-item__label">Copo</div>
+                </div>
+                <div class="material-item">
+                    <div class="material-item__icon">💧</div>
+                    <div class="material-item__label">Água</div>
+                </div>
+                <div class="material-item">
+                    <div class="material-item__icon">🎈</div>
+                    <div class="material-item__label">Balão</div>
+                </div>
+                <div class="material-item">
+                    <div class="material-item__icon">🧂</div>
+                    <div class="material-item__label">Sal</div>
+                </div>
+                <div class="material-item">
+                    <div class="material-item__icon">🧴</div>
+                    <div class="material-item__label">Recipientes</div>
+                </div>
+                <div class="material-item">
+                    <div class="material-item__icon">🧻</div>
+                    <div class="material-item__label">Papel</div>
+                </div>
+                <div class="material-item">
+                    <div class="material-item__icon">🖍️</div>
+                    <div class="material-item__label">Lápis</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WHO IS IT FOR ===== -->
+    <section class="who text-center">
+        <div class="container">
+            <div class="section-label">PARA QUEM É</div>
+            <h2 class="who__headline fade-in">ESSE GUIA É PARA VOCÊ SE...</h2>
+
+            <div class="who__list fade-in">
+                <div class="who__item">
+                    <div class="who__item-check">✓</div>
+                    <div class="who__item-text">Seu filho vive dizendo que está entediado.</div>
+                </div>
+                <div class="who__item">
+                    <div class="who__item-check">✓</div>
+                    <div class="who__item-text">Você quer ter mais ideias para brincar juntos.</div>
+                </div>
+                <div class="who__item">
+                    <div class="who__item-check">✓</div>
+                    <div class="who__item-text">Você procura atividades educativas e divertidas.</div>
+                </div>
+                <div class="who__item">
+                    <div class="who__item-check">✓</div>
+                    <div class="who__item-text">Quer reduzir a dependência das telas em alguns momentos do dia.</div>
+                </div>
+                <div class="who__item">
+                    <div class="who__item-check">✓</div>
+                    <div class="who__item-text">Quer transformar uma tarde comum em uma experiência diferente.</div>
+                </div>
+                <div class="who__item">
+                    <div class="who__item-check">✓</div>
+                    <div class="who__item-text">Quer estimular a curiosidade da criança.</div>
+                </div>
+                <div class="who__item">
+                    <div class="who__item-check">✓</div>
+                    <div class="who__item-text">Quer participar mais das descobertas do seu filho.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MOMENTS SECTION ===== -->
+    <section class="moments text-center">
+        <div class="container">
+            <h2 class="moments__headline fade-in">
+                QUANDO FALTAR IDEIA, <span class="highlight">VOCÊ JÁ VAI SABER O QUE FAZER.</span>
+            </h2>
+
+            <div class="moments__grid fade-in">
+                <div class="moment-tag">
+                    <span class="moment-tag__icon">☀️</span> Tarde em casa
+                </div>
+                <div class="moment-tag">
+                    <span class="moment-tag__icon">🌧️</span> Dia de chuva
+                </div>
+                <div class="moment-tag">
+                    <span class="moment-tag__icon">🏖️</span> Férias
+                </div>
+                <div class="moment-tag">
+                    <span class="moment-tag__icon">🎉</span> Finais de semana
+                </div>
+                <div class="moment-tag">
+                    <span class="moment-tag__icon">👨‍👩‍👧</span> Tempo em família
+                </div>
+                <div class="moment-tag">
+                    <span class="moment-tag__icon">🏠</span> Dias de tédio
+                </div>
+                <div class="moment-tag">
+                    <span class="moment-tag__icon">💡</span> Momentos de descoberta
+                </div>
+            </div>
+
+            <a href="#oferta" class="cta-button">QUERO TER IDEIAS PRONTAS</a>
+        </div>
+    </section>
+
+    <!-- ===== OFFER SECTION ===== -->
+    <section class="offer text-center" id="oferta">
+        <div class="container">
+            <h2 class="offer__headline fade-in">
+                TENHA +100 EXPERIMENTOS<br>PARA FAZER COM SEU FILHO
+            </h2>
+
+            <div class="offer__card fade-in">
+                <div class="offer__mockup-mini">🧪</div>
+
+                <ul class="offer__list">
+                    <li><span class="offer__list-check">✓</span> +100 experiências científicas</li>
+                    <li><span class="offer__list-check">✓</span> Passo a passo ilustrado</li>
+                    <li><span class="offer__list-check">✓</span> Lista de materiais em cada atividade</li>
+                    <li><span class="offer__list-check">✓</span> Explicações simples e acessíveis</li>
+                    <li><span class="offer__list-check">✓</span> Atividades para diferentes momentos</li>
+                    <li><span class="offer__list-check">✓</span> Desafios e perguntas para pensar</li>
+                    <li><span class="offer__list-check">✓</span> Guia digital — acesse quando quiser</li>
+                </ul>
+
+                <div class="offer__price-container">
+                    <div class="offer__price-label">Tudo isso por apenas</div>
+                    <div class="offer__price"><small>R$</small> 9,90</div>
+                </div>
+
+                <a href="#" class="cta-button cta-button--large cta-pulse" style="width:100%;max-width:100%;">
+                    QUERO MEU GUIA AGORA
+                </a>
+
+                <p class="offer__access-info">Acesso digital após a confirmação do pagamento.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BONUS SECTION ===== -->
+    <section class="bonus text-center">
+        <div class="container">
+            <div class="section-label" style="background:linear-gradient(135deg, var(--secondary), #FF8A5C);">BÔNUS INCLUSOS</div>
+            <h2 class="bonus__headline fade-in">
+                E TEM MAIS: <span class="highlight-orange">BÔNUS EXCLUSIVOS</span>
+            </h2>
+            <p class="bonus__sub fade-in">Ao adquirir o guia, você também recebe:</p>
+
+            <div class="bonus__grid fade-in">
+                <div class="bonus-card">
+                    <div class="bonus-card__gift">🎁</div>
+                    <div class="bonus-card__info">
+                        <h4>Bônus 01</h4>
+                        <h3>Desafio Cientista Mirim</h3>
+                    </div>
+                </div>
+                <div class="bonus-card">
+                    <div class="bonus-card__gift">🎁</div>
+                    <div class="bonus-card__info">
+                        <h4>Bônus 02</h4>
+                        <h3>50 Perguntas Curiosas para Fazer com Seu Filho</h3>
+                    </div>
+                </div>
+                <div class="bonus-card">
+                    <div class="bonus-card__gift">🎁</div>
+                    <div class="bonus-card__info">
+                        <h4>Bônus 03</h4>
+                        <h3>Diário das Descobertas</h3>
+                    </div>
+                </div>
+                <div class="bonus-card">
+                    <div class="bonus-card__gift">🎁</div>
+                    <div class="bonus-card__info">
+                        <h4>Bônus 04</h4>
+                        <h3>Certificado de Pequeno Cientista</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GUARANTEE ===== -->
+    <section class="guarantee text-center">
+        <div class="container">
+            <h2 class="objection__headline fade-in">EXPERIMENTE COM TRANQUILIDADE</h2>
+
+            <div class="guarantee__card fade-in">
+                <div class="guarantee__seal">
+                    <div class="guarantee__seal-icon">🛡️</div>
+                    <div class="guarantee__seal-days">7</div>
+                    <div class="guarantee__seal-text">DIAS</div>
+                </div>
+                <div class="guarantee__content" style="text-align:left;">
+                    <h3>Garantia de 7 Dias</h3>
+                    <p>Você terá 7 dias para conhecer o material. Se perceber que ele não é adequado para você, poderá solicitar o reembolso dentro das condições da garantia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="faq text-center">
+        <div class="container">
+            <div class="section-label">DÚVIDAS FREQUENTES</div>
+            <h2 class="faq__headline fade-in">PERGUNTAS E RESPOSTAS</h2>
+
+            <div class="faq__list fade-in">
+                <div class="faq__item">
+                    <button class="faq__question" onclick="toggleFaq(this)">
+                        O material é físico?
+                        <span class="faq__question-icon">+</span>
+                    </button>
+                    <div class="faq__answer">
+                        <div class="faq__answer-inner">
+                            Não. É um produto digital. Você receberá o acesso de forma digital e poderá consultar o material quando quiser, no celular, tablet ou computador.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq__item">
+                    <button class="faq__question" onclick="toggleFaq(this)">
+                        Como vou receber?
+                        <span class="faq__question-icon">+</span>
+                    </button>
+                    <div class="faq__answer">
+                        <div class="faq__answer-inner">
+                            O acesso é disponibilizado digitalmente após a confirmação do pagamento. Você receberá as instruções de acesso no e-mail cadastrado no momento da compra.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq__item">
+                    <button class="faq__question" onclick="toggleFaq(this)">
+                        Preciso comprar materiais caros?
+                        <span class="faq__question-icon">+</span>
+                    </button>
+                    <div class="faq__answer">
+                        <div class="faq__answer-inner">
+                            A proposta é priorizar experiências simples, mas alguns experimentos podem exigir materiais específicos. Cada atividade informa claramente o que será necessário, para que você possa decidir antes de começar.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq__item">
+                    <button class="faq__question" onclick="toggleFaq(this)">
+                        Preciso entender de ciência?
+                        <span class="faq__question-icon">+</span>
+                    </button>
+                    <div class="faq__answer">
+                        <div class="faq__answer-inner">
+                            Não. As experiências possuem instruções detalhadas e explicações simplificadas. O guia foi pensado para que qualquer adulto consiga conduzir as atividades com as crianças.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq__item">
+                    <button class="faq__question" onclick="toggleFaq(this)">
+                        Posso fazer com mais de uma criança?
+                        <span class="faq__question-icon">+</span>
+                    </button>
+                    <div class="faq__answer">
+                        <div class="faq__answer-inner">
+                            Sim, desde que a atividade seja adequada à faixa etária de cada criança e realizada com a supervisão de um adulto.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq__item">
+                    <button class="faq__question" onclick="toggleFaq(this)">
+                        É indicado para qual idade?
+                        <span class="faq__question-icon">+</span>
+                    </button>
+                    <div class="faq__answer">
+                        <div class="faq__answer-inner">
+                            O guia contempla atividades que podem ser realizadas com crianças de diferentes idades, sempre com acompanhamento de um adulto. A faixa etária recomendada é informada na descrição do produto.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq__item">
+                    <button class="faq__question" onclick="toggleFaq(this)">
+                        Posso fazer sozinho com meu filho?
+                        <span class="faq__question-icon">+</span>
+                    </button>
+                    <div class="faq__answer">
+                        <div class="faq__answer-inner">
+                            Sim! A maioria das atividades pode ser feita por um adulto e uma criança. Porém, atividades que envolvam materiais ou procedimentos potencialmente perigosos devem ser realizadas somente com supervisão adequada.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EMOTIONAL CTA ===== -->
+    <section class="emotional-cta text-center">
+        <div class="container">
+            <h2 class="emotional-cta__headline fade-in">
+                VOCÊ NÃO PRECISA DE MAIS UMA BRINCADEIRA.
+            </h2>
+            <h2 class="emotional-cta__headline emotional-cta__headline--purple fade-in">
+                VOCÊ PRECISA DE MAIS MOMENTOS PARA VIVER COM SEU FILHO.
+            </h2>
+
+            <p class="emotional-cta__text fade-in">Na próxima vez que ele disser:</p>
+            <p class="emotional-cta__dialogue fade-in">"Pai, não tem nada pra fazer..."</p>
+            <p class="emotional-cta__text fade-in">ou</p>
+            <p class="emotional-cta__dialogue fade-in">"Mãe, estou entediado..."</p>
+
+            <p class="emotional-cta__text fade-in" style="margin-bottom:32px;">
+                Você poderá abrir o guia e escolher uma nova descoberta para vocês fazerem juntos.
+            </p>
+
+            <div class="emotional-cta__price fade-in">
+                POR APENAS <span class="emotional-cta__price-value">R$ 9,90</span>
+            </div>
+
+            <div style="margin-top:20px;" class="fade-in">
+                <a href="#oferta" class="cta-button cta-button--large cta-pulse">QUERO +100 EXPERIMENTOS</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <p>Guia +100 Experimentos Científicos — Produto Digital</p>
+            <p style="margin-top:4px;">Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- ===== STICKY CTA (MOBILE) ===== -->
+    <div class="sticky-cta" id="stickyCta">
+        <div class="sticky-cta__inner">
+            <div class="sticky-cta__price">R$ 9,90</div>
+            <a href="#oferta" class="cta-button" style="flex:1;">QUERO O GUIA</a>
+        </div>
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // FAQ Toggle
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            const isActive = item.classList.contains('active');
+
+            // Close all
+            document.querySelectorAll('.faq__item').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // Open clicked if it wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Scroll Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Sticky CTA (show on mobile after scrolling past hero)
+        function handleStickyCta() {
+            const stickyCta = document.getElementById('stickyCta');
+            const hero = document.querySelector('.hero');
+            const offerSection = document.getElementById('oferta');
+            const isMobile = window.innerWidth <= 768;
+
+            if (!isMobile) {
+                stickyCta.classList.remove('visible');
+                return;
+            }
+
+            const heroBottom = hero.getBoundingClientRect().bottom;
+            const offerTop = offerSection.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+
+            if (heroBottom < 0 && offerTop > windowHeight) {
+                stickyCta.classList.add('visible');
+            } else {
+                stickyCta.classList.remove('visible');
+            }
+        }
+
+        window.addEventListener('scroll', handleStickyCta, { passive: true });
+        window.addEventListener('resize', handleStickyCta, { passive: true });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
