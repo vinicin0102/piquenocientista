@@ -994,67 +994,953 @@
             color: var(--text-light);
         }
 
-        /* ===== CATEGORIES SECTION ===== */
+        /* ===== CATEGORIES SECTION (interactive app demo) ===== */
         .categories {
-            background: linear-gradient(165deg, #F8F5FF, #FFF5EE);
+            background:
+                radial-gradient(circle at 15% 20%, rgba(139,92,246,0.35), transparent 40%),
+                radial-gradient(circle at 85% 75%, rgba(255,107,53,0.22), transparent 40%),
+                linear-gradient(165deg, #1E1145, #2A1663 60%, #1E1145);
             padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+            color: var(--white);
         }
 
         .categories__headline {
             font-size: 2rem;
             font-weight: 800;
-            color: var(--text-dark);
+            color: var(--white);
             margin-bottom: 12px;
+        }
+
+        .categories .highlight {
+            color: #FFD166;
+        }
+
+        .categories .section-label {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.25);
         }
 
         .categories__sub {
             font-size: 1.05rem;
-            color: var(--text-medium);
-            margin-bottom: 48px;
-        }
-
-        .categories__grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            max-width: 900px;
+            color: rgba(255,255,255,0.78);
+            max-width: 620px;
             margin: 0 auto 48px;
         }
 
-        .category-card {
-            background: var(--white);
-            border-radius: var(--radius-lg);
-            padding: 28px 20px;
-            text-align: center;
-            box-shadow: var(--shadow-sm);
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            cursor: default;
+        .lab {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 36px;
+            align-items: center;
+            max-width: 1040px;
+            margin: 0 auto 48px;
         }
 
-        .category-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--primary-light);
+        .lab__side {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
 
-        .category-card__icon {
-            font-size: 2.5rem;
-            margin-bottom: 12px;
+        .lab__side--left { text-align: right; }
+        .lab__side--right { text-align: left; }
+
+        .lab-callout {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 18px;
+            padding: 14px 16px;
+            color: var(--white);
+            font: inherit;
+            text-align: inherit;
+            cursor: pointer;
+            transition: background 0.3s, border-color 0.3s, transform 0.3s, box-shadow 0.3s;
         }
 
-        .category-card__title {
+        .lab__side--left .lab-callout { flex-direction: row-reverse; }
+
+        .lab-callout:hover,
+        .lab-callout.active {
+            background: rgba(255,255,255,0.14);
+            border-color: #FFD166;
+            box-shadow: 0 0 24px rgba(255,209,102,0.25);
+        }
+
+        .lab__side--left .lab-callout.active { transform: translateX(-6px); }
+        .lab__side--right .lab-callout.active { transform: translateX(6px); }
+
+        .lab-callout__icon {
+            flex-shrink: 0;
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            background: rgba(255,255,255,0.12);
+        }
+
+        .lab-callout__title {
             font-family: 'Baloo 2', cursive;
+            font-weight: 800;
             font-size: 1rem;
+            line-height: 1.2;
+        }
+
+        .lab-callout__desc {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.4;
+        }
+
+        .lab__center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .lab__hint {
+            font-family: 'Baloo 2', cursive;
             font-weight: 700;
+            font-size: 0.9rem;
+            color: #FFD166;
+            animation: lab-bob 2s ease-in-out infinite;
+        }
+
+        @keyframes lab-bob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Phone shell */
+        .lab-phone {
+            width: 320px;
+            background: #0F0A24;
+            border-radius: 46px;
+            padding: 11px;
+            position: relative;
+            box-shadow:
+                0 0 0 2px #3B2A75,
+                0 30px 60px rgba(0,0,0,0.5),
+                0 0 80px rgba(139,92,246,0.45);
+        }
+
+        .lab-phone::before {
+            content: '';
+            position: absolute;
+            top: 21px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 96px;
+            height: 26px;
+            background: #0F0A24;
+            border-radius: 20px;
+            z-index: 20;
+        }
+
+        .ia {
+            position: relative;
+            height: 640px;
+            border-radius: 36px;
+            overflow: hidden;
+            background: #F6F2FF;
             color: var(--text-dark);
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .ia__status {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 44px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 26px 0;
+            font-size: 0.72rem;
+            font-weight: 800;
+            z-index: 15;
+            color: var(--white);
+            pointer-events: none;
+            transition: color 0.3s, background 0.3s;
+        }
+
+        .ia__status.solid {
+            color: var(--text-dark);
+            background: rgba(246,242,255,0.94);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .ia__screen {
+            position: absolute;
+            inset: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-bottom: 86px;
+            scrollbar-width: none;
+            transition: transform 0.4s cubic-bezier(.2,.8,.2,1), opacity 0.3s;
+            background: #F6F2FF;
+        }
+
+        .ia__screen::-webkit-scrollbar { display: none; }
+
+        .ia__screen.is-hidden-right { transform: translateX(100%); opacity: 0; pointer-events: none; }
+        .ia__screen.is-hidden-left { transform: translateX(-30%); opacity: 0; pointer-events: none; }
+
+        /* Home */
+        .ia-home__top {
+            background: linear-gradient(140deg, #6C3CE1, #8B5CF6 60%, #A78BFA);
+            color: var(--white);
+            padding: 52px 18px 22px;
+            border-radius: 0 0 28px 28px;
+            position: relative;
+        }
+
+        .ia-home__row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ia-home__hello { font-size: 0.75rem; opacity: 0.85; font-weight: 700; }
+
+        .ia-home__name {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.3rem;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .ia-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #FFD166;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.35);
+        }
+
+        .ia-level {
+            margin-top: 14px;
+            background: rgba(255,255,255,0.16);
+            border-radius: 16px;
+            padding: 10px 12px;
+        }
+
+        .ia-level__row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.68rem;
+            font-weight: 800;
             margin-bottom: 6px;
         }
 
-        .category-card__desc {
-            font-size: 0.82rem;
+        .ia-bar {
+            height: 8px;
+            background: rgba(255,255,255,0.25);
+            border-radius: 99px;
+            overflow: hidden;
+        }
+
+        .ia-bar__fill {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, #FFD166, #FF9F43);
+            border-radius: 99px;
+            transition: width 0.8s cubic-bezier(.2,.8,.2,1);
+        }
+
+        .ia-search {
+            margin: -16px 16px 0;
+            position: relative;
+            background: var(--white);
+            border-radius: 14px;
+            padding: 11px 14px;
+            font-size: 0.75rem;
             color: var(--text-light);
+            box-shadow: 0 6px 18px rgba(108,60,225,0.15);
+        }
+
+        .ia-section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-family: 'Baloo 2', cursive;
+            font-weight: 800;
+            font-size: 0.95rem;
+            margin: 18px 16px 10px;
+        }
+
+        .ia-section-title small {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.68rem;
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .ia-featured {
+            margin: 0 16px;
+            border-radius: 20px;
+            padding: 16px;
+            background: linear-gradient(135deg, #FF6B35, #F59E0B);
+            color: var(--white);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            cursor: pointer;
+            border: none;
+            width: calc(100% - 32px);
+            text-align: left;
+            font: inherit;
+            position: relative;
+            box-shadow: 0 10px 22px rgba(255,107,53,0.35);
+            transition: transform 0.2s;
+        }
+
+        .ia-featured:active { transform: scale(0.97); }
+
+        .ia-featured__emoji {
+            font-size: 2.4rem;
+            width: 62px;
+            height: 62px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.22);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .ia-featured__tag {
+            font-size: 0.6rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        .ia-featured__title {
+            font-family: 'Baloo 2', cursive;
+            font-weight: 800;
+            font-size: 1.05rem;
+            line-height: 1.15;
+        }
+
+        .ia-featured__meta { font-size: 0.68rem; font-weight: 700; opacity: 0.9; }
+
+        .ia-tap {
+            position: absolute;
+            right: 14px;
+            bottom: 10px;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            animation: ia-ping 1.6s ease-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes ia-ping {
+            0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.7); transform: scale(0.8); }
+            70% { box-shadow: 0 0 0 16px rgba(255,255,255,0); transform: scale(1); }
+            100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); transform: scale(0.8); }
+        }
+
+        .ia-cats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px 6px;
+            margin: 0 12px;
+        }
+
+        .ia-cat {
+            border: none;
+            background: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .ia-cat__icon {
+            width: 54px;
+            height: 54px;
+            margin: 0 auto 4px;
+            border-radius: 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.55rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+
+        .ia-cat:hover .ia-cat__icon { transform: translateY(-3px) rotate(-4deg); }
+        .ia-cat:active .ia-cat__icon { transform: scale(0.9); }
+
+        .ia-cat__name {
+            font-size: 0.62rem;
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--text-dark);
+        }
+
+        .ia-badges {
+            display: flex;
+            gap: 8px;
+            margin: 0 16px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .ia-badge {
+            flex-shrink: 0;
+            background: var(--white);
+            border-radius: 14px;
+            padding: 8px 10px;
+            text-align: center;
+            font-size: 0.6rem;
+            font-weight: 800;
+            min-width: 72px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .ia-badge span { display: block; font-size: 1.3rem; }
+        .ia-badge.locked { opacity: 0.45; filter: grayscale(1); }
+        .ia-badge.unlocked { animation: ia-pop 0.6s ease; }
+
+        /* Category screen */
+        .ia-cat-hero {
+            padding: 52px 18px 22px;
+            color: var(--white);
+            border-radius: 0 0 28px 28px;
+        }
+
+        .ia-back {
+            border: none;
+            background: rgba(255,255,255,0.25);
+            color: inherit;
+            width: 34px;
+            height: 34px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 900;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .ia-cat-hero__emoji { font-size: 2.4rem; line-height: 1; }
+
+        .ia-cat-hero__title {
+            font-family: 'Baloo 2', cursive;
+            font-weight: 800;
+            font-size: 1.35rem;
+            line-height: 1.1;
+            margin-top: 6px;
+        }
+
+        .ia-cat-hero__sub { font-size: 0.72rem; opacity: 0.9; font-weight: 700; }
+
+        .ia-list { padding: 14px 14px 0; display: flex; flex-direction: column; gap: 10px; }
+
+        .ia-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--white);
+            border-radius: 18px;
+            padding: 12px;
+            border: none;
+            font: inherit;
+            text-align: left;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 100%;
+        }
+
+        .ia-item:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+        .ia-item__emoji {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .ia-item__body { flex: 1; min-width: 0; }
+
+        .ia-item__title {
+            font-family: 'Baloo 2', cursive;
+            font-weight: 800;
+            font-size: 0.9rem;
+            line-height: 1.15;
+        }
+
+        .ia-item__meta { font-size: 0.65rem; color: var(--text-light); font-weight: 700; }
+
+        .ia-item__check {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 2px solid #E2D9F7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        .ia-item__check.done { background: var(--accent-green); border-color: var(--accent-green); }
+
+        .ia-more {
+            text-align: center;
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: var(--text-light);
+            padding: 14px 14px 4px;
+        }
+
+        /* Experiment screen */
+        .ia-exp-hero {
+            padding: 52px 18px 26px;
+            color: var(--white);
+            border-radius: 0 0 28px 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ia-exp-hero__emoji {
+            position: absolute;
+            right: -6px;
+            bottom: -14px;
+            font-size: 5.5rem;
+            opacity: 0.9;
+            transform: rotate(-10deg);
+        }
+
+        .ia-exp-hero__cat { font-size: 0.62rem; font-weight: 900; letter-spacing: 1px; opacity: 0.9; }
+
+        .ia-exp-hero__title {
+            font-family: 'Baloo 2', cursive;
+            font-weight: 800;
+            font-size: 1.35rem;
+            line-height: 1.1;
+            max-width: 75%;
+        }
+
+        .ia-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+
+        .ia-chip {
+            background: rgba(255,255,255,0.22);
+            border-radius: 99px;
+            padding: 3px 9px;
+            font-size: 0.62rem;
+            font-weight: 800;
+        }
+
+        .ia-progress {
+            position: sticky;
+            top: 44px;
+            z-index: 5;
+            margin: -14px 14px 0;
+            background: var(--white);
+            border-radius: 14px;
+            padding: 9px 12px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+        }
+
+        .ia-progress__row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.65rem;
+            font-weight: 900;
+            margin-bottom: 5px;
+            color: var(--text-medium);
+        }
+
+        .ia-progress .ia-bar { background: #EEE8FA; height: 7px; }
+        .ia-progress .ia-bar__fill { background: linear-gradient(90deg, #10B981, #34D399); }
+
+        .ia-card {
+            margin: 12px 14px 0;
+            background: var(--white);
+            border-radius: 18px;
+            padding: 14px;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.4s;
+        }
+
+        .ia-card.flash { box-shadow: 0 0 0 3px #FFD166, 0 8px 22px rgba(255,209,102,0.45); }
+
+        .ia-card__title {
+            font-family: 'Baloo 2', cursive;
+            font-weight: 800;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .ia-check {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            border: none;
+            background: none;
+            font: inherit;
+            text-align: left;
+            padding: 6px 0;
+            cursor: pointer;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .ia-check__box {
+            width: 22px;
+            height: 22px;
+            border-radius: 7px;
+            border: 2px solid #D9CCF7;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 0.7rem;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+        }
+
+        .ia-check.on .ia-check__box {
+            background: var(--accent-green);
+            border-color: var(--accent-green);
+            transform: scale(1.1);
+        }
+
+        .ia-check.on .ia-check__label { text-decoration: line-through; color: var(--text-light); }
+
+        .ia-step .ia-check__box { border-radius: 50%; font-weight: 900; color: var(--primary); font-size: 0.68rem; border-color: #C4B5FD; }
+        .ia-step.on .ia-check__box { color: var(--white); }
+
+        .ia-predict { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+        .ia-predict__opt {
+            border: 2px solid #E2D9F7;
+            background: #FBF9FF;
+            border-radius: 14px;
+            padding: 10px 6px;
+            font: inherit;
+            font-size: 0.7rem;
+            font-weight: 800;
+            cursor: pointer;
+            color: var(--text-dark);
+            transition: all 0.2s;
+        }
+
+        .ia-predict__opt span { display: block; font-size: 1.3rem; }
+        .ia-predict__opt.on { border-color: var(--primary); background: #EFE8FF; transform: scale(1.03); }
+
+        .ia-discovery {
+            margin: 12px 14px 0;
+            border-radius: 18px;
+            padding: 14px;
+            background: linear-gradient(135deg, #1E1145, #3B2A75);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ia-discovery__text {
+            font-size: 0.76rem;
             line-height: 1.5;
+            filter: blur(5px);
+            user-select: none;
+            transition: filter 0.6s;
+        }
+
+        .ia-discovery.open .ia-discovery__text { filter: none; user-select: auto; }
+
+        .ia-discovery__lock {
+            position: absolute;
+            inset: 40px 14px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 0.7rem;
+            font-weight: 900;
+            color: #FFD166;
+            transition: opacity 0.4s;
+        }
+
+        .ia-discovery.open .ia-discovery__lock { opacity: 0; pointer-events: none; }
+
+        .ia-challenge {
+            margin: 12px 14px 0;
+            border-radius: 18px;
+            padding: 12px 14px;
+            background: #FFF4D6;
+            font-size: 0.74rem;
+            font-weight: 700;
+            color: #7A5200;
+        }
+
+        .ia-finish {
+            display: block;
+            width: calc(100% - 28px);
+            margin: 14px 14px 0;
+            border: none;
+            border-radius: 16px;
+            padding: 13px;
+            font-family: 'Baloo 2', cursive;
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: var(--white);
+            background: #C9BEE6;
+            cursor: not-allowed;
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        .ia-finish.ready {
+            background: linear-gradient(135deg, #10B981, #059669);
+            cursor: pointer;
+            box-shadow: 0 8px 18px rgba(16,185,129,0.4);
+            animation: ia-pulse 1.6s ease-in-out infinite;
+        }
+
+        @keyframes ia-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        /* Bottom nav */
+        .ia-nav {
+            position: absolute;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            height: 62px;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 22px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 6px 20px rgba(30,17,69,0.15);
+            z-index: 12;
+        }
+
+        .ia-nav__btn {
+            border: none;
+            background: none;
+            font: inherit;
+            font-size: 0.58rem;
+            font-weight: 800;
+            color: var(--text-light);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            position: relative;
+        }
+
+        .ia-nav__btn span { font-size: 1.15rem; }
+        .ia-nav__btn.active { color: var(--primary); }
+
+        .ia-nav__btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -7px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        .ia-nav__count {
+            position: absolute;
+            top: -4px;
+            right: -6px;
+            min-width: 16px;
+            height: 16px;
+            border-radius: 99px;
+            background: var(--secondary);
+            color: var(--white);
+            font-size: 0.55rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 4px;
+        }
+
+        /* Reward overlay */
+        .ia-reward {
+            position: absolute;
+            inset: 0;
+            background: rgba(30,17,69,0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 30;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .ia-reward.show { opacity: 1; pointer-events: auto; }
+
+        .ia-reward__card {
+            position: relative;
+            z-index: 2;
+            background: var(--white);
+            border-radius: 26px;
+            padding: 24px 20px;
+            width: 82%;
+            text-align: center;
+            transform: scale(0.7);
+            transition: transform 0.45s cubic-bezier(.3,1.6,.5,1);
+        }
+
+        .ia-reward.show .ia-reward__card { transform: scale(1); }
+
+        .ia-reward__trophy { font-size: 3.4rem; line-height: 1; animation: ia-pop 0.8s ease; }
+
+        .ia-reward__title {
+            font-family: 'Baloo 2', cursive;
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin: 6px 0 2px;
+        }
+
+        .ia-reward__xp {
+            display: inline-block;
+            margin: 8px 0 14px;
+            background: linear-gradient(135deg, #FFD166, #FF9F43);
+            color: #5A3300;
+            font-weight: 900;
+            font-size: 0.85rem;
+            border-radius: 99px;
+            padding: 5px 14px;
+        }
+
+        .ia-reward__text { font-size: 0.75rem; color: var(--text-medium); }
+
+        .ia-reward__btn {
+            border: none;
+            background: var(--primary);
+            color: var(--white);
+            font-family: 'Baloo 2', cursive;
+            font-weight: 800;
+            border-radius: 14px;
+            padding: 10px 18px;
+            cursor: pointer;
+            margin-top: 12px;
+        }
+
+        @keyframes ia-pop {
+            0% { transform: scale(0.3) rotate(-15deg); }
+            60% { transform: scale(1.2) rotate(8deg); }
+            100% { transform: scale(1) rotate(0); }
+        }
+
+        .ia-confetti {
+            position: absolute;
+            top: -10px;
+            width: 8px;
+            height: 12px;
+            border-radius: 2px;
+            z-index: 1;
+            pointer-events: none;
+            animation: ia-fall linear forwards;
+        }
+
+        @keyframes ia-fall {
+            to { transform: translateY(680px) rotate(720deg); opacity: 0.6; }
+        }
+
+        .ia-toast {
+            position: absolute;
+            left: 50%;
+            bottom: 84px;
+            transform: translate(-50%, 20px);
+            background: #1E1145;
+            color: var(--white);
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 8px 14px;
+            border-radius: 99px;
+            z-index: 25;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .ia-toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+        @media (max-width: 1000px) {
+            .lab {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .lab__center { order: -1; }
+
+            .lab__side {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .lab__side--left,
+            .lab__side--right { text-align: left; }
+
+            .lab__side--left .lab-callout { flex-direction: row; }
+            .lab__side--left .lab-callout.active,
+            .lab__side--right .lab-callout.active { transform: none; }
+
+            .lab__sides-mobile {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .lab__side { grid-template-columns: 1fr; }
+
+            .lab-callout { padding: 10px 12px; }
+
+            .lab-callout__icon { width: 38px; height: 38px; font-size: 1.1rem; }
+
+            .lab-phone { width: 300px; }
+
+            .ia { height: 600px; }
+        }
+
+        @media (max-width: 340px) {
+            .lab-phone { width: 270px; }
         }
 
         /* ===== EXPERIMENT EXAMPLE ===== */
@@ -1936,10 +2822,6 @@
                 left: -10px;
             }
 
-            .categories__grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
             .benefits__grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -2009,11 +2891,6 @@
 
             .pain-cards {
                 grid-template-columns: 1fr 1fr;
-            }
-
-            .categories__grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 12px;
             }
 
             .benefits__grid {
@@ -2743,56 +3620,92 @@
         <div class="container">
             <div class="section-label">O QUE TEM DENTRO</div>
             <h2 class="categories__headline fade-in">
-                CATEGORIAS DE <span class="highlight">EXPERIMENTOS</span>
+                SEU FILHO VAI SE SENTIR <span class="highlight">DENTRO DE UM LABORATÓRIO</span>
             </h2>
             <p class="categories__sub fade-in">
-                Uma variedade de atividades para diferentes interesses e momentos.
+                Experimente agora mesmo: toque no celular abaixo e veja como é usar o app. Escolha uma categoria, marque os materiais, siga o passo a passo e desbloqueie a descoberta.
             </p>
 
-            <div class="categories__grid fade-in">
-                <div class="category-card">
-                    <div class="category-card__icon">🧪</div>
-                    <div class="category-card__title">Experimentos com Água</div>
-                    <div class="category-card__desc">Experiências simples usando água e materiais comuns.</div>
+            <div class="lab fade-in" id="lab">
+                <div class="lab__side lab__side--left">
+                    <button type="button" class="lab-callout" data-go="home">
+                        <div class="lab-callout__icon">🗂️</div>
+                        <div>
+                            <div class="lab-callout__title">8 categorias</div>
+                            <div class="lab-callout__desc">Água, cores, ímãs, reações e muito mais</div>
+                        </div>
+                    </button>
+                    <button type="button" class="lab-callout" data-go="materials">
+                        <div class="lab-callout__icon">✅</div>
+                        <div>
+                            <div class="lab-callout__title">Checklist de materiais</div>
+                            <div class="lab-callout__desc">Separe tudo antes de começar</div>
+                        </div>
+                    </button>
+                    <button type="button" class="lab-callout" data-go="steps">
+                        <div class="lab-callout__icon">👣</div>
+                        <div>
+                            <div class="lab-callout__title">Passo a passo interativo</div>
+                            <div class="lab-callout__desc">Marque cada etapa e acompanhe o progresso</div>
+                        </div>
+                    </button>
                 </div>
-                <div class="category-card">
-                    <div class="category-card__icon">🌈</div>
-                    <div class="category-card__title">Cores e Misturas</div>
-                    <div class="category-card__desc">Atividades para descobrir cores, combinações e reações.</div>
+
+                <div class="lab__center">
+                    <div class="lab__hint">👆 Toque e explore o app</div>
+                    <div class="lab-phone">
+                        <div class="ia" id="ia">
+                            <div class="ia__status" id="iaStatus"><span>9:41</span><span>📶 🔋</span></div>
+                            <div class="ia-toast" id="iaToast"></div>
+                            <!-- screens are rendered by JS -->
+                            <div class="ia__screen" data-screen="home" id="iaHome"></div>
+                            <div class="ia__screen is-hidden-right" data-screen="category" id="iaCategory"></div>
+                            <div class="ia__screen is-hidden-right" data-screen="experiment" id="iaExperiment"></div>
+                            <nav class="ia-nav">
+                                <button type="button" class="ia-nav__btn active" data-nav="home"><span>🏠</span>Início</button>
+                                <button type="button" class="ia-nav__btn" data-nav="explore"><span>🧪</span>Explorar</button>
+                                <button type="button" class="ia-nav__btn" data-nav="done"><span>🏆</span>Conquistas<b class="ia-nav__count" id="iaDoneCount">0</b></button>
+                                <button type="button" class="ia-nav__btn" data-nav="pdf"><span>📄</span>PDF</button>
+                            </nav>
+                            <div class="ia-reward" id="iaReward">
+                                <div class="ia-reward__card">
+                                    <div class="ia-reward__trophy">🏆</div>
+                                    <div class="ia-reward__title">Experimento concluído!</div>
+                                    <div class="ia-reward__text" id="iaRewardText"></div>
+                                    <div class="ia-reward__xp">+10 XP ⚡</div><br>
+                                    <button type="button" class="ia-reward__btn" id="iaRewardBtn">Próxima descoberta →</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="category-card">
-                    <div class="category-card__icon">🎈</div>
-                    <div class="category-card__title">Ar e Pressão</div>
-                    <div class="category-card__desc">Experimentos divertidos para entender fenômenos do cotidiano.</div>
-                </div>
-                <div class="category-card">
-                    <div class="category-card__icon">🧲</div>
-                    <div class="category-card__title">Magnetismo</div>
-                    <div class="category-card__desc">Descobertas envolvendo ímãs e objetos do dia a dia.</div>
-                </div>
-                <div class="category-card">
-                    <div class="category-card__icon">🌋</div>
-                    <div class="category-card__title">Reações</div>
-                    <div class="category-card__desc">Experiências visuais e divertidas que mostram conceitos científicos.</div>
-                </div>
-                <div class="category-card">
-                    <div class="category-card__icon">💡</div>
-                    <div class="category-card__title">Luz e Som</div>
-                    <div class="category-card__desc">Atividades para explorar fenômenos presentes no cotidiano.</div>
-                </div>
-                <div class="category-card">
-                    <div class="category-card__icon">🌱</div>
-                    <div class="category-card__title">Natureza</div>
-                    <div class="category-card__desc">Experimentos e observações relacionados ao mundo natural.</div>
-                </div>
-                <div class="category-card">
-                    <div class="category-card__icon">🔬</div>
-                    <div class="category-card__title">Descobertas do Dia a Dia</div>
-                    <div class="category-card__desc">Experiências que transformam objetos comuns em pequenas descobertas.</div>
+
+                <div class="lab__side lab__side--right">
+                    <button type="button" class="lab-callout" data-go="predict">
+                        <div class="lab-callout__icon">🔮</div>
+                        <div>
+                            <div class="lab-callout__title">Minha previsão</div>
+                            <div class="lab-callout__desc">A criança aposta no resultado antes de testar</div>
+                        </div>
+                    </button>
+                    <button type="button" class="lab-callout" data-go="discovery">
+                        <div class="lab-callout__icon">💡</div>
+                        <div>
+                            <div class="lab-callout__title">Hora da descoberta</div>
+                            <div class="lab-callout__desc">A ciência explicada de forma simples</div>
+                        </div>
+                    </button>
+                    <button type="button" class="lab-callout" data-go="reward">
+                        <div class="lab-callout__icon">🏆</div>
+                        <div>
+                            <div class="lab-callout__title">Conquistas e XP</div>
+                            <div class="lab-callout__desc">Cada experimento vira uma medalha</div>
+                        </div>
+                    </button>
                 </div>
             </div>
 
-            <a href="#oferta" class="cta-button cta-button--purple">QUERO DESCOBRIR OS EXPERIMENTOS</a>
+            <a href="#oferta" class="cta-button">QUERO TER ESSE APP AGORA</a>
         </div>
     </section>
 
@@ -3631,6 +4544,443 @@
                 current = current === 'app' ? 'pdf' : 'app';
                 show(current);
             }, 4000);
+        })();
+
+        // Interactive app demo ("O que tem dentro")
+        (function () {
+            const ia = document.getElementById('ia');
+            if (!ia) return;
+
+            const CATS = [
+                { id: 'agua', name: 'Água', emoji: '💧', color: '#3B82F6', soft: '#DBEAFE', total: 14 },
+                { id: 'cores', name: 'Cores e Misturas', emoji: '🌈', color: '#EC4899', soft: '#FCE7F3', total: 13 },
+                { id: 'ar', name: 'Ar e Pressão', emoji: '🎈', color: '#06B6D4', soft: '#CFFAFE', total: 12 },
+                { id: 'ima', name: 'Magnetismo', emoji: '🧲', color: '#EF4444', soft: '#FEE2E2', total: 11 },
+                { id: 'reacoes', name: 'Reações', emoji: '🌋', color: '#FF6B35', soft: '#FFEDD5', total: 14 },
+                { id: 'luz', name: 'Luz e Som', emoji: '💡', color: '#F59E0B', soft: '#FEF3C7', total: 12 },
+                { id: 'natureza', name: 'Natureza', emoji: '🌱', color: '#10B981', soft: '#D1FAE5', total: 13 },
+                { id: 'dia', name: 'Dia a Dia', emoji: '🔬', color: '#8B5CF6', soft: '#EDE9FE', total: 12 }
+            ];
+
+            const EXPS = [
+                { id: 'agua-copo', cat: 'agua', emoji: '🥛', title: 'A água que não cai', time: '5 min', level: 'Fácil',
+                  materials: ['Copo', 'Água', 'Cartão resistente'],
+                  predict: [['💦', 'A água vai cair'], ['🪄', 'O cartão vai segurar']],
+                  steps: ['Encha o copo de água até a borda.', 'Cubra a boca do copo com o cartão.', 'Sobre a pia, vire o copo segurando o cartão.', 'Solte a mão do cartão com cuidado.'],
+                  discovery: 'O ar à nossa volta empurra o cartão para cima com força suficiente para segurar a água. Essa força invisível se chama pressão do ar!',
+                  challenge: 'O que acontece se o copo estiver só pela metade?' },
+                { id: 'agua-ovo', cat: 'agua', emoji: '🥚', title: 'O ovo flutuante', time: '10 min', level: 'Fácil',
+                  materials: ['2 copos', '2 ovos', 'Sal', 'Água'],
+                  predict: [['⬇️', 'Afunda nos dois'], ['⬆️', 'Flutua na água salgada']],
+                  steps: ['Coloque água nos dois copos.', 'Misture várias colheres de sal em um deles.', 'Coloque um ovo em cada copo.', 'Compare o que aconteceu.'],
+                  discovery: 'A água salgada é mais densa que a água pura. Ela empurra o ovo para cima com mais força e faz ele flutuar!',
+                  challenge: 'Quanto sal é preciso para o ovo começar a subir?' },
+                { id: 'cores-mistura', cat: 'cores', emoji: '🎨', title: 'Misturando as cores', time: '15 min', level: 'Fácil',
+                  materials: ['Tinta azul', 'Tinta vermelha', 'Tinta amarela', 'Pincel e potinhos'],
+                  predict: [['🟢', 'Azul + amarelo = verde'], ['🟤', 'Azul + amarelo = marrom']],
+                  steps: ['Separe as três cores em potinhos.', 'Misture azul com amarelo.', 'Misture vermelho com amarelo.', 'Misture azul com vermelho.'],
+                  discovery: 'Azul, vermelho e amarelo são cores primárias. Misturando duas delas criamos as secundárias: verde, laranja e roxo!',
+                  challenge: 'Que cor aparece se você misturar as três?' },
+                { id: 'cores-leite', cat: 'cores', emoji: '🥛', title: 'O leite colorido', time: '10 min', level: 'Fácil',
+                  materials: ['Prato fundo', 'Leite', 'Corantes alimentícios', 'Detergente', 'Cotonete'],
+                  predict: [['😐', 'Nada acontece'], ['🌀', 'As cores vão dançar']],
+                  steps: ['Coloque leite no prato até cobrir o fundo.', 'Pingue corantes perto do centro.', 'Molhe a ponta do cotonete no detergente.', 'Toque o centro do leite com o cotonete.'],
+                  discovery: 'O detergente quebra a "pele" da superfície do leite e mexe com a gordura dele. Esse movimento carrega as cores e cria redemoinhos!',
+                  challenge: 'Funciona igual com leite desnatado?' },
+                { id: 'ar-balao', cat: 'ar', emoji: '🎈', title: 'O balão que enche sozinho', time: '10 min', level: 'Fácil',
+                  materials: ['Garrafa pet', 'Vinagre', 'Bicarbonato', 'Balão', 'Funil'],
+                  predict: [['🎈', 'O balão vai encher'], ['🙅', 'Nada vai acontecer']],
+                  steps: ['Coloque um pouco de vinagre na garrafa.', 'Com o funil, coloque bicarbonato no balão.', 'Prenda o balão na boca da garrafa.', 'Levante o balão para o pó cair no vinagre.'],
+                  discovery: 'O vinagre e o bicarbonato reagem e produzem gás carbônico. O gás não tem para onde ir e enche o balão!',
+                  challenge: 'Mais bicarbonato enche o balão mais rápido?' },
+                { id: 'ar-papel', cat: 'ar', emoji: '🧻', title: 'O papel que não molha', time: '5 min', level: 'Fácil',
+                  materials: ['Copo', 'Guardanapo', 'Bacia com água'],
+                  predict: [['💧', 'O papel vai molhar'], ['🏜️', 'O papel fica seco']],
+                  steps: ['Amasse o guardanapo no fundo do copo.', 'Vire o copo de boca para baixo.', 'Afunde o copo reto na bacia.', 'Tire o copo reto e toque o papel.'],
+                  discovery: 'O copo parece vazio, mas está cheio de ar. O ar ocupa espaço e não deixa a água entrar até o papel!',
+                  challenge: 'E se você inclinar o copo dentro da água?' },
+                { id: 'ima-atrai', cat: 'ima', emoji: '🧲', title: 'O que um ímã atrai?', time: '10 min', level: 'Fácil',
+                  materials: ['Ímã', 'Moeda', 'Clipe', 'Lápis', 'Colher', 'Tampinha'],
+                  predict: [['📎', 'O clipe vai grudar'], ['✏️', 'O lápis vai grudar']],
+                  steps: ['Separe os objetos sobre a mesa.', 'Anote sua previsão para cada um.', 'Aproxime o ímã de cada objeto.', 'Separe os que grudaram dos que não.'],
+                  discovery: 'Ímãs atraem alguns metais, principalmente o ferro. Madeira, plástico e papel não são atraídos!',
+                  challenge: 'O ímã funciona através de uma folha de papel?' },
+                { id: 'ima-bussola', cat: 'ima', emoji: '🧭', title: 'Bússola caseira', time: '15 min', level: 'Médio',
+                  materials: ['Agulha (com ajuda de um adulto)', 'Ímã', 'Rodela de rolha', 'Tigela com água'],
+                  predict: [['🧭', 'Vai apontar uma direção'], ['🔄', 'Vai girar sem parar']],
+                  steps: ['Esfregue a agulha no ímã 20 vezes no mesmo sentido.', 'Prenda a agulha na rodela de rolha.', 'Coloque a rolha boiando na água.', 'Observe para onde a agulha aponta.'],
+                  discovery: 'A agulha vira um pequeno ímã e se alinha com o magnetismo da Terra, apontando para o norte e o sul!',
+                  challenge: 'Gire a tigela: a agulha muda de direção?' },
+                { id: 'reacoes-vulcao', cat: 'reacoes', emoji: '🌋', title: 'O vulcão colorido', time: '10 min', level: 'Fácil',
+                  materials: ['Bicarbonato de sódio', 'Vinagre', 'Corante alimentício', 'Copo', 'Bandeja'],
+                  predict: [['🫧', 'Vai borbulhar e transbordar'], ['😶', 'Nada vai acontecer']],
+                  steps: ['Coloque o copo em cima da bandeja.', 'Adicione 2 colheres de bicarbonato.', 'Pingue algumas gotas de corante.', 'Despeje o vinagre e observe a erupção!'],
+                  discovery: 'O vinagre é um ácido. Quando encontra o bicarbonato, eles reagem e formam gás carbônico. As bolhas sobem rápido e empurram a espuma colorida para fora, como um vulcão!',
+                  challenge: 'O que acontece se usar mais vinagre?' },
+                { id: 'reacoes-moeda', cat: 'reacoes', emoji: '🪙', title: 'A moeda brilhante', time: '10 min', level: 'Fácil',
+                  materials: ['Moedas escurecidas', 'Vinagre', 'Sal', 'Copo'],
+                  predict: [['✨', 'Vai ficar brilhante'], ['🌑', 'Vai continuar escura']],
+                  steps: ['Coloque vinagre no copo.', 'Misture uma colher de sal.', 'Deixe as moedas lá por 5 minutos.', 'Enxágue e compare com uma moeda suja.'],
+                  discovery: 'Com o tempo, o metal da moeda forma uma camada escura. O vinagre com sal dissolve essa camada e o brilho volta!',
+                  challenge: 'Funciona só com vinagre, sem sal?' },
+                { id: 'luz-arco', cat: 'luz', emoji: '🌈', title: 'O arco-íris no copo', time: '5 min', level: 'Fácil',
+                  materials: ['Copo com água', 'Papel branco', 'Luz do sol'],
+                  predict: [['🌈', 'Vai aparecer um arco-íris'], ['☀️', 'Só um brilho branco']],
+                  steps: ['Coloque o copo com água sobre o papel.', 'Deixe a luz do sol atravessar o copo.', 'Ajuste o ângulo até ver cores.', 'Observe as cores que se formaram.'],
+                  discovery: 'A luz do sol parece branca, mas é feita de várias cores. Ao atravessar a água ela se curva e as cores se separam!',
+                  challenge: 'Consegue fazer o arco-íris com uma lanterna?' },
+                { id: 'luz-telefone', cat: 'luz', emoji: '📞', title: 'Telefone de copo', time: '15 min', level: 'Fácil',
+                  materials: ['2 copos plásticos', 'Barbante (3 metros)', '2 palitos'],
+                  predict: [['👂', 'Vai dar para ouvir'], ['🔇', 'Não vai dar para ouvir']],
+                  steps: ['Faça um furinho no fundo dos copos.', 'Passe o barbante e amarre num palito.', 'Afastem-se até o barbante esticar.', 'Um fala num copo, o outro escuta.'],
+                  discovery: 'O som é vibração. A voz faz o copo vibrar, a vibração corre pelo barbante esticado e chega ao outro copo!',
+                  challenge: 'E se o barbante ficar frouxo?' },
+                { id: 'natureza-aipo', cat: 'natureza', emoji: '🌿', title: 'Como a planta bebe água?', time: '1 dia', level: 'Fácil',
+                  materials: ['Talo de aipo', 'Água', 'Corante alimentício', 'Copo'],
+                  predict: [['🔵', 'As folhas vão mudar de cor'], ['🟢', 'Nada vai mudar']],
+                  steps: ['Coloque água no copo.', 'Adicione bastante corante.', 'Coloque o aipo na água colorida.', 'Espere algumas horas e observe.'],
+                  discovery: 'A planta tem tubinhos finos como canudos. A água sobe por eles (capilaridade) e leva a cor até as folhas!',
+                  challenge: 'Corte o talo: dá para ver os tubinhos coloridos?' },
+                { id: 'natureza-feijao', cat: 'natureza', emoji: '🌱', title: 'Feijão no algodão', time: '7 dias', level: 'Fácil',
+                  materials: ['Copo', 'Algodão', 'Grãos de feijão', 'Água'],
+                  predict: [['🌱', 'Vai brotar'], ['🫘', 'Não vai brotar']],
+                  steps: ['Forre o fundo do copo com algodão.', 'Coloque 3 grãos de feijão.', 'Umedeça o algodão com água.', 'Deixe perto da janela e observe por dias.'],
+                  discovery: 'A semente guarda alimento dentro dela. Com água e ar, ela acorda e começa a crescer: isso se chama germinação!',
+                  challenge: 'O feijão cresce igual no escuro?' },
+                { id: 'dia-gelo', cat: 'dia', emoji: '🧊', title: 'O que derrete mais rápido?', time: '20 min', level: 'Fácil',
+                  materials: ['Cubos de gelo', '2 pratinhos', 'Um lugar no sol e outro na sombra'],
+                  predict: [['☀️', 'No sol derrete antes'], ['🌳', 'Na sombra derrete antes']],
+                  steps: ['Escolha um lugar no sol e outro na sombra.', 'Coloque gelo nos dois ao mesmo tempo.', 'Marque o tempo com um cronômetro.', 'Anote qual derreteu primeiro.'],
+                  discovery: 'O sol fornece calor, que é energia. Com mais energia, o gelo vira água mais rápido!',
+                  challenge: 'E se embrulhar um cubo num pano?' },
+                { id: 'dia-balanca', cat: 'dia', emoji: '⚖️', title: 'O que é mais pesado?', time: '15 min', level: 'Médio',
+                  materials: ['Cabide', 'Barbante', '2 copos plásticos', 'Objetos da casa'],
+                  predict: [['🪨', 'A pedra é mais pesada'], ['🪶', 'A pena é mais pesada']],
+                  steps: ['Amarre um copo em cada ponta do cabide.', 'Pendure o cabide na maçaneta.', 'Coloque um objeto em cada copo.', 'Veja qual lado desce.'],
+                  discovery: 'O objeto com mais massa é puxado com mais força pela gravidade da Terra, por isso o lado dele desce!',
+                  challenge: 'Quantos clipes equilibram uma moeda?' }
+            ];
+
+            const BADGES = [
+                { emoji: '🥇', name: '1º experimento', need: 1 },
+                { emoji: '🔥', name: '3 seguidos', need: 3 },
+                { emoji: '🚀', name: '5 experimentos', need: 5 },
+                { emoji: '🧠', name: 'Mini gênio', need: 10 }
+            ];
+
+            const TOTAL = CATS.reduce((n, c) => n + c.total, 0);
+            const done = new Set(['agua-copo', 'luz-arco']);
+            let xp = 20;
+            let currentExp = null;
+            let expState = null;
+
+            const $ = sel => ia.querySelector(sel);
+            const screens = { home: $('#iaHome'), category: $('#iaCategory'), experiment: $('#iaExperiment') };
+            const order = ['home', 'category', 'experiment'];
+            const callouts = document.querySelectorAll('#lab .lab-callout');
+            const navBtns = ia.querySelectorAll('.ia-nav__btn');
+            const cat = id => CATS.find(c => c.id === id);
+            const exp = id => EXPS.find(e => e.id === id);
+
+            function go(name) {
+                const idx = order.indexOf(name);
+                order.forEach((n, i) => {
+                    screens[n].classList.toggle('is-hidden-left', i < idx);
+                    screens[n].classList.toggle('is-hidden-right', i > idx);
+                });
+                navBtns.forEach(b => b.classList.toggle('active', b.dataset.nav === 'home' && name === 'home'));
+                if (name === 'home') setCallout('home');
+            }
+
+            function setCallout(key) {
+                callouts.forEach(c => c.classList.toggle('active', c.dataset.go === key));
+            }
+
+            let toastTimer;
+            function toast(msg) {
+                const t = $('#iaToast');
+                t.textContent = msg;
+                t.classList.add('show');
+                clearTimeout(toastTimer);
+                toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+            }
+
+            function levelInfo() {
+                const level = Math.floor(xp / 50) + 1;
+                const names = ['Curioso', 'Explorador', 'Investigador', 'Cientista', 'Gênio'];
+                return { level, name: names[Math.min(level - 1, names.length - 1)], pct: (xp % 50) / 50 * 100 };
+            }
+
+            function renderHome() {
+                const lv = levelInfo();
+                const featured = exp('reacoes-vulcao');
+                screens.home.innerHTML = `
+                    <div class="ia-home__top">
+                        <div class="ia-home__row">
+                            <div>
+                                <div class="ia-home__hello">Olá, pequeno cientista! 👋</div>
+                                <div class="ia-home__name">O que vamos descobrir hoje?</div>
+                            </div>
+                            <div class="ia-avatar">🧑‍🔬</div>
+                        </div>
+                        <div class="ia-level">
+                            <div class="ia-level__row"><span>⚡ Nível ${lv.level} · ${lv.name}</span><span>${done.size}/${TOTAL} feitos</span></div>
+                            <div class="ia-bar"><div class="ia-bar__fill" style="width:${lv.pct}%"></div></div>
+                        </div>
+                    </div>
+                    <div class="ia-search">🔍 Buscar experimento ou material...</div>
+                    <div class="ia-section-title">⭐ Experimento do dia</div>
+                    <button type="button" class="ia-featured" data-open="${featured.id}">
+                        <div class="ia-featured__emoji">${featured.emoji}</div>
+                        <div>
+                            <div class="ia-featured__tag">REAÇÕES · ${done.has(featured.id) ? 'FEITO ✅' : 'NOVO'}</div>
+                            <div class="ia-featured__title">${featured.title}</div>
+                            <div class="ia-featured__meta">⏱ ${featured.time} · 👶 4+ anos · ${featured.level}</div>
+                        </div>
+                        ${done.has(featured.id) ? '' : '<span class="ia-tap"></span>'}
+                    </button>
+                    <div class="ia-section-title" data-anchor="cats">Categorias <small>${TOTAL} experimentos</small></div>
+                    <div class="ia-cats">
+                        ${CATS.map(c => `
+                            <button type="button" class="ia-cat" data-cat="${c.id}">
+                                <div class="ia-cat__icon" style="background:${c.soft}">${c.emoji}</div>
+                                <div class="ia-cat__name">${c.name}</div>
+                            </button>`).join('')}
+                    </div>
+                    <div class="ia-section-title" data-anchor="badges">🏆 Minhas conquistas</div>
+                    <div class="ia-badges">
+                        ${BADGES.map(b => `<div class="ia-badge ${done.size >= b.need ? '' : 'locked'}" data-need="${b.need}"><span>${b.emoji}</span>${b.name}</div>`).join('')}
+                    </div>`;
+                $('#iaDoneCount').textContent = done.size;
+            }
+
+            function renderCategory(id) {
+                const c = cat(id);
+                const list = EXPS.filter(e => e.cat === id);
+                screens.category.innerHTML = `
+                    <div class="ia-cat-hero" style="background:linear-gradient(140deg, ${c.color}, ${c.color}CC)">
+                        <button type="button" class="ia-back" data-back="home" aria-label="Voltar">←</button>
+                        <div class="ia-cat-hero__emoji">${c.emoji}</div>
+                        <div class="ia-cat-hero__title">${c.name}</div>
+                        <div class="ia-cat-hero__sub">${c.total} experimentos · ${list.filter(e => done.has(e.id)).length} concluídos</div>
+                    </div>
+                    <div class="ia-list">
+                        ${list.map(e => `
+                            <button type="button" class="ia-item" data-open="${e.id}">
+                                <div class="ia-item__emoji" style="background:${c.soft}">${e.emoji}</div>
+                                <div class="ia-item__body">
+                                    <div class="ia-item__title">${e.title}</div>
+                                    <div class="ia-item__meta">⏱ ${e.time} · ${e.level} · ${e.materials.length} materiais</div>
+                                </div>
+                                <div class="ia-item__check ${done.has(e.id) ? 'done' : ''}">${done.has(e.id) ? '✓' : ''}</div>
+                            </button>`).join('')}
+                    </div>
+                    <div class="ia-more">+ ${c.total - list.length} experimentos de ${c.name} no guia completo 🔓</div>`;
+                screens.category.scrollTop = 0;
+            }
+
+            function renderExperiment(id) {
+                const e = exp(id);
+                const c = cat(e.cat);
+                currentExp = e;
+                expState = { materials: new Set(), steps: new Set(), predict: null };
+                screens.experiment.innerHTML = `
+                    <div class="ia-exp-hero" style="background:linear-gradient(140deg, ${c.color}, ${c.color}CC)">
+                        <button type="button" class="ia-back" data-back="category" aria-label="Voltar">←</button>
+                        <div class="ia-exp-hero__cat">${c.emoji} ${c.name.toUpperCase()}</div>
+                        <div class="ia-exp-hero__title">${e.title}</div>
+                        <div class="ia-chips"><span class="ia-chip">⏱ ${e.time}</span><span class="ia-chip">👶 4+ anos</span><span class="ia-chip">⭐ ${e.level}</span></div>
+                        <div class="ia-exp-hero__emoji">${e.emoji}</div>
+                    </div>
+                    <div class="ia-progress">
+                        <div class="ia-progress__row"><span>Seu progresso</span><span id="iaPct">0%</span></div>
+                        <div class="ia-bar"><div class="ia-bar__fill" id="iaPctBar"></div></div>
+                    </div>
+                    <div class="ia-card" data-anchor="materials">
+                        <div class="ia-card__title">🧺 Você vai precisar</div>
+                        ${e.materials.map((m, i) => `<button type="button" class="ia-check" data-mat="${i}"><span class="ia-check__box">✓</span><span class="ia-check__label">${m}</span></button>`).join('')}
+                    </div>
+                    <div class="ia-card" data-anchor="predict">
+                        <div class="ia-card__title">🔮 Minha previsão</div>
+                        <div class="ia-predict">
+                            ${e.predict.map((p, i) => `<button type="button" class="ia-predict__opt" data-pred="${i}"><span>${p[0]}</span>${p[1]}</button>`).join('')}
+                        </div>
+                    </div>
+                    <div class="ia-card" data-anchor="steps">
+                        <div class="ia-card__title">👣 Passo a passo</div>
+                        ${e.steps.map((s, i) => `<button type="button" class="ia-check ia-step" data-step="${i}"><span class="ia-check__box">${i + 1}</span><span class="ia-check__label">${s}</span></button>`).join('')}
+                    </div>
+                    <div class="ia-discovery" data-anchor="discovery">
+                        <div class="ia-card__title">💡 Hora da descoberta</div>
+                        <div class="ia-discovery__text">${e.discovery}</div>
+                        <div class="ia-discovery__lock">🔒 Complete o passo a passo<br>para desbloquear</div>
+                    </div>
+                    <div class="ia-challenge">🎯 <strong>Desafio do cientista:</strong> ${e.challenge}</div>
+                    <button type="button" class="ia-finish" id="iaFinish">${done.has(e.id) ? 'Fazer de novo ✓' : 'Concluir experimento'}</button>`;
+                screens.experiment.scrollTop = 0;
+                updateProgress();
+            }
+
+            function updateProgress() {
+                const e = currentExp;
+                const total = e.materials.length + e.steps.length + 1;
+                const got = expState.materials.size + expState.steps.size + (expState.predict !== null ? 1 : 0);
+                const pct = Math.round(got / total * 100);
+                $('#iaPct').textContent = pct + '%';
+                $('#iaPctBar').style.width = pct + '%';
+                const stepsDone = expState.steps.size === e.steps.length;
+                $('.ia-discovery').classList.toggle('open', stepsDone);
+                $('#iaFinish').classList.toggle('ready', stepsDone);
+                return { pct, stepsDone };
+            }
+
+            function scrollToAnchor(screen, key) {
+                const el = screen.querySelector(`[data-anchor="${key}"]`);
+                if (!el) return;
+                screen.scrollTo({ top: Math.max(0, el.offsetTop - 70), behavior: 'smooth' });
+                if (el.classList.contains('ia-card') || el.classList.contains('ia-discovery')) {
+                    el.classList.add('flash');
+                    setTimeout(() => el.classList.remove('flash'), 1400);
+                }
+            }
+
+            function confetti() {
+                const colors = ['#FFD166', '#FF6B35', '#8B5CF6', '#10B981', '#3B82F6', '#EC4899'];
+                for (let i = 0; i < 40; i++) {
+                    const p = document.createElement('div');
+                    p.className = 'ia-confetti';
+                    p.style.left = Math.random() * 100 + '%';
+                    p.style.background = colors[i % colors.length];
+                    p.style.animationDuration = (1.4 + Math.random() * 1.4) + 's';
+                    p.style.animationDelay = (Math.random() * 0.3) + 's';
+                    $('#iaReward').appendChild(p);
+                    setTimeout(() => p.remove(), 3200);
+                }
+            }
+
+            function finish() {
+                const e = currentExp;
+                const first = !done.has(e.id);
+                done.add(e.id);
+                if (first) xp += 10;
+                $('#iaRewardText').textContent = `Você concluiu "${e.title}" e ganhou mais uma medalha de cientista!`;
+                $('#iaReward').classList.add('show');
+                setCallout('reward');
+                confetti();
+                renderHome();
+            }
+
+            function openExperiment(id) {
+                const e = exp(id);
+                renderCategory(e.cat);
+                renderExperiment(id);
+                go('experiment');
+            }
+
+            // Event delegation inside the phone
+            ia.addEventListener('click', ev => {
+                const t = ev.target.closest('button');
+                if (!t) return;
+                if (t.dataset.cat) { renderCategory(t.dataset.cat); go('category'); setCallout('home'); return; }
+                if (t.dataset.open) { openExperiment(t.dataset.open); setCallout('materials'); return; }
+                if (t.dataset.back) {
+                    if (t.dataset.back === 'category' && currentExp) renderCategory(currentExp.cat);
+                    go(t.dataset.back);
+                    return;
+                }
+                if (t.dataset.mat !== undefined) {
+                    const i = +t.dataset.mat;
+                    expState.materials.has(i) ? expState.materials.delete(i) : expState.materials.add(i);
+                    t.classList.toggle('on');
+                    if (expState.materials.size === currentExp.materials.length) toast('🧺 Tudo separado! Bora pra previsão');
+                    updateProgress();
+                    return;
+                }
+                if (t.dataset.pred !== undefined) {
+                    expState.predict = +t.dataset.pred;
+                    screens.experiment.querySelectorAll('.ia-predict__opt').forEach(o => o.classList.toggle('on', o === t));
+                    toast('🔮 Previsão salva! Agora vamos testar');
+                    updateProgress();
+                    return;
+                }
+                if (t.dataset.step !== undefined) {
+                    const i = +t.dataset.step;
+                    expState.steps.has(i) ? expState.steps.delete(i) : expState.steps.add(i);
+                    t.classList.toggle('on');
+                    t.querySelector('.ia-check__box').textContent = t.classList.contains('on') ? '✓' : i + 1;
+                    const { stepsDone } = updateProgress();
+                    if (stepsDone) {
+                        toast('💡 Descoberta desbloqueada!');
+                        setCallout('discovery');
+                        setTimeout(() => scrollToAnchor(screens.experiment, 'discovery'), 300);
+                    }
+                    return;
+                }
+                if (t.id === 'iaFinish') {
+                    if (!t.classList.contains('ready')) { toast('👣 Complete o passo a passo primeiro'); scrollToAnchor(screens.experiment, 'steps'); return; }
+                    finish();
+                    return;
+                }
+                if (t.id === 'iaRewardBtn') {
+                    $('#iaReward').classList.remove('show');
+                    go('home');
+                    screens.home.scrollTop = 0;
+                    return;
+                }
+                if (t.dataset.nav) {
+                    const n = t.dataset.nav;
+                    go('home');
+                    if (n === 'explore') { setTimeout(() => scrollToAnchor(screens.home, 'cats'), 50); }
+                    else if (n === 'done') { setTimeout(() => scrollToAnchor(screens.home, 'badges'), 50); setCallout('reward'); }
+                    else if (n === 'pdf') { toast('📄 Guia completo em PDF para imprimir'); }
+                    else { screens.home.scrollTo({ top: 0, behavior: 'smooth' }); }
+                    navBtns.forEach(b => b.classList.toggle('active', b === t));
+                }
+            });
+
+            // Callouts outside the phone drive the demo
+            callouts.forEach(c => c.addEventListener('click', () => {
+                const key = c.dataset.go;
+                setCallout(key);
+                if (key === 'home') {
+                    go('home');
+                    setTimeout(() => scrollToAnchor(screens.home, 'cats'), 50);
+                    return;
+                }
+                if (!currentExp || currentExp.id !== 'reacoes-vulcao') {
+                    openExperiment('reacoes-vulcao');
+                }
+                go('experiment');
+                if (key === 'reward') {
+                    // Fast-forward the demo to the reward
+                    screens.experiment.querySelectorAll('.ia-check:not(.on)').forEach(b => b.click());
+                    if (expState.predict === null) screens.experiment.querySelector('.ia-predict__opt').click();
+                    setTimeout(finish, 500);
+                    return;
+                }
+                setTimeout(() => scrollToAnchor(screens.experiment, key), 350);
+            }));
+
+            // Highlight the callout matching the card in view while scrolling the experiment
+            screens.experiment.addEventListener('scroll', () => {
+                const top = screens.experiment.scrollTop + 120;
+                let key = 'materials';
+                screens.experiment.querySelectorAll('[data-anchor]').forEach(el => { if (el.offsetTop <= top) key = el.dataset.anchor; });
+                setCallout(key);
+            }, { passive: true });
+
+            // Give the status bar a background once content scrolls under it
+            const status = $('#iaStatus');
+            let active = screens.home;
+            const syncStatus = () => status.classList.toggle('solid', active.scrollTop > 20);
+            Object.values(screens).forEach(sc => sc.addEventListener('scroll', () => { active = sc; syncStatus(); }, { passive: true }));
+            new MutationObserver(() => {
+                active = Object.values(screens).find(sc => !sc.className.includes('is-hidden')) || screens.home;
+                syncStatus();
+            }).observe(ia, { subtree: true, attributes: true, attributeFilter: ['class'] });
+
+            renderHome();
+            setCallout('home');
         })();
 
         // FAQ Toggle
