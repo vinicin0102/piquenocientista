@@ -2462,6 +2462,375 @@
             }
         }
 
+        /* ===== CHECKOUT (ZuckPay) ===== */
+        .ck-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 10050;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            background: rgba(30,17,69,0.65);
+            backdrop-filter: blur(4px);
+        }
+
+        .ck-modal.open { display: flex; }
+
+        .ck-dialog {
+            background: var(--white);
+            color: var(--text-dark);
+            width: 100%;
+            max-width: 470px;
+            max-height: 92vh;
+            overflow-y: auto;
+            border-radius: 24px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+            text-align: left;
+        }
+
+        .ck-dialog::before {
+            content: '';
+            display: block;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--accent-pink), var(--secondary), var(--accent-yellow), var(--accent-green));
+        }
+
+        .ck-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px 22px 14px;
+            border-bottom: 1px solid #EEE8FA;
+        }
+
+        .ck-head h3 {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.35rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .ck-head p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 2px;
+        }
+
+        .ck-head strong { color: var(--primary); }
+
+        .ck-close {
+            background: none;
+            border: 0;
+            cursor: pointer;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            padding: 4px 8px;
+            margin: -4px -8px;
+            border-radius: 8px;
+        }
+
+        .ck-close:hover { background: #F4F0FF; color: var(--text-dark); }
+
+        .ck-body { padding: 18px 22px 22px; }
+
+        .ck-field { margin-bottom: 14px; }
+
+        .ck-field label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .ck-field input,
+        .ck-field select {
+            width: 100%;
+            font: inherit;
+            font-size: 16px;
+            padding: 12px 14px;
+            border: 1.5px solid #DCD3F5;
+            border-radius: 12px;
+            outline: none;
+            background: var(--white);
+            color: var(--text-dark);
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+
+        .ck-field input:focus,
+        .ck-field select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px #EFE8FF;
+        }
+
+        .ck-field input[aria-invalid="true"] { border-color: var(--accent-red); }
+
+        .ck-hint { font-size: 0.8rem; color: var(--text-light); margin-top: 4px; }
+
+        .ck-err { font-size: 0.8rem; color: var(--accent-red); margin-top: 4px; font-weight: 700; }
+        .ck-err:empty { display: none; }
+
+        .ck-alert {
+            background: #FEF2F2;
+            color: #B42318;
+            border: 1px solid #FBCACA;
+            border-radius: 12px;
+            padding: 12px 14px;
+            font-size: 0.88rem;
+            margin-bottom: 14px;
+        }
+
+        .ck-alert:empty { display: none; }
+
+        .ck-sec {
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 1px dashed #DCD3F5;
+        }
+
+        .ck-sec-title {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .ck-sec-sub { font-size: 0.82rem; color: var(--text-light); margin-bottom: 12px; }
+
+        .ck-pay {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin: 10px 0 12px;
+        }
+
+        .ck-pay.so-pix { grid-template-columns: 1fr; }
+
+        .ck-pay label {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 50px;
+            border: 2px solid #DCD3F5;
+            border-radius: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: border-color 0.15s, background 0.15s;
+        }
+
+        .ck-pay input { position: absolute; opacity: 0; pointer-events: none; }
+        .ck-pay label:has(input:checked) { border-color: var(--primary); background: #F4F0FF; }
+        .ck-pay label:has(input:focus-visible) { outline: 3px solid #D9CCF7; outline-offset: 2px; }
+
+        .ck-off {
+            font-size: 0.65rem;
+            font-weight: 900;
+            color: var(--white);
+            background: var(--accent-green);
+            padding: 2px 6px;
+            border-radius: 99px;
+        }
+
+        .ck-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+        .ck-secure { font-size: 0.78rem; color: var(--text-light); margin: -2px 0 12px; }
+
+        /* Order bumps */
+        .ck-bumps { display: grid; gap: 10px; }
+
+        .ck-bump {
+            position: relative;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 12px;
+            background: var(--white);
+            border: 2px dashed #F3B37A;
+            border-left: 5px solid var(--secondary);
+            border-radius: 14px;
+            padding: 12px 14px;
+            cursor: pointer;
+            transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+        }
+
+        .ck-bump:hover { box-shadow: var(--shadow-md); }
+
+        .ck-bump.on {
+            border-style: solid;
+            border-color: var(--accent-green);
+            background: #F0FDF6;
+        }
+
+        .ck-bump input { position: absolute; opacity: 0; pointer-events: none; }
+
+        .ck-box {
+            width: 24px;
+            height: 24px;
+            border-radius: 8px;
+            border: 2px solid #C4B5FD;
+            background: var(--white);
+            display: grid;
+            place-items: center;
+            margin-top: 2px;
+            color: var(--white);
+            font-size: 0.8rem;
+            font-weight: 900;
+            transition: 0.15s;
+        }
+
+        .ck-bump.on .ck-box { background: var(--accent-green); border-color: var(--accent-green); }
+        .ck-bump input:focus-visible + .ck-box { outline: 3px solid #D9CCF7; outline-offset: 2px; }
+
+        .ck-bump-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 4px 10px;
+        }
+
+        .ck-bump h4 { font-size: 0.92rem; font-weight: 800; line-height: 1.3; }
+
+        .ck-bump p { color: var(--text-light); font-size: 0.8rem; margin-top: 3px; line-height: 1.45; }
+
+        .ck-bump-price {
+            font-weight: 900;
+            white-space: nowrap;
+            background: #FFF1E6;
+            color: var(--secondary-dark);
+            padding: 2px 9px;
+            border-radius: 99px;
+            font-size: 0.8rem;
+        }
+
+        .ck-bump-cta { display: block; margin-top: 6px; font-size: 0.78rem; font-weight: 800; color: var(--secondary-dark); }
+        .ck-bump.on .ck-bump-cta { color: #047857; }
+
+        .ck-items {
+            background: #FAF8FF;
+            border: 1px solid #EEE8FA;
+            border-radius: 14px;
+            padding: 12px 14px;
+            font-size: 0.88rem;
+            margin: 18px 0 14px;
+        }
+
+        .ck-line { display: flex; justify-content: space-between; gap: 12px; padding: 3px 0; color: var(--text-medium); }
+        .ck-line span:last-child { white-space: nowrap; }
+        .ck-line.desc { color: #047857; font-weight: 700; }
+        .ck-line.total { border-top: 1px solid #E5DCF8; margin-top: 6px; padding-top: 9px; color: var(--text-dark); font-weight: 900; font-size: 1rem; }
+
+        .ck-submit {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 56px;
+            border: 0;
+            border-radius: 14px;
+            cursor: pointer;
+            font-family: 'Baloo 2', cursive;
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            color: var(--white);
+            background: linear-gradient(135deg, #10B981, #059669);
+            box-shadow: 0 10px 24px rgba(16,185,129,0.35);
+        }
+
+        .ck-submit:disabled { opacity: 0.65; cursor: not-allowed; }
+
+        .ck-spin {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.45);
+            border-top-color: var(--white);
+            border-radius: 50%;
+            animation: ck-spin 1s linear infinite;
+            display: none;
+        }
+
+        .loading .ck-spin { display: inline-block; }
+
+        @keyframes ck-spin { to { transform: rotate(360deg); } }
+
+        .ck-fine { font-size: 0.75rem; color: #8B85A8; text-align: center; margin-top: 12px; line-height: 1.5; }
+
+        .ck-pix { text-align: center; }
+
+        .ck-qr {
+            width: 210px;
+            height: 210px;
+            margin: 8px auto 0;
+            border: 1px solid #EEE8FA;
+            border-radius: 14px;
+            object-fit: contain;
+            background: var(--white);
+        }
+
+        .ck-pix textarea {
+            width: 100%;
+            font: 12px/1.5 ui-monospace, Menlo, monospace;
+            border: 1.5px solid #DCD3F5;
+            border-radius: 12px;
+            padding: 10px;
+            background: #FAF8FF;
+            resize: none;
+            margin-top: 14px;
+        }
+
+        .ck-copy {
+            width: 100%;
+            min-height: 48px;
+            margin-top: 8px;
+            border: 0;
+            border-radius: 12px;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 900;
+            color: var(--white);
+            background: var(--bg-dark);
+        }
+
+        .ck-waiting {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: var(--text-light);
+        }
+
+        .ck-waiting .ck-spin {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-color: #EFE8FF;
+            border-top-color: var(--primary);
+        }
+
+        .ck-paid { text-align: center; padding: 22px 22px 26px; }
+
+        .ck-paid-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: #DCFCE7;
+            display: grid;
+            place-items: center;
+            margin: 0 auto 14px;
+            font-size: 2.2rem;
+        }
+
+        .ck-paid h4 { font-family: 'Baloo 2', cursive; font-size: 1.4rem; margin-bottom: 8px; }
+        .ck-paid p { color: var(--text-medium); }
+
+        .ck-modal [hidden] { display: none !important; }
+
         /* ===== BONUS SECTION ===== */
         .bonus {
             background: var(--bg-warm);
@@ -4182,8 +4551,7 @@
                         <div class="offer__price-label">pagamento único</div>
                     </div>
 
-                    <!-- TODO: link do checkout do plano Essencial -->
-                    <a href="#" class="cta-button cta-button--outline" style="width:100%;max-width:100%;">
+                    <a href="#oferta" class="cta-button cta-button--outline js-comprar" data-plano="pc-essencial" style="width:100%;max-width:100%;">
                         QUERO O ESSENCIAL
                     </a>
                 </div>
@@ -4211,8 +4579,7 @@
                         <div class="offer__price-label">pagamento único</div>
                     </div>
 
-                    <!-- TODO: link do checkout do plano Completo -->
-                    <a href="#" class="cta-button cta-button--large cta-pulse" style="width:100%;max-width:100%;">
+                    <a href="#oferta" class="cta-button cta-button--large cta-pulse js-comprar" data-plano="pc-completo" style="width:100%;max-width:100%;">
                         QUERO O COMPLETO
                     </a>
                 </div>
@@ -5002,7 +5369,8 @@
         let popupShown = false;
 
         function showPopup() {
-            if (popupShown) return;
+            // Nunca interrompe quem já está no checkout.
+            if (popupShown || document.getElementById('checkout').classList.contains('open')) return;
             popupShown = true;
             popupOverlay.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -5078,6 +5446,512 @@
             </div>
         </div>
     </div>
+
+    <!-- ===== CHECKOUT (ZuckPay) ===== -->
+    <div class="ck-modal" id="checkout" role="dialog" aria-modal="true" aria-labelledby="ck-titulo">
+        <div class="ck-dialog">
+            <div class="ck-head">
+                <div>
+                    <h3 id="ck-titulo">Finalizar compra</h3>
+                    <p><span id="ck-plano">Guia +100 Experimentos</span> · <strong id="ck-total">R$ 27,00</strong></p>
+                </div>
+                <button type="button" class="ck-close" id="ck-fechar" aria-label="Fechar">✕</button>
+            </div>
+
+            <!-- Etapa 1: dados (os extras só aparecem depois dos dados e da forma de pagamento) -->
+            <form class="ck-body" id="ck-form" novalidate>
+                <p class="ck-alert" id="ck-erro" role="alert"></p>
+                <div class="ck-field">
+                    <label for="ck-nome">Nome completo</label>
+                    <input id="ck-nome" name="nome" type="text" autocomplete="name" required>
+                    <p class="ck-err" data-erro="nome"></p>
+                </div>
+                <div class="ck-field">
+                    <label for="ck-cpf">CPF</label>
+                    <input id="ck-cpf" name="cpf" type="text" inputmode="numeric" placeholder="000.000.000-00" required>
+                    <p class="ck-err" data-erro="cpf"></p>
+                </div>
+                <div class="ck-field">
+                    <label for="ck-email">E-mail</label>
+                    <input id="ck-email" name="email" type="email" autocomplete="email" required>
+                    <p class="ck-hint">É neste e-mail que você recebe o acesso.</p>
+                    <p class="ck-err" data-erro="email"></p>
+                </div>
+                <div class="ck-field">
+                    <label for="ck-telefone">WhatsApp (com DDD)</label>
+                    <input id="ck-telefone" name="telefone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="(11) 99999-8888" required>
+                    <p class="ck-err" data-erro="telefone"></p>
+                </div>
+
+                <div class="ck-sec">
+                    <p class="ck-sec-title">Forma de pagamento</p>
+                    <div class="ck-pay" role="radiogroup" aria-label="Forma de pagamento">
+                        <label><input type="radio" name="metodo" value="pix">⚡ PIX</label>
+                        <label class="js-cartao" hidden><input type="radio" name="metodo" value="cartao">💳 Cartão <span class="ck-off">5% OFF</span></label>
+                    </div>
+                    <p class="ck-hint" id="ck-hint">Preencha seus dados e escolha a forma de pagamento para continuar.</p>
+                </div>
+
+                <div id="ck-etapa2" hidden>
+                    <div id="ck-cartao" hidden>
+                        <p class="ck-secure">🔒 Os dados do cartão vão direto para a ZuckPay e não ficam salvos.</p>
+                        <div class="ck-field">
+                            <label for="ck-cartao-numero">Número do cartão</label>
+                            <input id="ck-cartao-numero" type="text" inputmode="numeric" autocomplete="cc-number" placeholder="0000 0000 0000 0000">
+                            <p class="ck-err" data-erro="cartao-numero"></p>
+                        </div>
+                        <div class="ck-field">
+                            <label for="ck-cartao-titular">Nome impresso no cartão</label>
+                            <input id="ck-cartao-titular" type="text" autocomplete="cc-name" style="text-transform:uppercase">
+                            <p class="ck-err" data-erro="cartao-titular"></p>
+                        </div>
+                        <div class="ck-row2">
+                            <div class="ck-field">
+                                <label for="ck-cartao-validade">Validade</label>
+                                <input id="ck-cartao-validade" type="text" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/AA">
+                                <p class="ck-err" data-erro="cartao-validade"></p>
+                            </div>
+                            <div class="ck-field">
+                                <label for="ck-cartao-cvv">CVV</label>
+                                <input id="ck-cartao-cvv" type="text" inputmode="numeric" autocomplete="cc-csc" placeholder="123">
+                                <p class="ck-err" data-erro="cartao-cvv"></p>
+                            </div>
+                        </div>
+                        <div class="ck-field">
+                            <label for="ck-cartao-parcelas">Parcelas</label>
+                            <select id="ck-cartao-parcelas"></select>
+                            <p class="ck-err" data-erro="cartao-parcelas"></p>
+                        </div>
+                    </div>
+
+                    <div class="ck-sec">
+                        <p class="ck-sec-title">🎁 Turbine as descobertas do seu filho</p>
+                        <p class="ck-sec-sub">Complementos opcionais. Cada um é um material independente e entra no mesmo pagamento.</p>
+                        <div class="ck-bumps" id="bumps"><!-- preenchido pelo script a partir de EXTRAS --></div>
+                    </div>
+
+                    <div class="ck-items" id="ck-itens"></div>
+                    <button type="submit" class="ck-submit" id="ck-enviar"><span class="ck-spin"></span><span class="js-label">GERAR PIX</span></button>
+                </div>
+                <p class="ck-fine">Seus dados são usados apenas para emitir a cobrança e entregar o material.</p>
+            </form>
+
+            <!-- Etapa 2: PIX -->
+            <div class="ck-body ck-pix" id="ck-pix" hidden>
+                <p style="color:var(--text-medium);font-size:0.92rem">Abra o app do seu banco, escolha <strong>PIX Copia e Cola</strong> ou aponte a câmera para o QR Code.</p>
+                <img class="ck-qr" id="ck-qr" alt="QR Code do PIX">
+                <p style="margin-top:10px;font-weight:900">Valor: <span id="ck-valor-pix"></span></p>
+                <textarea id="ck-codigo" rows="3" readonly aria-label="Código PIX copia e cola"></textarea>
+                <button type="button" class="ck-copy" id="ck-copiar"><span>📋 COPIAR CÓDIGO</span></button>
+                <div class="ck-waiting"><span class="ck-spin"></span>Aguardando pagamento… <span id="ck-timer" style="font-variant-numeric:tabular-nums;color:var(--text-dark)"></span></div>
+                <p class="ck-fine">A confirmação é automática. Pode deixar esta página aberta.</p>
+            </div>
+
+            <!-- Etapa 2b: cartão em análise -->
+            <div class="ck-body ck-pix" id="ck-proc" hidden>
+                <div class="ck-waiting" style="margin-top:6px"><span class="ck-spin"></span>Processando o pagamento no cartão…</div>
+                <p class="ck-fine">A operadora está analisando. A confirmação é automática; pode deixar esta página aberta.</p>
+            </div>
+
+            <!-- Etapa 3: pago -->
+            <div class="ck-body ck-paid" id="ck-pago" hidden>
+                <div class="ck-paid-icon">🎉</div>
+                <h4>Pagamento confirmado!</h4>
+                <p>Enviamos o acesso para <strong id="ck-pago-email"></strong>. Se não encontrar, confira a caixa de spam e a aba de promoções.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    /* =====================================================================
+       CHECKOUT ZuckPay — mesma estrutura dos outros projetos (ver README).
+       Os preços cobrados ficam em lib/config.js; aqui é só exibição.
+       ===================================================================== */
+    const API = '/api';
+
+    // Ids e preços (centavos) iguais aos de lib/config.js.
+    const PLANOS = {
+        'pc-essencial': { nome: 'Essencial', preco: 990 },
+        'pc-completo':  { nome: 'Completo',  preco: 2700 }
+    };
+    const PRODUTO = 'Guia +100 Experimentos';
+
+    // Cartão: parcelas e desconto iguais aos de lib/config.js (lá é que vale).
+    const MAX_PARCELAS = 3;
+    const DESCONTO_CARTAO = 0.05;
+
+    // Order bumps, exibidos só no checkout depois dos dados. Ids e preços
+    // precisam ser os mesmos de EXTRAS em lib/config.js.
+    const EXTRAS = [
+        { id: 'kit',        emoji: '🧪', nome: 'Kit Cientista em Casa',             desc: 'Fichas de cientista, certificado, crachá, diário de descobertas e páginas para registrar os experimentos.', preco: 490, sim: 'SIM! Quero o Kit Cientista em Casa' },
+        { id: 'atividades', emoji: '🎨', nome: '50 Atividades Educativas Sem Tela', desc: 'Atividades rápidas para os dias em que você precisa de uma alternativa ao celular.', preco: 590, sim: 'SIM! Quero as 50 Atividades Sem Tela' },
+        { id: 'desafios',   emoji: '🔬', nome: 'Desafios do Pequeno Cientista',     desc: '50 desafios extras em formato de missão.', preco: 490, sim: 'SIM! Quero os 50 Desafios' },
+        { id: 'caderno',    emoji: '📝', nome: 'Caderno de Experimentos',           desc: 'Folhas para a criança registrar hipótese, materiais, resultado e conclusão.', preco: 390, sim: 'SIM! Quero o Caderno de Experimentos' },
+        { id: 'passaporte', emoji: '🏆', nome: 'Passaporte do Pequeno Cientista',   desc: 'Sistema de missões, níveis e certificados para completar os experimentos.', preco: 490, sim: 'SIM! Quero o Passaporte' },
+        { id: 'cores',      emoji: '🌈', nome: 'Kit Experimentos com Cores',        desc: 'Coleção focada em experiências com água, cores, misturas e percepção visual.', preco: 490, sim: 'SIM! Quero o Kit de Cores' },
+        { id: 'natureza',   emoji: '🌱', nome: 'Pequeno Cientista — Natureza',      desc: 'Experimentos com plantas, terra, água, folhas e natureza.', preco: 490, sim: 'SIM! Quero o Kit Natureza' }
+    ];
+
+    (function () {
+        'use strict';
+        const $ = id => document.getElementById(id);
+        const brl = c => (c / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        const esc = s => String(s).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+
+        /* ---------- order bumps ---------- */
+        const lista = $('bumps');
+        lista.innerHTML = EXTRAS.map((e, i) => `
+            <label class="ck-bump" data-id="${esc(e.id)}">
+                <input type="checkbox" value="${esc(e.id)}" aria-describedby="bump-d-${i}">
+                <span class="ck-box" aria-hidden="true"></span>
+                <span>
+                    <span class="ck-bump-top">
+                        <h4>${e.emoji} ${esc(e.nome)}</h4>
+                        <span class="ck-bump-price">+ ${brl(e.preco)}</span>
+                    </span>
+                    <p id="bump-d-${i}">${esc(e.desc)}</p>
+                    <span class="ck-bump-cta"></span>
+                </span>
+            </label>`).join('');
+
+        let plano = 'pc-completo';
+        const selecionados = () => EXTRAS.filter(e => lista.querySelector(`input[value="${CSS.escape(e.id)}"]`).checked);
+        const bruto = () => PLANOS[plano].preco + selecionados().reduce((s, e) => s + e.preco, 0);
+        const metodo = () => (document.querySelector('#ck-form input[name="metodo"]:checked') || {}).value || '';
+        const desconto = () => (metodo() === 'cartao' ? Math.round(bruto() * DESCONTO_CARTAO) : 0);
+        const total = () => bruto() - desconto();
+        const nomePlano = () => `${PRODUTO} — ${PLANOS[plano].nome}`;
+
+        function atualizar() {
+            lista.querySelectorAll('.ck-bump').forEach(b => {
+                const on = b.querySelector('input').checked;
+                const e = EXTRAS.find(x => x.id === b.dataset.id);
+                b.classList.toggle('on', on);
+                b.querySelector('.ck-box').textContent = on ? '✓' : '';
+                b.querySelector('.ck-bump-cta').textContent = on ? '✅ Adicionado ao seu pedido' : '👉 ' + e.sim;
+            });
+            $('ck-itens').innerHTML =
+                `<div class="ck-line"><span>${esc(nomePlano())}</span><span>${brl(PLANOS[plano].preco)}</span></div>` +
+                selecionados().map(e => `<div class="ck-line"><span>+ ${esc(e.nome)}</span><span>${brl(e.preco)}</span></div>`).join('') +
+                (desconto() ? `<div class="ck-line desc"><span>Desconto de 5% no cartão</span><span>− ${brl(desconto())}</span></div>` : '') +
+                `<div class="ck-line total"><span>Total</span><span>${brl(total())}</span></div>`;
+            $('ck-total').textContent = brl(total());
+        }
+
+        /* ---------- checkout PIX e cartão ---------- */
+        const modal = $('checkout'), form = $('ck-form'), enviar = $('ck-enviar');
+        let pedido = null, pedidoChave = '', poll = null, contagem = null, ultimoFoco = null, pixAutomatico = false;
+        const pixelMetodo = new Set();
+
+        function cpfOk(v) {
+            const c = v.replace(/\D/g, '');
+            if (c.length !== 11 || /^(\d)\1{10}$/.test(c)) return false;
+            for (let p = 9; p < 11; p++) {
+                let s = 0;
+                for (let i = 0; i < p; i++) s += Number(c[i]) * (p + 1 - i);
+                if (((10 * s) % 11) % 10 !== Number(c[p])) return false;
+            }
+            return true;
+        }
+        // Os extras (e o botão de pagar) só aparecem depois dos dados e da forma de pagamento.
+        function dadosOk() {
+            return $('ck-nome').value.trim().length >= 3 &&
+                cpfOk($('ck-cpf').value) &&
+                /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test($('ck-email').value.trim()) &&
+                $('ck-telefone').value.replace(/\D/g, '').length >= 10;
+        }
+        function verificarEtapa() {
+            const etapa2 = $('ck-etapa2');
+            if (etapa2.hidden && dadosOk() && metodo()) {
+                etapa2.hidden = false;
+                $('ck-hint').hidden = true;
+                pixelPagamento();
+            }
+        }
+        form.addEventListener('input', verificarEtapa);
+
+        function atualizarMetodo() {
+            atualizar();
+            $('ck-cartao').hidden = metodo() !== 'cartao';
+            const sel = $('ck-cartao-parcelas'), atual = sel.value || '1';
+            sel.innerHTML = Array.from({ length: MAX_PARCELAS }, (_, i) => i + 1).map(n =>
+                `<option value="${n}">${n === 1 ? `1x de ${brl(total())} (à vista)` : `${n}x (com juros da operadora)`}</option>`).join('');
+            sel.value = atual;
+            rotuloBotao();
+        }
+        function rotuloBotao() {
+            enviar.querySelector('.js-label').textContent = metodo() === 'cartao' ? `PAGAR ${brl(total())}` : 'GERAR PIX';
+        }
+        form.querySelectorAll('input[name="metodo"]').forEach(r => r.addEventListener('change', () => {
+            pixAutomatico = false;
+            atualizarMetodo();
+            verificarEtapa();
+            if (!$('ck-etapa2').hidden) pixelPagamento();
+        }));
+        lista.addEventListener('change', atualizarMetodo);
+
+        // Eventos do Meta Pixel (só disparam se o pixel estiver instalado na página).
+        function pixelPagamento() {
+            const m = metodo();
+            if (!window.fbq || !m || pixelMetodo.has(m)) return;
+            pixelMetodo.add(m);
+            fbq('track', 'AddPaymentInfo', { value: total() / 100, currency: 'BRL', content_name: nomePlano(), payment_type: m });
+        }
+
+        // Máscaras
+        $('ck-cartao-numero').addEventListener('input', e => {
+            e.target.value = e.target.value.replace(/\D/g, '').slice(0, 19).replace(/(\d{4})(?=\d)/g, '$1 ');
+        });
+        $('ck-cartao-validade').addEventListener('input', e => {
+            const d = e.target.value.replace(/\D/g, '').slice(0, 4);
+            e.target.value = d.length > 2 ? d.slice(0, 2) + '/' + d.slice(2) : d;
+        });
+        $('ck-cartao-cvv').addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g, '').slice(0, 4); });
+        $('ck-cpf').addEventListener('input', e => {
+            e.target.value = e.target.value.replace(/\D/g, '').slice(0, 11)
+                .replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        });
+        $('ck-telefone').addEventListener('input', e => {
+            const d = e.target.value.replace(/\D/g, '').slice(0, 11);
+            e.target.value = d.length <= 10
+                ? d.replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{4})(\d)/, '$1-$2')
+                : d.replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d)/, '$1-$2');
+        });
+
+        function lerCookie(nome) {
+            const achado = document.cookie.split('; ').find(c => c.startsWith(nome + '='));
+            return achado ? decodeURIComponent(achado.split('=').slice(1).join('=')) : '';
+        }
+        function rastreio() {
+            const url = new URLSearchParams(location.search), dados = {};
+            ['utm_source', 'utm_campaign', 'utm_medium', 'utm_content', 'utm_term', 'fbclid', 'gclid', 'ttclid', 'wbraid', 'gbraid', 'click_id', 'src', 'sck']
+                .forEach(k => { const v = url.get(k); if (v) dados[k] = v; });
+            const fbc = lerCookie('_fbc'); if (fbc) dados.fbc = fbc;
+            const fbp = lerCookie('_fbp'); if (fbp) dados.fbp = fbp;
+            return dados;
+        }
+
+        function etapa(qual) {
+            form.hidden = qual !== 'form';
+            $('ck-pix').hidden = qual !== 'pix';
+            $('ck-proc').hidden = qual !== 'proc';
+            $('ck-pago').hidden = qual !== 'pago';
+        }
+
+        function abrir(novoPlano) {
+            plano = PLANOS[novoPlano] ? novoPlano : 'pc-completo';
+            $('ck-plano').textContent = nomePlano();
+            atualizarMetodo();
+            limparErros();
+            etapa('form');
+            verificarEtapa();
+            ultimoFoco = document.activeElement;
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            modal.querySelector('.ck-dialog').scrollTop = 0;
+            if (window.fbq) fbq('track', 'InitiateCheckout', { value: total() / 100, currency: 'BRL', content_name: nomePlano() });
+        }
+
+        function fechar() {
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+            clearTimeout(poll); clearInterval(contagem);
+            if (ultimoFoco) ultimoFoco.focus();
+        }
+
+        document.querySelectorAll('.js-comprar').forEach(b => b.addEventListener('click', e => { e.preventDefault(); abrir(b.dataset.plano); }));
+        $('ck-fechar').addEventListener('click', fechar);
+        modal.addEventListener('click', e => { if (e.target === modal) fechar(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) fechar(); });
+
+        function limparErros() {
+            modal.querySelectorAll('[data-erro]').forEach(p => { p.textContent = ''; });
+            form.querySelectorAll('input').forEach(i => i.removeAttribute('aria-invalid'));
+            $('ck-erro').textContent = '';
+        }
+        function mostrarErros(campos, geral) {
+            limparErros();
+            Object.entries(campos || {}).forEach(([campo, msg]) => {
+                const p = modal.querySelector(`[data-erro="${campo}"]`);
+                if (p) p.textContent = msg;
+                const input = $('ck-' + campo);
+                if (input) input.setAttribute('aria-invalid', 'true');
+            });
+            if (geral) $('ck-erro').textContent = geral;
+            modal.querySelector('.ck-dialog').scrollTop = 0;
+        }
+        function carregando(sim) {
+            enviar.disabled = sim;
+            enviar.classList.toggle('loading', sim);
+            if (sim) enviar.querySelector('.js-label').textContent = metodo() === 'cartao' ? 'PROCESSANDO…' : 'GERANDO…';
+            else rotuloBotao();
+        }
+
+        form.addEventListener('submit', async e => {
+            e.preventDefault();
+            limparErros();
+            const ids = selecionados().map(x => x.id);
+            const forma = metodo();
+            if (!forma) { mostrarErros(null, 'Escolha a forma de pagamento.'); return; }
+            // Um pedido por combinação de plano + extras + forma de pagamento:
+            // reenviar sem mudar nada devolve a mesma cobrança (idempotência na ZuckPay).
+            const chave = plano + '|' + ids.join(',') + '|' + forma;
+            if (!pedido || chave !== pedidoChave) {
+                pedido = (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(16) + Math.random().toString(16).slice(2)).replace(/[^a-zA-Z0-9-]/g, '');
+                pedidoChave = chave;
+            }
+            const corpo = {
+                plano, extras: ids, pedido,
+                nome: $('ck-nome').value,
+                cpf: $('ck-cpf').value,
+                email: $('ck-email').value,
+                telefone: $('ck-telefone').value,
+                rastreio: rastreio()
+            };
+            if (forma === 'cartao') {
+                const [mes, ano] = $('ck-cartao-validade').value.split('/');
+                corpo.cartao = {
+                    numero: $('ck-cartao-numero').value,
+                    titular: $('ck-cartao-titular').value,
+                    mes: mes || '',
+                    ano: ano || '',
+                    cvv: $('ck-cartao-cvv').value
+                };
+                corpo.parcelas = Number($('ck-cartao-parcelas').value);
+            }
+            carregando(true);
+            try {
+                const resp = await fetch(API + (forma === 'cartao' ? '/cartao' : '/pix'), {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(corpo)
+                });
+                const dados = await resp.json().catch(() => ({}));
+                if (!resp.ok) {
+                    if (dados.debug) console.error('[zuckpay] detalhe do erro:', dados.debug);
+                    const padrao = forma === 'cartao' ? 'Não foi possível processar o cartão.' : 'Não foi possível gerar o PIX.';
+                    const msg = (dados.erro || padrao) + (dados.ref ? ` (código ${dados.ref})` : '');
+                    mostrarErros(dados.campos, dados.campos ? null : msg);
+                    if (dados.cartaoIndisponivel) {
+                        aplicarFormas(false);
+                        $('ck-erro').textContent = dados.erro;
+                    }
+                    if (resp.status === 402) pedido = null;
+                    return;
+                }
+                if (forma === 'cartao') resultadoCartao(dados);
+                else { dados.metodo = 'pix'; exibirPix(dados); }
+            } catch (_) {
+                mostrarErros(null, 'Falha de conexão. Verifique sua internet e tente de novo.');
+            } finally {
+                if (forma === 'cartao') $('ck-cartao-cvv').value = '';
+                carregando(false);
+            }
+        });
+
+        function resultadoCartao(dados) {
+            dados.metodo = 'cartao';
+            if (dados.status === 'PAID') return confirmarPago(dados);
+            if (dados.status === 'PENDING_3DS' && dados.redirect) { location.href = dados.redirect; return; }
+            etapa('proc');
+            modal.querySelector('.ck-dialog').scrollTop = 0;
+            agendar(dados, 4);
+        }
+
+        function confirmarPago(dados) {
+            clearTimeout(poll); clearInterval(contagem);
+            $('ck-pago-email').textContent = $('ck-email').value;
+            etapa('pago');
+            modal.querySelector('.ck-dialog').scrollTop = 0;
+            pedido = null;
+            if (window.fbq && dados.transactionId) {
+                fbq('track', 'Purchase', {
+                    value: Number(dados.valor), currency: 'BRL', content_type: 'product',
+                    content_name: nomePlano(), content_ids: [plano, ...selecionados().map(e => e.id)]
+                }, { eventID: 'purchase-' + dados.transactionId });
+            }
+        }
+
+        function exibirPix(dados) {
+            $('ck-codigo').value = dados.qrcode || '';
+            const img = $('ck-qr');
+            if (dados.qrcode_image) { img.src = dados.qrcode_image; img.hidden = false; } else { img.hidden = true; }
+            // O valor exibido é o que o servidor cobrou, não o calculado na página.
+            $('ck-valor-pix').textContent = Number(dados.valor).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            etapa('pix');
+            modal.querySelector('.ck-dialog').scrollTop = 0;
+
+            let restante = dados.expiracao || 1200;
+            const relogio = $('ck-timer');
+            clearInterval(contagem);
+            const tick = () => {
+                if (restante <= 0) { clearInterval(contagem); clearTimeout(poll); relogio.textContent = '(expirado)'; return; }
+                relogio.textContent = `(${String(Math.floor(restante / 60)).padStart(2, '0')}:${String(restante % 60).padStart(2, '0')})`;
+                restante--;
+            };
+            tick();
+            contagem = setInterval(tick, 1000);
+            agendar(dados, 5);
+        }
+
+        function agendar(dados, segundos) {
+            clearTimeout(poll);
+            poll = setTimeout(() => verificar(dados), segundos * 1000);
+        }
+
+        async function verificar(dados) {
+            let proxima = 8;
+            try {
+                const r = await fetch(`${API}/status?transactionId=${encodeURIComponent(dados.transactionId)}`);
+                const s = await r.json();
+                if (r.ok && s.pago) return confirmarPago(dados);
+                if (r.ok && s.final) {
+                    clearTimeout(poll); clearInterval(contagem);
+                    if (dados.metodo === 'cartao') {
+                        pedido = null;
+                        etapa('form');
+                        mostrarErros(null, 'Pagamento não aprovado pela operadora. Tente outro cartão ou pague com PIX.');
+                    }
+                    return;
+                }
+                if (r.ok && s.proxima_consulta) proxima = s.proxima_consulta;
+            } catch (_) { /* rede instável: a próxima tentativa resolve */ }
+            agendar(dados, proxima);
+        }
+
+        $('ck-copiar').addEventListener('click', async function () {
+            const campo = $('ck-codigo'), rotulo = this.querySelector('span');
+            try { await navigator.clipboard.writeText(campo.value); }
+            catch (_) { campo.select(); document.execCommand('copy'); }
+            rotulo.textContent = '✅ COPIADO!';
+            setTimeout(() => { rotulo.textContent = '📋 COPIAR CÓDIGO'; }, 2000);
+        });
+
+        /* ---------- formas de pagamento disponíveis ---------- */
+        // O cartão (e o "5% OFF") só aparece quando a ZuckPay confirma que está
+        // ativo na conta. Só com PIX, ele já vem selecionado.
+        function aplicarFormas(cartao) {
+            modal.querySelectorAll('.js-cartao').forEach(el => { el.hidden = !cartao; });
+            modal.querySelector('.ck-pay').classList.toggle('so-pix', !cartao);
+            const pix = form.querySelector('input[name="metodo"][value="pix"]');
+            const cartaoInput = form.querySelector('input[name="metodo"][value="cartao"]');
+            if (!cartao) {
+                if (cartaoInput.checked || !metodo()) { cartaoInput.checked = false; pix.checked = true; pixAutomatico = true; }
+            } else if (pixAutomatico) {
+                pix.checked = false; pixAutomatico = false;
+            }
+            atualizarMetodo();
+            verificarEtapa();
+        }
+        aplicarFormas(false);
+        fetch(`${API}/formas-pagamento`)
+            .then(r => (r.ok ? r.json() : null))
+            .then(d => { if (d) aplicarFormas(d.cartao === true); })
+            .catch(() => { /* sem resposta: segue só com PIX */ });
+
+        window.abrirCheckout = abrir;
+    })();
+    </script>
 
 </body>
 </html>

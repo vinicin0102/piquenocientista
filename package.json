@@ -1,0 +1,6 @@
+{
+  "name": "pequeno-cientista",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" }
+}
