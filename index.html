@@ -875,6 +875,19 @@
             z-index: 0;
         }
 
+        .pdf-sheet--img {
+            padding: 0;
+        }
+
+        .pdf-sheet--img img {
+            display: block;
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            object-position: top;
+            border-radius: 6px;
+        }
+
         .pdf-sheet__head {
             display: flex;
             justify-content: space-between;
@@ -1730,6 +1743,109 @@
         @keyframes ia-pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.03); }
+        }
+
+        /* Real experiment sheets inside the app */
+        .ia-featured__emoji.has-img,
+        .ia-item__emoji.has-img {
+            background-size: cover;
+            background-position: center top;
+            border: 2px solid rgba(255,255,255,0.85);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .ia-featured__emoji.has-img {
+            width: 64px;
+            height: 92px;
+            border-radius: 12px;
+        }
+
+        .ia-item__emoji.has-img {
+            width: 44px;
+            height: 64px;
+            border-radius: 10px;
+            border-color: #EEE8FA;
+        }
+
+        .ia-sheet__hint {
+            margin-left: auto;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.6rem;
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .ia-sheet {
+            display: block;
+            width: 100%;
+            padding: 0;
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: zoom-in;
+            background: #EEE8FA;
+            position: relative;
+        }
+
+        .ia-sheet img {
+            display: block;
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            object-position: top;
+        }
+
+        .ia-sheet::after {
+            content: '🔍';
+            position: absolute;
+            right: 8px;
+            bottom: 8px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .ia-zoom {
+            position: absolute;
+            inset: 0;
+            z-index: 28;
+            background: rgba(15,10,36,0.92);
+            overflow-y: auto;
+            padding: 52px 12px 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            scrollbar-width: none;
+        }
+
+        .ia-zoom.show { opacity: 1; pointer-events: auto; }
+
+        .ia-zoom img {
+            display: block;
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        .ia-zoom__close {
+            position: sticky;
+            top: 0;
+            float: right;
+            margin-bottom: -36px;
+            z-index: 2;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: none;
+            background: var(--white);
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
         }
 
         /* Bottom nav */
@@ -3561,14 +3677,8 @@
                             <div class="app-view" data-view="pdf">
                                 <div class="app-view__label">Guia completo para impressão</div>
                                 <div class="pdf-sheet__wrap">
-                                    <div class="pdf-sheet">
-                                        <div class="pdf-sheet__head"><span>EXPERIMENTO 01</span><span>🌋 REAÇÕES</span></div>
-                                        <div class="pdf-sheet__title">O Vulcão Colorido</div>
-                                        <div class="pdf-sheet__line"></div>
-                                        <div class="pdf-sheet__line pdf-sheet__line--short"></div>
-                                        <div class="pdf-sheet__box">✏️ MINHA PREVISÃO</div>
-                                        <div class="pdf-sheet__line"></div>
-                                        <div class="pdf-sheet__line pdf-sheet__line--short"></div>
+                                    <div class="pdf-sheet pdf-sheet--img">
+                                        <img src="img/exp-arco-iris.jpg" alt="Página do PDF: experimento O arco-íris no copo" loading="lazy">
                                     </div>
                                 </div>
                                 <div class="pdf-info">
@@ -3679,6 +3789,10 @@
                                 <button type="button" class="ia-nav__btn" data-nav="done"><span>🏆</span>Conquistas<b class="ia-nav__count" id="iaDoneCount">0</b></button>
                                 <button type="button" class="ia-nav__btn" data-nav="pdf"><span>📄</span>PDF</button>
                             </nav>
+                            <div class="ia-zoom" id="iaZoom">
+                                <button type="button" class="ia-zoom__close" aria-label="Fechar">✕</button>
+                                <img src="" alt="Ficha do experimento ampliada">
+                            </div>
                             <div class="ia-reward" id="iaReward">
                                 <div class="ia-reward__card">
                                     <div class="ia-reward__trophy">🏆</div>
@@ -4576,7 +4690,7 @@
             ];
 
             const EXPS = [
-                { id: 'agua-copo', cat: 'agua', emoji: '🥛', title: 'A água que não cai', time: '5 min', level: 'Fácil',
+                { id: 'agua-copo', cat: 'agua', img: 'img/exp-agua-que-nao-cai.jpg', emoji: '🥛', title: 'A água que não cai', time: '5 min', level: 'Fácil',
                   materials: ['Copo', 'Água', 'Cartão resistente'],
                   predict: [['💦', 'A água vai cair'], ['🪄', 'O cartão vai segurar']],
                   steps: ['Encha o copo de água até a borda.', 'Cubra a boca do copo com o cartão.', 'Sobre a pia, vire o copo segurando o cartão.', 'Solte a mão do cartão com cuidado.'],
@@ -4588,7 +4702,7 @@
                   steps: ['Coloque água nos dois copos.', 'Misture várias colheres de sal em um deles.', 'Coloque um ovo em cada copo.', 'Compare o que aconteceu.'],
                   discovery: 'A água salgada é mais densa que a água pura. Ela empurra o ovo para cima com mais força e faz ele flutuar!',
                   challenge: 'Quanto sal é preciso para o ovo começar a subir?' },
-                { id: 'cores-mistura', cat: 'cores', emoji: '🎨', title: 'Misturando as cores', time: '15 min', level: 'Fácil',
+                { id: 'cores-mistura', cat: 'cores', img: 'img/exp-misturando-cores.jpg', emoji: '🎨', title: 'Misturando as cores', time: '15 min', level: 'Fácil',
                   materials: ['Tinta azul', 'Tinta vermelha', 'Tinta amarela', 'Pincel e potinhos'],
                   predict: [['🟢', 'Azul + amarelo = verde'], ['🟤', 'Azul + amarelo = marrom']],
                   steps: ['Separe as três cores em potinhos.', 'Misture azul com amarelo.', 'Misture vermelho com amarelo.', 'Misture azul com vermelho.'],
@@ -4612,7 +4726,7 @@
                   steps: ['Amasse o guardanapo no fundo do copo.', 'Vire o copo de boca para baixo.', 'Afunde o copo reto na bacia.', 'Tire o copo reto e toque o papel.'],
                   discovery: 'O copo parece vazio, mas está cheio de ar. O ar ocupa espaço e não deixa a água entrar até o papel!',
                   challenge: 'E se você inclinar o copo dentro da água?' },
-                { id: 'ima-atrai', cat: 'ima', emoji: '🧲', title: 'O que um ímã atrai?', time: '10 min', level: 'Fácil',
+                { id: 'ima-atrai', cat: 'ima', img: 'img/exp-ima.jpg', emoji: '🧲', title: 'O que um ímã atrai?', time: '10 min', level: 'Fácil',
                   materials: ['Ímã', 'Moeda', 'Clipe', 'Lápis', 'Colher', 'Tampinha'],
                   predict: [['📎', 'O clipe vai grudar'], ['✏️', 'O lápis vai grudar']],
                   steps: ['Separe os objetos sobre a mesa.', 'Anote sua previsão para cada um.', 'Aproxime o ímã de cada objeto.', 'Separe os que grudaram dos que não.'],
@@ -4636,7 +4750,7 @@
                   steps: ['Coloque vinagre no copo.', 'Misture uma colher de sal.', 'Deixe as moedas lá por 5 minutos.', 'Enxágue e compare com uma moeda suja.'],
                   discovery: 'Com o tempo, o metal da moeda forma uma camada escura. O vinagre com sal dissolve essa camada e o brilho volta!',
                   challenge: 'Funciona só com vinagre, sem sal?' },
-                { id: 'luz-arco', cat: 'luz', emoji: '🌈', title: 'O arco-íris no copo', time: '5 min', level: 'Fácil',
+                { id: 'luz-arco', cat: 'luz', img: 'img/exp-arco-iris.jpg', emoji: '🌈', title: 'O arco-íris no copo', time: '5 min', level: 'Fácil',
                   materials: ['Copo com água', 'Papel branco', 'Luz do sol'],
                   predict: [['🌈', 'Vai aparecer um arco-íris'], ['☀️', 'Só um brilho branco']],
                   steps: ['Coloque o copo com água sobre o papel.', 'Deixe a luz do sol atravessar o copo.', 'Ajuste o ângulo até ver cores.', 'Observe as cores que se formaram.'],
@@ -4648,7 +4762,7 @@
                   steps: ['Faça um furinho no fundo dos copos.', 'Passe o barbante e amarre num palito.', 'Afastem-se até o barbante esticar.', 'Um fala num copo, o outro escuta.'],
                   discovery: 'O som é vibração. A voz faz o copo vibrar, a vibração corre pelo barbante esticado e chega ao outro copo!',
                   challenge: 'E se o barbante ficar frouxo?' },
-                { id: 'natureza-aipo', cat: 'natureza', emoji: '🌿', title: 'Como a planta bebe água?', time: '1 dia', level: 'Fácil',
+                { id: 'natureza-aipo', cat: 'natureza', img: 'img/exp-planta-bebe-agua.jpg', emoji: '🌿', title: 'Como a planta bebe água?', time: '1 dia', level: 'Fácil',
                   materials: ['Talo de aipo', 'Água', 'Corante alimentício', 'Copo'],
                   predict: [['🔵', 'As folhas vão mudar de cor'], ['🟢', 'Nada vai mudar']],
                   steps: ['Coloque água no copo.', 'Adicione bastante corante.', 'Coloque o aipo na água colorida.', 'Espere algumas horas e observe.'],
@@ -4682,7 +4796,8 @@
             ];
 
             const TOTAL = CATS.reduce((n, c) => n + c.total, 0);
-            const done = new Set(['agua-copo', 'luz-arco']);
+            const done = new Set(['reacoes-moeda', 'dia-gelo']);
+            const FEATURED = 'cores-mistura';
             let xp = 20;
             let currentExp = null;
             let expState = null;
@@ -4724,9 +4839,15 @@
                 return { level, name: names[Math.min(level - 1, names.length - 1)], pct: (xp % 50) / 50 * 100 };
             }
 
+            function thumb(e, cls, bg) {
+                return e.img
+                    ? `<div class="${cls} has-img" style="background-image:url('${e.img}')" role="img" aria-label="${e.title}"></div>`
+                    : `<div class="${cls}"${bg ? ` style="background:${bg}"` : ''}>${e.emoji}</div>`;
+            }
+
             function renderHome() {
                 const lv = levelInfo();
-                const featured = exp('reacoes-vulcao');
+                const featured = exp(FEATURED);
                 screens.home.innerHTML = `
                     <div class="ia-home__top">
                         <div class="ia-home__row">
@@ -4744,9 +4865,9 @@
                     <div class="ia-search">🔍 Buscar experimento ou material...</div>
                     <div class="ia-section-title">⭐ Experimento do dia</div>
                     <button type="button" class="ia-featured" data-open="${featured.id}">
-                        <div class="ia-featured__emoji">${featured.emoji}</div>
+                        ${thumb(featured, 'ia-featured__emoji')}
                         <div>
-                            <div class="ia-featured__tag">REAÇÕES · ${done.has(featured.id) ? 'FEITO ✅' : 'NOVO'}</div>
+                            <div class="ia-featured__tag">${cat(featured.cat).name.toUpperCase()} · ${done.has(featured.id) ? 'FEITO ✅' : 'NOVO'}</div>
                             <div class="ia-featured__title">${featured.title}</div>
                             <div class="ia-featured__meta">⏱ ${featured.time} · 👶 4+ anos · ${featured.level}</div>
                         </div>
@@ -4780,7 +4901,7 @@
                     <div class="ia-list">
                         ${list.map(e => `
                             <button type="button" class="ia-item" data-open="${e.id}">
-                                <div class="ia-item__emoji" style="background:${c.soft}">${e.emoji}</div>
+                                ${thumb(e, 'ia-item__emoji', c.soft)}
                                 <div class="ia-item__body">
                                     <div class="ia-item__title">${e.title}</div>
                                     <div class="ia-item__meta">⏱ ${e.time} · ${e.level} · ${e.materials.length} materiais</div>
@@ -4809,6 +4930,11 @@
                         <div class="ia-progress__row"><span>Seu progresso</span><span id="iaPct">0%</span></div>
                         <div class="ia-bar"><div class="ia-bar__fill" id="iaPctBar"></div></div>
                     </div>
+                    ${e.img ? `
+                    <div class="ia-card" data-anchor="sheet">
+                        <div class="ia-card__title">📄 Ficha completa <small class="ia-sheet__hint">🔍 ampliar</small></div>
+                        <button type="button" class="ia-sheet" data-zoom="${e.img}"><img src="${e.img}" alt="Ficha: ${e.title}" loading="lazy"></button>
+                    </div>` : ''}
                     <div class="ia-card" data-anchor="materials">
                         <div class="ia-card__title">🧺 Você vai precisar</div>
                         ${e.materials.map((m, i) => `<button type="button" class="ia-check" data-mat="${i}"><span class="ia-check__box">✓</span><span class="ia-check__label">${m}</span></button>`).join('')}
@@ -4894,6 +5020,14 @@
             ia.addEventListener('click', ev => {
                 const t = ev.target.closest('button');
                 if (!t) return;
+                if (t.dataset.zoom) {
+                    const z = $('#iaZoom');
+                    z.querySelector('img').src = t.dataset.zoom;
+                    z.scrollTop = 0;
+                    z.classList.add('show');
+                    return;
+                }
+                if (t.classList.contains('ia-zoom__close')) { $('#iaZoom').classList.remove('show'); return; }
                 if (t.dataset.cat) { renderCategory(t.dataset.cat); go('category'); setCallout('home'); return; }
                 if (t.dataset.open) { openExperiment(t.dataset.open); setCallout('materials'); return; }
                 if (t.dataset.back) {
@@ -4960,8 +5094,8 @@
                     setTimeout(() => scrollToAnchor(screens.home, 'cats'), 50);
                     return;
                 }
-                if (!currentExp || currentExp.id !== 'reacoes-vulcao') {
-                    openExperiment('reacoes-vulcao');
+                if (!currentExp || currentExp.id !== FEATURED) {
+                    openExperiment(FEATURED);
                 }
                 go('experiment');
                 if (key === 'reward') {
