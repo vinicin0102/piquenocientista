@@ -581,7 +581,7 @@
 
         .exp-carousel__viewport {
             overflow: hidden;
-            padding: 8px 0 16px;
+            padding: 6px 0 10px;
             -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
             mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
         }
@@ -592,15 +592,19 @@
             animation: exp-marquee var(--marquee-duration, 40s) linear infinite;
         }
 
+        .exp-carousel__track--reverse {
+            animation-direction: reverse;
+        }
+
         .exp-carousel__viewport:hover .exp-carousel__track {
             animation-play-state: paused;
         }
 
         .exp-carousel__slide {
             flex: 0 0 auto;
-            width: 260px;
-            margin-right: 20px;
-            border-radius: 16px;
+            width: 190px;
+            margin-right: 16px;
+            border-radius: 14px;
             overflow: hidden;
             background: var(--white);
             box-shadow: var(--shadow-md);
@@ -623,8 +627,13 @@
             }
 
             .exp-carousel__slide {
-                width: 200px;
-                margin-right: 14px;
+                width: 128px;
+                margin-right: 10px;
+                border-radius: 10px;
+            }
+
+            .exp-carousel__viewport {
+                padding: 4px 0 8px;
             }
         }
 
@@ -4022,6 +4031,14 @@
                         <div class="exp-carousel__slide"><img src="img/exp-arco-iris.jpg" alt="Experimento: o arco-íris no copo" width="768" height="1376" loading="lazy"></div>
                     </div>
                 </div>
+                <div class="exp-carousel__viewport">
+                    <div class="exp-carousel__track exp-carousel__track--reverse">
+                        <div class="exp-carousel__slide"><img src="img/exp2-planta-flores.jpg" alt="Experimento 07: como uma planta bebe água?" width="768" height="1376" loading="lazy"></div>
+                        <div class="exp-carousel__slide"><img src="img/exp2-derrete.jpg" alt="Experiência: o que derrete mais rápido?" width="768" height="1376" loading="lazy"></div>
+                        <div class="exp-carousel__slide"><img src="img/exp2-agua-que-nao-cai.jpg" alt="Experimento 04: a água que não cai" width="768" height="1376" loading="lazy"></div>
+                        <div class="exp-carousel__slide"><img src="img/exp2-arco-iris.jpg" alt="Experimento: o arco-íris no copo" width="768" height="1376" loading="lazy"></div>
+                    </div>
+                </div>
             </div>
 
             <a href="#oferta" class="cta-button cta-button--purple">QUERO ACESSAR O GUIA</a>
@@ -5016,17 +5033,24 @@
 
     <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // Experiment carousel: duplicate slides so the marquee loops seamlessly
+        // Experiment carousels: each row loops seamlessly. The original slides are
+        // repeated until one set is wider than the viewport, then the set is
+        // duplicated so translateX(-50%) lands exactly on the start again.
         (function () {
-            const track = document.querySelector('#expCarousel .exp-carousel__track');
-            if (!track) return;
-            const slides = Array.from(track.children);
-            slides.forEach(slide => {
-                const clone = slide.cloneNode(true);
-                clone.setAttribute('aria-hidden', 'true');
-                track.appendChild(clone);
+            document.querySelectorAll('#expCarousel .exp-carousel__track').forEach(track => {
+                const originais = Array.from(track.children);
+                const largura = el => el.getBoundingClientRect().width + parseFloat(getComputedStyle(el).marginRight);
+                const larguraSet = originais.reduce((soma, el) => soma + largura(el), 0);
+                const vezes = Math.max(1, Math.ceil(track.parentElement.clientWidth / (larguraSet || 1)));
+                const clonar = el => {
+                    const c = el.cloneNode(true);
+                    c.setAttribute('aria-hidden', 'true');
+                    return c;
+                };
+                for (let i = 1; i < vezes; i++) originais.forEach(el => track.appendChild(clonar(el)));
+                Array.from(track.children).forEach(el => track.appendChild(clonar(el)));
+                track.style.setProperty('--marquee-duration', (originais.length * vezes * 4) + 's');
             });
-            track.style.setProperty('--marquee-duration', (slides.length * 5) + 's');
         })();
 
         // Mini app preview: switch between App and PDF views
