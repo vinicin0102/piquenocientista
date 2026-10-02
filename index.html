@@ -654,42 +654,309 @@
             margin: 0 auto;
         }
 
-        .product__pages {
+        /* Mini app phone mockup */
+        .app-preview {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .app-phone {
+            width: 100%;
+            max-width: 320px;
+            background: #1F1638;
+            border-radius: 40px;
+            padding: 12px;
+            box-shadow: var(--shadow-xl), var(--shadow-glow);
+            position: relative;
+        }
+
+        .app-phone::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90px;
+            height: 22px;
+            background: #1F1638;
+            border-radius: 0 0 14px 14px;
+            z-index: 3;
+        }
+
+        .app-screen {
+            background: #F7F3FF;
+            border-radius: 30px;
+            overflow: hidden;
+            text-align: left;
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-statusbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 22px 0;
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: var(--white);
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+        }
+
+        .app-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--white);
+            padding: 18px 18px 20px;
+            border-radius: 0 0 24px 24px;
+        }
+
+        .app-header__hello {
+            font-size: 0.75rem;
+            opacity: 0.85;
+            font-weight: 600;
+        }
+
+        .app-header__title {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.15rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .app-toggle {
+            display: flex;
+            background: rgba(255,255,255,0.18);
+            border-radius: 999px;
+            padding: 4px;
+            margin-top: 14px;
+        }
+
+        .app-toggle__btn {
+            flex: 1;
+            border: none;
+            background: transparent;
+            color: var(--white);
+            font-family: 'Baloo 2', cursive;
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 7px 8px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: background 0.25s, color 0.25s;
+        }
+
+        .app-toggle__btn.active {
+            background: var(--white);
+            color: var(--primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .app-view {
+            display: none;
+            flex: 1;
+            padding: 12px 14px 10px;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        .app-view.active {
+            display: flex;
+            animation: app-fade 0.35s ease;
+        }
+
+        @keyframes app-fade {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: none; }
+        }
+
+        .app-view__label {
+            font-family: 'Baloo 2', cursive;
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .app-tiles {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 8px;
         }
 
-        .product__page {
+        .app-tile {
             background: var(--white);
-            border: 1px solid #E5E7EB;
-            border-radius: var(--radius-md);
-            padding: 16px;
+            border-radius: 16px;
+            padding: 9px 10px;
             box-shadow: var(--shadow-sm);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.25s;
         }
 
-        .product__page:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
+        .app-tile:hover {
+            transform: translateY(-3px);
         }
 
-        .product__page-icon {
-            font-size: 1.5rem;
+        .app-tile__icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .app-tile__icon--purple { background: #EDE5FF; }
+        .app-tile__icon--orange { background: #FFE9DC; }
+        .app-tile__icon--blue { background: #DDEBFF; }
+        .app-tile__icon--pink { background: #FDE2F0; }
+        .app-tile__icon--green { background: #D8F5E8; }
+        .app-tile__icon--yellow { background: #FFF2D1; }
+
+        .app-tile__title {
+            font-family: 'Baloo 2', cursive;
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            line-height: 1.2;
+        }
+
+        .app-tile__desc {
+            font-size: 0.65rem;
+            color: var(--text-light);
+            line-height: 1.3;
+        }
+
+        .app-nav {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-around;
+            background: var(--white);
+            padding: 10px 6px 14px;
+            border-top: 1px solid #EEE8FA;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .app-nav span {
+            display: block;
+            font-size: 1.05rem;
+        }
+
+        .app-nav .active {
+            color: var(--primary);
+        }
+
+        /* PDF view */
+        .pdf-sheet {
+            background: var(--white);
+            border-radius: 6px;
+            box-shadow: 0 6px 18px rgba(31,22,56,0.15);
+            padding: 14px;
+            position: relative;
+            margin: 0 8px;
+        }
+
+        .pdf-sheet::after {
+            content: '';
+            position: absolute;
+            inset: 6px -6px -6px 6px;
+            background: #ECE6F8;
+            border-radius: 6px;
+            z-index: -1;
+        }
+
+        .pdf-sheet__wrap {
+            position: relative;
+            z-index: 0;
+        }
+
+        .pdf-sheet__head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            border-bottom: 2px dashed #E5DCF8;
+            padding-bottom: 6px;
+            margin-bottom: 8px;
+        }
+
+        .pdf-sheet__title {
+            font-family: 'Baloo 2', cursive;
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            line-height: 1.15;
+            margin-bottom: 8px;
+        }
+
+        .pdf-sheet__line {
+            height: 6px;
+            background: #EFEAF7;
+            border-radius: 4px;
             margin-bottom: 6px;
         }
 
-        .product__page-title {
-            font-family: 'Baloo 2', cursive;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--text-dark);
+        .pdf-sheet__line--short { width: 60%; }
+
+        .pdf-sheet__box {
+            border: 1.5px solid #D9CCF7;
+            border-radius: 6px;
+            height: 38px;
+            margin: 8px 0;
+            font-size: 0.55rem;
+            font-weight: 800;
+            color: var(--primary-light);
+            padding: 4px 6px;
         }
 
-        .product__page-desc {
-            font-size: 0.75rem;
-            color: var(--text-light);
-            margin-top: 2px;
+        .pdf-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 12px 0 10px;
+        }
+
+        .pdf-info span {
+            background: var(--white);
+            border-radius: 999px;
+            padding: 4px 9px;
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: var(--text-medium);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .pdf-download {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--accent-green);
+            color: var(--white);
+            font-family: 'Baloo 2', cursive;
+            font-weight: 800;
+            font-size: 0.85rem;
+            border-radius: 14px;
+            padding: 11px;
+            box-shadow: 0 6px 16px rgba(16,185,129,0.35);
+        }
+
+        .app-preview__caption {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-medium);
+            text-align: center;
+        }
+
+        .app-preview__caption strong {
+            color: var(--primary);
         }
 
         .product__features {
@@ -1777,10 +2044,6 @@
                 padding: 28px;
             }
 
-            .product__pages {
-                grid-template-columns: 1fr 1fr;
-            }
-
             body {
                 padding-bottom: 70px;
             }
@@ -2357,37 +2620,85 @@
             </p>
 
             <div class="product__showcase fade-in">
-                <div class="product__pages">
-                    <div class="product__page">
-                        <div class="product__page-icon">📖</div>
-                        <div class="product__page-title">Passo a Passo</div>
-                        <div class="product__page-desc">Instruções claras e simples</div>
+                <div class="app-preview" id="appPreview">
+                    <div class="app-phone">
+                        <div class="app-screen">
+                            <div class="app-statusbar"><span>9:41</span><span>📶 🔋</span></div>
+                            <div class="app-header">
+                                <div class="app-header__hello">Olá, pequeno cientista! 👋</div>
+                                <div class="app-header__title">Guia +100 Experimentos</div>
+                                <div class="app-toggle" role="tablist" aria-label="Formato do guia">
+                                    <button type="button" class="app-toggle__btn active" role="tab" aria-selected="true" data-view="app">📱 Usar no App</button>
+                                    <button type="button" class="app-toggle__btn" role="tab" aria-selected="false" data-view="pdf">📄 Baixar PDF</button>
+                                </div>
+                            </div>
+
+                            <div class="app-view active" data-view="app">
+                                <div class="app-view__label">Cada experimento traz:</div>
+                                <div class="app-tiles">
+                                    <div class="app-tile">
+                                        <div class="app-tile__icon app-tile__icon--purple">📖</div>
+                                        <div class="app-tile__title">Passo a Passo</div>
+                                        <div class="app-tile__desc">Instruções claras e simples</div>
+                                    </div>
+                                    <div class="app-tile">
+                                        <div class="app-tile__icon app-tile__icon--orange">📝</div>
+                                        <div class="app-tile__title">Lista de Materiais</div>
+                                        <div class="app-tile__desc">Tudo que você precisa</div>
+                                    </div>
+                                    <div class="app-tile">
+                                        <div class="app-tile__icon app-tile__icon--blue">🔎</div>
+                                        <div class="app-tile__title">Explicações</div>
+                                        <div class="app-tile__desc">Ciência de forma simples</div>
+                                    </div>
+                                    <div class="app-tile">
+                                        <div class="app-tile__icon app-tile__icon--pink">🎯</div>
+                                        <div class="app-tile__title">Desafios</div>
+                                        <div class="app-tile__desc">Perguntas para pensar</div>
+                                    </div>
+                                    <div class="app-tile">
+                                        <div class="app-tile__icon app-tile__icon--green">🎨</div>
+                                        <div class="app-tile__title">Ilustrações</div>
+                                        <div class="app-tile__desc">Visual atrativo</div>
+                                    </div>
+                                    <div class="app-tile">
+                                        <div class="app-tile__icon app-tile__icon--yellow">⚠️</div>
+                                        <div class="app-tile__title">Segurança</div>
+                                        <div class="app-tile__desc">Orientações quando necessário</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="app-view" data-view="pdf">
+                                <div class="app-view__label">Guia completo para impressão</div>
+                                <div class="pdf-sheet__wrap">
+                                    <div class="pdf-sheet">
+                                        <div class="pdf-sheet__head"><span>EXPERIMENTO 01</span><span>🌋 REAÇÕES</span></div>
+                                        <div class="pdf-sheet__title">O Vulcão Colorido</div>
+                                        <div class="pdf-sheet__line"></div>
+                                        <div class="pdf-sheet__line pdf-sheet__line--short"></div>
+                                        <div class="pdf-sheet__box">✏️ MINHA PREVISÃO</div>
+                                        <div class="pdf-sheet__line"></div>
+                                        <div class="pdf-sheet__line pdf-sheet__line--short"></div>
+                                    </div>
+                                </div>
+                                <div class="pdf-info">
+                                    <span>🖨️ Pronto para imprimir</span>
+                                    <span>📏 Formato A4</span>
+                                    <span>✏️ Espaços para preencher</span>
+                                </div>
+                                <div class="pdf-download">⬇️ Baixar guia completo (PDF)</div>
+                            </div>
+
+                            <div class="app-nav">
+                                <div class="active"><span>🏠</span>Início</div>
+                                <div><span>🧪</span>Experimentos</div>
+                                <div><span>⭐</span>Favoritos</div>
+                                <div><span>📄</span>PDF</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="product__page">
-                        <div class="product__page-icon">📝</div>
-                        <div class="product__page-title">Lista de Materiais</div>
-                        <div class="product__page-desc">Tudo que você precisa</div>
-                    </div>
-                    <div class="product__page">
-                        <div class="product__page-icon">🔎</div>
-                        <div class="product__page-title">Explicações</div>
-                        <div class="product__page-desc">Ciência de forma simples</div>
-                    </div>
-                    <div class="product__page">
-                        <div class="product__page-icon">🎯</div>
-                        <div class="product__page-title">Desafios</div>
-                        <div class="product__page-desc">Perguntas para pensar</div>
-                    </div>
-                    <div class="product__page">
-                        <div class="product__page-icon">🎨</div>
-                        <div class="product__page-title">Ilustrações</div>
-                        <div class="product__page-desc">Visual atrativo</div>
-                    </div>
-                    <div class="product__page">
-                        <div class="product__page-icon">⚠️</div>
-                        <div class="product__page-title">Segurança</div>
-                        <div class="product__page-desc">Orientações quando necessário</div>
-                    </div>
+                    <p class="app-preview__caption">Use no celular como <strong>app</strong> ou baixe o <strong>PDF para imprimir</strong></p>
                 </div>
                 <div class="product__features">
                     <div class="product__feature">
@@ -3290,6 +3601,36 @@
                 track.appendChild(clone);
             });
             track.style.setProperty('--marquee-duration', (slides.length * 5) + 's');
+        })();
+
+        // Mini app preview: switch between App and PDF views
+        (function () {
+            const root = document.getElementById('appPreview');
+            if (!root) return;
+            const buttons = root.querySelectorAll('.app-toggle__btn');
+            const views = root.querySelectorAll('.app-view');
+            const navItems = root.querySelectorAll('.app-nav > div');
+            let userPicked = false;
+
+            function show(name) {
+                buttons.forEach(b => {
+                    const on = b.dataset.view === name;
+                    b.classList.toggle('active', on);
+                    b.setAttribute('aria-selected', on);
+                });
+                views.forEach(v => v.classList.toggle('active', v.dataset.view === name));
+                navItems.forEach((n, i) => n.classList.toggle('active', name === 'pdf' ? i === 3 : i === 0));
+            }
+
+            buttons.forEach(b => b.addEventListener('click', () => { userPicked = true; show(b.dataset.view); }));
+
+            // Alternate automatically until the visitor picks one
+            let current = 'app';
+            setInterval(() => {
+                if (userPicked) return;
+                current = current === 'app' ? 'pdf' : 'app';
+                show(current);
+            }, 4000);
         })();
 
         // FAQ Toggle
