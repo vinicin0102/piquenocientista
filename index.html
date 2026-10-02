@@ -1027,6 +1027,84 @@
             color: var(--text-light);
         }
 
+        /* Real videos (both phones) */
+        .vid-real {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .vid-real__player {
+            position: relative;
+            flex: 0 0 auto;
+            width: 150px;
+            aspect-ratio: 9 / 16;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #1E1145;
+            box-shadow: var(--shadow-md);
+        }
+
+        .vid-real__player video {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .vid-sound {
+            position: absolute;
+            right: 6px;
+            bottom: 6px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(0,0,0,0.55);
+            color: var(--white);
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        .vid-real__list {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .vid-real__item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid transparent;
+            background: var(--white);
+            border-radius: 12px;
+            padding: 5px;
+            font: inherit;
+            font-family: 'Baloo 2', cursive;
+            font-weight: 800;
+            font-size: 0.72rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            text-align: left;
+        }
+
+        .vid-real__item span {
+            width: 30px;
+            height: 44px;
+            flex-shrink: 0;
+            border-radius: 6px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .vid-real__item.active {
+            border-color: var(--secondary);
+            color: var(--secondary-dark);
+        }
+
         /* PDF view */
         .pdf-sheet {
             background: var(--white);
@@ -4108,19 +4186,17 @@
                             </div>
 
                             <div class="app-view" data-view="videos">
-                                <div class="app-view__label">Passo a passo gravado para fazer junto</div>
-                                <div class="vid-player playing">
-                                    <div class="vid-thumb" style="background-image:url('img/exp-agua-que-nao-cai.jpg')">
-                                        <span class="vid-play" aria-hidden="true">▶</span>
-                                        <span class="vid-tag">🎬 PASSO A PASSO</span>
+                                <div class="app-view__label">Experimentos em vídeo para fazer junto</div>
+                                <div class="vid-real" data-video-group>
+                                    <div class="vid-real__player">
+                                        <video data-auto muted loop playsinline preload="none" poster="video/experimentos-1.jpg" src="video/experimentos-1.mp4"></video>
+                                        <button type="button" class="vid-sound" aria-label="Ativar som">🔇</button>
                                     </div>
-                                    <div class="vid-bar"><span></span></div>
-                                    <div class="vid-title">A água que não cai</div>
-                                </div>
-                                <div class="vid-list">
-                                    <div class="vid-item"><div class="vid-item__thumb" style="background-image:url('img/exp-misturando-cores.jpg')"><span>▶</span></div><div><div class="vid-item__title">Misturando as cores</div><div class="vid-item__meta">🌈 Cores e Misturas</div></div></div>
-                                    <div class="vid-item"><div class="vid-item__thumb" style="background-image:url('img/exp-arco-iris.jpg')"><span>▶</span></div><div><div class="vid-item__title">O arco-íris no copo</div><div class="vid-item__meta">💡 Luz e Som</div></div></div>
-                                    <div class="vid-item"><div class="vid-item__thumb" style="background-image:url('img/exp-planta-bebe-agua.jpg')"><span>▶</span></div><div><div class="vid-item__title">Como a planta bebe água?</div><div class="vid-item__meta">🌱 Natureza</div></div></div>
+                                    <div class="vid-real__list">
+                                        <button type="button" class="vid-real__item active" data-src="video/experimentos-1.mp4" data-poster="video/experimentos-1.jpg"><span style="background-image:url('video/experimentos-1.jpg')"></span>Vídeo 1</button>
+                                        <button type="button" class="vid-real__item" data-src="video/experimentos-2.mp4" data-poster="video/experimentos-2.jpg"><span style="background-image:url('video/experimentos-2.jpg')"></span>Vídeo 2</button>
+                                        <button type="button" class="vid-real__item" data-src="video/experimentos-3.mp4" data-poster="video/experimentos-3.jpg"><span style="background-image:url('video/experimentos-3.jpg')"></span>Vídeo 3</button>
+                                    </div>
                                 </div>
                             </div>
 
@@ -5053,6 +5129,46 @@
             });
         })();
 
+        // Real videos in the phone mockups: play (muted) only while visible,
+        // switch between the 3 videos and toggle the sound.
+        (function () {
+            const visivel = new IntersectionObserver(entradas => entradas.forEach(en => {
+                const v = en.target;
+                if (en.isIntersecting && en.intersectionRatio > 0.4) v.play().catch(() => {});
+                else v.pause();
+            }), { threshold: [0, 0.4, 0.8] });
+
+            window.ativarVideos = function (raiz) {
+                (raiz || document).querySelectorAll('video[data-auto]:not([data-bound])').forEach(v => {
+                    v.dataset.bound = '1';
+                    visivel.observe(v);
+                });
+            };
+
+            document.addEventListener('click', ev => {
+                const item = ev.target.closest('.vid-real__item');
+                if (item) {
+                    const grupo = item.closest('[data-video-group]');
+                    const v = grupo.querySelector('video');
+                    grupo.querySelectorAll('.vid-real__item').forEach(i => i.classList.toggle('active', i === item));
+                    v.poster = item.dataset.poster;
+                    v.src = item.dataset.src;
+                    v.play().catch(() => {});
+                    return;
+                }
+                const som = ev.target.closest('.vid-sound');
+                if (som) {
+                    const v = som.parentElement.querySelector('video');
+                    v.muted = !v.muted;
+                    som.textContent = v.muted ? '🔇' : '🔊';
+                    som.setAttribute('aria-label', v.muted ? 'Ativar som' : 'Desativar som');
+                    if (!v.muted) v.play().catch(() => {});
+                }
+            });
+
+            window.ativarVideos(document);
+        })();
+
         // Mini app preview: switch between App and PDF views
         (function () {
             const root = document.getElementById('appPreview');
@@ -5077,11 +5193,15 @@
             // Cycle App → Vídeos → PDF automatically until the visitor picks one
             const cycle = ['app', 'videos', 'pdf'];
             let current = 0;
-            setInterval(() => {
-                if (userPicked) return;
-                current = (current + 1) % cycle.length;
-                show(cycle[current]);
-            }, 4000);
+            (function proximo() {
+                // The video tab stays longer so the video can actually be watched.
+                setTimeout(() => {
+                    if (userPicked) return;
+                    current = (current + 1) % cycle.length;
+                    show(cycle[current]);
+                    proximo();
+                }, cycle[current] === 'videos' ? 10000 : 4000);
+            })();
         })();
 
         // Interactive app demo ("O que tem dentro")
@@ -5279,8 +5399,16 @@
                         <div class="ia-cat-hero__sub" style="margin-top:6px">Cada experimento com o passo a passo gravado</div>
                     </div>
                     <div class="ia-section-title">▶ Em destaque</div>
-                    <div style="margin:0 16px">${videoPlayer(exp(FEATURED))}</div>
-                    <div class="ia-section-title">Todos os vídeos</div>
+                    <div class="vid-real" data-video-group style="margin:0 16px">
+                        <div class="vid-real__player">
+                            <video data-auto muted loop playsinline preload="none" poster="video/experimentos-1.jpg" src="video/experimentos-1.mp4"></video>
+                            <button type="button" class="vid-sound" aria-label="Ativar som">🔇</button>
+                        </div>
+                        <div class="vid-real__list">
+                            ${[1, 2, 3].map(n => `<button type="button" class="vid-real__item${n === 1 ? ' active' : ''}" data-src="video/experimentos-${n}.mp4" data-poster="video/experimentos-${n}.jpg"><span style="background-image:url('video/experimentos-${n}.jpg')"></span>Vídeo ${n}</button>`).join('')}
+                        </div>
+                    </div>
+                    <div class="ia-section-title">Passo a passo por experimento</div>
                     <div class="ia-list" style="padding-top:0">
                         ${lista.map(e => `
                             <button type="button" class="ia-item" data-open-video="${e.id}">
@@ -5293,6 +5421,7 @@
                             </button>`).join('')}
                     </div>`;
                 screens.videos.scrollTop = 0;
+                if (window.ativarVideos) window.ativarVideos(screens.videos);
             }
 
             function playVideo(btn) {
