@@ -72,3 +72,16 @@ Depois de mudar variáveis, faça um **Redeploy**. Cadastre
 envio do material (e-mail com o link, liberação do app/PDF e dos extras).
 O `external_id_client` (ex.: `PQC-cp-kn-<pedido>`) diz o plano, a forma de
 pagamento e os extras comprados.
+
+## 📊 Meta Pixel
+
+Pixel `1082049094820977` no `<head>`. Eventos:
+
+| Evento | Quando |
+|---|---|
+| `PageView`, `ViewContent` | ao abrir a página |
+| `InitiateCheckout` | ao abrir o checkout (Essencial ou Completo) |
+| `AddPaymentInfo` | dados preenchidos + forma de pagamento escolhida (uma vez por forma) |
+| `Purchase` | pagamento confirmado na página, com o valor real cobrado e `eventID` `purchase-<transactionId>` para deduplicar com a API de Conversões, se for usada no futuro |
+
+Os UTMs e os cookies `_fbc` / `_fbp` também vão para a ZuckPay em cada cobrança.
