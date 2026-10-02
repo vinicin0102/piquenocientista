@@ -42,7 +42,7 @@ api/formas-pagamento.js   GET  /api/formas-pagamento PIX / cartão disponíveis
 api/diagnostico.js        GET  /api/diagnostico     confere a configuração (com token)
 ```
 
-**Planos:** Essencial R$ 9,90 e Completo R$ 27,00.
+**Planos:** Essencial R$ 9,90 (só o PDF) e Completo R$ 27,00 (PDF + app com aba de vídeos + 4 bônus).
 **Order bumps (nos dois planos):** Kit Cientista em Casa (R$ 4,90),
 50 Atividades Educativas Sem Tela (R$ 5,90), Desafios do Pequeno Cientista
 (R$ 4,90), Caderno de Experimentos (R$ 3,90), Passaporte do Pequeno Cientista
