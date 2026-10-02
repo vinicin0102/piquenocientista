@@ -2293,33 +2293,101 @@
             margin-bottom: 40px;
         }
 
-        .offer__card {
-            max-width: 550px;
+        .offer__sub {
+            font-size: 1.05rem;
+            opacity: 0.8;
+            margin: -24px 0 40px;
+        }
+
+        .offer__plans {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            max-width: 900px;
             margin: 0 auto;
+            align-items: center;
+        }
+
+        .offer__card {
+            position: relative;
             background: rgba(255,255,255,0.08);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.15);
             border-radius: var(--radius-xl);
-            padding: 40px;
+            padding: 36px 32px;
         }
 
-        .offer__mockup-mini {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 24px;
-            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        .offer__card--complete {
+            background: linear-gradient(160deg, rgba(139,92,246,0.35), rgba(255,107,53,0.18));
+            border: 2px solid #FFD166;
+            box-shadow: 0 0 50px rgba(255,209,102,0.25), var(--shadow-xl);
+            padding: 44px 32px 40px;
+        }
+
+        .offer__ribbon {
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #FFD166, #FF9F43);
+            color: #4A2A00;
+            font-family: 'Baloo 2', cursive;
+            font-weight: 800;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            padding: 6px 18px;
+            border-radius: 99px;
+            white-space: nowrap;
+            box-shadow: 0 6px 16px rgba(255,159,67,0.4);
+        }
+
+        .offer__plan-name {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            line-height: 1.1;
+        }
+
+        .offer__card--complete .offer__plan-name {
+            color: #FFD166;
+        }
+
+        .offer__plan-desc {
+            font-size: 0.9rem;
+            opacity: 0.75;
+            margin: 6px 0 20px;
+        }
+
+        .offer__list-no {
+            opacity: 0.4;
+            text-decoration: line-through;
+        }
+
+        .offer__list-no .offer__list-check {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .offer__list-plus .offer__list-check {
+            background: #FFD166;
+            color: #4A2A00;
+        }
+
+        .cta-button--outline {
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.6);
+            box-shadow: none;
+        }
+
+        .cta-button--outline:hover {
+            background: rgba(255,255,255,0.1);
+            box-shadow: none;
         }
 
         .offer__list {
             list-style: none;
             padding: 0;
-            margin-bottom: 32px;
+            margin-bottom: 28px;
             text-align: left;
             max-width: 380px;
             margin-left: auto;
@@ -2330,8 +2398,8 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 10px 0;
-            font-size: 1rem;
+            padding: 8px 0;
+            font-size: 0.92rem;
             font-weight: 600;
             border-bottom: 1px solid rgba(255,255,255,0.08);
         }
@@ -2355,7 +2423,7 @@
         }
 
         .offer__price-container {
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .offer__price-label {
@@ -2379,7 +2447,19 @@
         .offer__access-info {
             font-size: 0.85rem;
             opacity: 0.6;
-            margin-top: 16px;
+            margin-top: 28px;
+        }
+
+        @media (max-width: 800px) {
+            .offer__plans {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+                gap: 36px;
+            }
+
+            .offer__card--complete {
+                order: -1;
+            }
         }
 
         /* ===== BONUS SECTION ===== */
@@ -2819,7 +2899,11 @@
             }
 
             .offer__card {
-                padding: 28px;
+                padding: 28px 22px;
+            }
+
+            .offer__card--complete {
+                padding-top: 40px;
             }
 
             body {
@@ -3470,7 +3554,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="app-preview__caption">Use no celular como <strong>app</strong> ou baixe o <strong>PDF para imprimir</strong></p>
+                    <p class="app-preview__caption">Use no celular como <strong>app</strong> ou, no plano Completo, baixe o <strong>PDF para imprimir</strong></p>
                 </div>
                 <div class="product__features">
                     <div class="product__feature">
@@ -3605,7 +3689,7 @@
             </div>
 
             <a href="#oferta" class="cta-button">QUERO TER ESSE APP AGORA</a>
-            <p class="lab__pdf-note">📄 Prefere papel? Você também pode <strong>baixar o PDF completo</strong> e imprimir os experimentos.</p>
+            <p class="lab__pdf-note">📄 Prefere papel? No plano Completo você também recebe o <strong>PDF para imprimir</strong> os experimentos.</p>
         </div>
     </section>
 
@@ -4073,42 +4157,79 @@
             <h2 class="offer__headline fade-in">
                 TENHA +100 EXPERIMENTOS<br>PARA FAZER COM SEU FILHO
             </h2>
+            <p class="offer__sub fade-in">Escolha o plano ideal para a sua família.</p>
 
-            <div class="offer__card fade-in">
-                <div class="offer__mockup-mini">🧪</div>
+            <div class="offer__plans fade-in">
+                <div class="offer__card offer__card--essential">
+                    <div class="offer__plan-name">ESSENCIAL</div>
+                    <p class="offer__plan-desc">Os experimentos no app, para começar hoje.</p>
+                    <ul class="offer__list">
+                        <li><span class="offer__list-check">✓</span> +100 experiências científicas</li>
+                        <li><span class="offer__list-check">✓</span> Passo a passo ilustrado</li>
+                        <li><span class="offer__list-check">✓</span> Lista de materiais em cada atividade</li>
+                        <li><span class="offer__list-check">✓</span> Explicações simples e acessíveis</li>
+                        <li><span class="offer__list-check">✓</span> Desafios e perguntas para pensar</li>
+                        <li><span class="offer__list-check">✓</span> Acesso pelo app no celular</li>
+                        <li class="offer__list-no"><span class="offer__list-check">✕</span> PDF completo para imprimir</li>
+                        <li class="offer__list-no"><span class="offer__list-check">✕</span> Bônus 01: Desafio Cientista Mirim</li>
+                        <li class="offer__list-no"><span class="offer__list-check">✕</span> Bônus 02: 50 Perguntas Curiosas</li>
+                        <li class="offer__list-no"><span class="offer__list-check">✕</span> Bônus 03: Diário das Descobertas</li>
+                        <li class="offer__list-no"><span class="offer__list-check">✕</span> Bônus 04: Certificado de Pequeno Cientista</li>
+                    </ul>
 
-                <ul class="offer__list">
-                    <li><span class="offer__list-check">✓</span> +100 experiências científicas</li>
-                    <li><span class="offer__list-check">✓</span> Passo a passo ilustrado</li>
-                    <li><span class="offer__list-check">✓</span> Lista de materiais em cada atividade</li>
-                    <li><span class="offer__list-check">✓</span> Explicações simples e acessíveis</li>
-                    <li><span class="offer__list-check">✓</span> Atividades para diferentes momentos</li>
-                    <li><span class="offer__list-check">✓</span> Desafios e perguntas para pensar</li>
-                    <li><span class="offer__list-check">✓</span> Guia digital — acesse quando quiser</li>
-                </ul>
+                    <div class="offer__price-container">
+                        <div class="offer__price"><small>R$</small> 9,90</div>
+                        <div class="offer__price-label">pagamento único</div>
+                    </div>
 
-                <div class="offer__price-container">
-                    <div class="offer__price-label">Tudo isso por apenas</div>
-                    <div class="offer__price"><small>R$</small> 9,90</div>
+                    <!-- TODO: link do checkout do plano Essencial -->
+                    <a href="#" class="cta-button cta-button--outline" style="width:100%;max-width:100%;">
+                        QUERO O ESSENCIAL
+                    </a>
                 </div>
 
-                <a href="#" class="cta-button cta-button--large cta-pulse" style="width:100%;max-width:100%;">
-                    QUERO MEU GUIA AGORA
-                </a>
+                <div class="offer__card offer__card--complete">
+                    <div class="offer__ribbon">⭐ MAIS ESCOLHIDO</div>
+                    <div class="offer__plan-name">COMPLETO</div>
+                    <p class="offer__plan-desc">App + PDF para imprimir + 4 bônus exclusivos.</p>
+                    <ul class="offer__list">
+                        <li><span class="offer__list-check">✓</span> +100 experiências científicas</li>
+                        <li><span class="offer__list-check">✓</span> Passo a passo ilustrado</li>
+                        <li><span class="offer__list-check">✓</span> Lista de materiais em cada atividade</li>
+                        <li><span class="offer__list-check">✓</span> Explicações simples e acessíveis</li>
+                        <li><span class="offer__list-check">✓</span> Desafios e perguntas para pensar</li>
+                        <li><span class="offer__list-check">✓</span> Acesso pelo app no celular</li>
+                        <li class="offer__list-plus"><span class="offer__list-check">✓</span> <strong>PDF completo para imprimir</strong></li>
+                        <li class="offer__list-plus"><span class="offer__list-check">✓</span> <strong>Bônus 01: Desafio Cientista Mirim</strong></li>
+                        <li class="offer__list-plus"><span class="offer__list-check">✓</span> <strong>Bônus 02: 50 Perguntas Curiosas</strong></li>
+                        <li class="offer__list-plus"><span class="offer__list-check">✓</span> <strong>Bônus 03: Diário das Descobertas</strong></li>
+                        <li class="offer__list-plus"><span class="offer__list-check">✓</span> <strong>Bônus 04: Certificado de Pequeno Cientista</strong></li>
+                    </ul>
 
-                <p class="offer__access-info">Acesso digital após a confirmação do pagamento.</p>
+                    <div class="offer__price-container">
+                        <div class="offer__price"><small>R$</small> 27,00</div>
+                        <div class="offer__price-label">pagamento único</div>
+                    </div>
+
+                    <!-- TODO: link do checkout do plano Completo -->
+                    <a href="#" class="cta-button cta-button--large cta-pulse" style="width:100%;max-width:100%;">
+                        QUERO O COMPLETO
+                    </a>
+                </div>
             </div>
+
+            <p class="offer__access-info">Acesso digital após a confirmação do pagamento.</p>
         </div>
     </section>
 
     <!-- ===== BONUS SECTION ===== -->
     <section class="bonus text-center">
         <div class="container">
-            <div class="section-label" style="background:linear-gradient(135deg, var(--secondary), #FF8A5C);">BÔNUS INCLUSOS</div>
+            <div class="section-label" style="background:linear-gradient(135deg, var(--secondary), #FF8A5C);">BÔNUS DO PLANO COMPLETO</div>
             <h2 class="bonus__headline fade-in">
                 E TEM MAIS: <span class="highlight-orange">BÔNUS EXCLUSIVOS</span>
             </h2>
-            <p class="bonus__sub fade-in">Ao adquirir o guia, você também recebe:</p>
+            <p class="bonus__sub fade-in">Escolhendo o plano Completo, você também recebe:</p>
 
             <div class="bonus__grid fade-in">
                 <div class="bonus-card">
@@ -4276,7 +4397,7 @@
             </p>
 
             <div class="emotional-cta__price fade-in">
-                POR APENAS <span class="emotional-cta__price-value">R$ 9,90</span>
+                A PARTIR DE <span class="emotional-cta__price-value">R$ 9,90</span>
             </div>
 
             <div style="margin-top:20px;" class="fade-in">
@@ -4939,13 +5060,13 @@
             </div>
             <div class="popup__body">
                 <div class="popup__price-row">
-                    <div class="popup__price-new"><small>R$</small> 9,90</div>
+                    <div class="popup__price-new"><small>a partir de R$</small> 9,90</div>
                 </div>
                 <ul class="popup__list">
                     <li><span>✓</span> +100 experimentos científicos</li>
                     <li><span>✓</span> Passo a passo ilustrado</li>
                     <li><span>✓</span> Materiais simples do dia a dia</li>
-                    <li><span>✓</span> 4 bônus exclusivos inclusos</li>
+                    <li><span>✓</span> PDF + 4 bônus no plano Completo</li>
                     <li><span>✓</span> Garantia de 7 dias</li>
                 </ul>
                 <a href="#oferta" class="cta-button cta-button--large cta-pulse" style="width:100%;max-width:100%;" onclick="closePopup()">
