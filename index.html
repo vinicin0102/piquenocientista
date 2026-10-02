@@ -851,6 +851,160 @@
             color: var(--primary);
         }
 
+        /* Video tab (shared by both phones) */
+        .vid-player {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .vid-thumb {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            background-size: cover;
+            background-position: center 22%;
+            background-color: #1E1145;
+        }
+
+        .vid-thumb::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(30,17,69,0.05), rgba(30,17,69,0.45));
+        }
+
+        .vid-play {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.95);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+            padding-left: 3px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+        }
+
+        .vid-tag {
+            position: absolute;
+            left: 8px;
+            top: 8px;
+            z-index: 1;
+            background: var(--secondary);
+            color: var(--white);
+            font-size: 0.55rem;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            padding: 3px 7px;
+            border-radius: 99px;
+        }
+
+        .vid-bar {
+            height: 4px;
+            background: #EEE8FA;
+        }
+
+        .vid-bar span {
+            display: block;
+            height: 100%;
+            width: 0;
+            background: var(--secondary);
+        }
+
+        .vid-player.playing .vid-bar span {
+            animation: vid-progress 8s linear infinite;
+        }
+
+        .vid-player.playing .vid-play {
+            animation: vid-pulse 1.6s ease-in-out infinite;
+        }
+
+        @keyframes vid-progress {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes vid-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.6); }
+            50% { box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+        }
+
+        .vid-title {
+            font-family: 'Baloo 2', cursive;
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 7px 10px 9px;
+            color: var(--text-dark);
+        }
+
+        .vid-list {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            margin-top: 9px;
+        }
+
+        .vid-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--white);
+            border-radius: 12px;
+            padding: 6px;
+            box-shadow: var(--shadow-sm);
+            text-align: left;
+        }
+
+        .vid-item__thumb {
+            position: relative;
+            width: 58px;
+            height: 38px;
+            flex-shrink: 0;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center 22%;
+            background-color: #1E1145;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .vid-item__thumb span {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.92);
+            color: var(--primary);
+            font-size: 0.55rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 2px;
+        }
+
+        .vid-item__title {
+            font-family: 'Baloo 2', cursive;
+            font-weight: 800;
+            font-size: 0.75rem;
+            line-height: 1.15;
+            color: var(--text-dark);
+        }
+
+        .vid-item__meta {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+
         /* PDF view */
         .pdf-sheet {
             background: var(--white);
@@ -1847,6 +2001,28 @@
             cursor: pointer;
             box-shadow: var(--shadow-md);
         }
+
+        /* Video player inside the interactive app */
+        .ia-vid {
+            display: block;
+            width: 100%;
+            padding: 0;
+            border: none;
+            font: inherit;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .ia-vid__emoji {
+            position: absolute;
+            right: 10px;
+            bottom: 2px;
+            z-index: 1;
+            font-size: 2.6rem;
+            opacity: 0.9;
+        }
+
+        .ia-card .ia-vid { box-shadow: none; border: 1px solid #EEE8FA; }
 
         /* Bottom nav */
         .ia-nav {
@@ -3859,8 +4035,9 @@
                                 <div class="app-header__hello">Olá, pequeno cientista! 👋</div>
                                 <div class="app-header__title">Guia +100 Experimentos</div>
                                 <div class="app-toggle" role="tablist" aria-label="Formato do guia">
-                                    <button type="button" class="app-toggle__btn active" role="tab" aria-selected="true" data-view="app">📱 Usar no App</button>
-                                    <button type="button" class="app-toggle__btn" role="tab" aria-selected="false" data-view="pdf">📄 Baixar PDF</button>
+                                    <button type="button" class="app-toggle__btn active" role="tab" aria-selected="true" data-view="app">📱 App</button>
+                                    <button type="button" class="app-toggle__btn" role="tab" aria-selected="false" data-view="videos">🎬 Vídeos</button>
+                                    <button type="button" class="app-toggle__btn" role="tab" aria-selected="false" data-view="pdf">📄 PDF</button>
                                 </div>
                             </div>
 
@@ -3900,6 +4077,23 @@
                                 </div>
                             </div>
 
+                            <div class="app-view" data-view="videos">
+                                <div class="app-view__label">Passo a passo gravado para fazer junto</div>
+                                <div class="vid-player playing">
+                                    <div class="vid-thumb" style="background-image:url('img/exp-agua-que-nao-cai.jpg')">
+                                        <span class="vid-play" aria-hidden="true">▶</span>
+                                        <span class="vid-tag">🎬 PASSO A PASSO</span>
+                                    </div>
+                                    <div class="vid-bar"><span></span></div>
+                                    <div class="vid-title">A água que não cai</div>
+                                </div>
+                                <div class="vid-list">
+                                    <div class="vid-item"><div class="vid-item__thumb" style="background-image:url('img/exp-misturando-cores.jpg')"><span>▶</span></div><div><div class="vid-item__title">Misturando as cores</div><div class="vid-item__meta">🌈 Cores e Misturas</div></div></div>
+                                    <div class="vid-item"><div class="vid-item__thumb" style="background-image:url('img/exp-arco-iris.jpg')"><span>▶</span></div><div><div class="vid-item__title">O arco-íris no copo</div><div class="vid-item__meta">💡 Luz e Som</div></div></div>
+                                    <div class="vid-item"><div class="vid-item__thumb" style="background-image:url('img/exp-planta-bebe-agua.jpg')"><span>▶</span></div><div><div class="vid-item__title">Como a planta bebe água?</div><div class="vid-item__meta">🌱 Natureza</div></div></div>
+                                </div>
+                            </div>
+
                             <div class="app-view" data-view="pdf">
                                 <div class="app-view__label">Guia completo para impressão</div>
                                 <div class="pdf-sheet__wrap">
@@ -3916,14 +4110,14 @@
                             </div>
 
                             <div class="app-nav">
-                                <div class="active"><span>🏠</span>Início</div>
+                                <div class="active" data-view="app"><span>🏠</span>Início</div>
                                 <div><span>🧪</span>Experimentos</div>
-                                <div><span>⭐</span>Favoritos</div>
-                                <div><span>📄</span>PDF</div>
+                                <div data-view="videos"><span>🎬</span>Vídeos</div>
+                                <div data-view="pdf"><span>📄</span>PDF</div>
                             </div>
                         </div>
                     </div>
-                    <p class="app-preview__caption">Use no celular como <strong>app</strong> ou, no plano Completo, baixe o <strong>PDF para imprimir</strong></p>
+                    <p class="app-preview__caption">Use no celular como <strong>app</strong>, assista aos <strong>vídeos do passo a passo</strong> ou, no plano Completo, baixe o <strong>PDF para imprimir</strong></p>
                 </div>
                 <div class="product__features">
                     <div class="product__feature">
@@ -3938,6 +4132,13 @@
                         <div class="product__feature-text">
                             <h4>Instruções Simples</h4>
                             <p>Qualquer adulto consegue seguir, sem necessidade de conhecimento prévio.</p>
+                        </div>
+                    </div>
+                    <div class="product__feature">
+                        <div class="product__feature-icon">🎬</div>
+                        <div class="product__feature-text">
+                            <h4>Aba de Vídeos com o Passo a Passo</h4>
+                            <p>Os experimentos gravados passo a passo para você assistir e fazer junto com seu filho.</p>
                         </div>
                     </div>
                     <div class="product__feature">
@@ -3990,6 +4191,13 @@
                             <div class="lab-callout__desc">Separe tudo antes de começar</div>
                         </div>
                     </button>
+                    <button type="button" class="lab-callout" data-go="video">
+                        <div class="lab-callout__icon">🎬</div>
+                        <div>
+                            <div class="lab-callout__title">Aba de vídeos</div>
+                            <div class="lab-callout__desc">O passo a passo gravado para fazer junto</div>
+                        </div>
+                    </button>
                     <button type="button" class="lab-callout" data-go="steps">
                         <div class="lab-callout__icon">👣</div>
                         <div>
@@ -4007,11 +4215,13 @@
                             <div class="ia-toast" id="iaToast"></div>
                             <!-- screens are rendered by JS -->
                             <div class="ia__screen" data-screen="home" id="iaHome"></div>
+                            <div class="ia__screen is-hidden-right" data-screen="videos" id="iaVideos"></div>
                             <div class="ia__screen is-hidden-right" data-screen="category" id="iaCategory"></div>
                             <div class="ia__screen is-hidden-right" data-screen="experiment" id="iaExperiment"></div>
                             <nav class="ia-nav">
                                 <button type="button" class="ia-nav__btn active" data-nav="home"><span>🏠</span>Início</button>
                                 <button type="button" class="ia-nav__btn" data-nav="explore"><span>🧪</span>Explorar</button>
+                                <button type="button" class="ia-nav__btn" data-nav="videos"><span>🎬</span>Vídeos</button>
                                 <button type="button" class="ia-nav__btn" data-nav="done"><span>🏆</span>Conquistas<b class="ia-nav__count" id="iaDoneCount">0</b></button>
                                 <button type="button" class="ia-nav__btn" data-nav="pdf"><span>📄</span>PDF</button>
                             </nav>
@@ -4539,6 +4749,7 @@
                         <li><span class="offer__list-check">✓</span> Explicações simples e acessíveis</li>
                         <li><span class="offer__list-check">✓</span> Desafios e perguntas para pensar</li>
                         <li><span class="offer__list-check">✓</span> Acesso pelo app no celular</li>
+                        <li><span class="offer__list-check">✓</span> Aba de vídeos com o passo a passo gravado</li>
                         <li class="offer__list-no"><span class="offer__list-check">✕</span> PDF completo para imprimir</li>
                         <li class="offer__list-no"><span class="offer__list-check">✕</span> Bônus 01: Desafio Cientista Mirim</li>
                         <li class="offer__list-no"><span class="offer__list-check">✕</span> Bônus 02: 50 Perguntas Curiosas</li>
@@ -4567,6 +4778,7 @@
                         <li><span class="offer__list-check">✓</span> Explicações simples e acessíveis</li>
                         <li><span class="offer__list-check">✓</span> Desafios e perguntas para pensar</li>
                         <li><span class="offer__list-check">✓</span> Acesso pelo app no celular</li>
+                        <li><span class="offer__list-check">✓</span> Aba de vídeos com o passo a passo gravado</li>
                         <li class="offer__list-plus"><span class="offer__list-check">✓</span> <strong>PDF completo para imprimir</strong></li>
                         <li class="offer__list-plus"><span class="offer__list-check">✓</span> <strong>Bônus 01: Desafio Cientista Mirim</strong></li>
                         <li class="offer__list-plus"><span class="offer__list-check">✓</span> <strong>Bônus 02: 50 Perguntas Curiosas</strong></li>
@@ -4820,17 +5032,18 @@
                     b.setAttribute('aria-selected', on);
                 });
                 views.forEach(v => v.classList.toggle('active', v.dataset.view === name));
-                navItems.forEach((n, i) => n.classList.toggle('active', name === 'pdf' ? i === 3 : i === 0));
+                navItems.forEach(n => n.classList.toggle('active', n.dataset.view === name));
             }
 
             buttons.forEach(b => b.addEventListener('click', () => { userPicked = true; show(b.dataset.view); }));
 
-            // Alternate automatically until the visitor picks one
-            let current = 'app';
+            // Cycle App → Vídeos → PDF automatically until the visitor picks one
+            const cycle = ['app', 'videos', 'pdf'];
+            let current = 0;
             setInterval(() => {
                 if (userPicked) return;
-                current = current === 'app' ? 'pdf' : 'app';
-                show(current);
+                current = (current + 1) % cycle.length;
+                show(cycle[current]);
             }, 4000);
         })();
 
@@ -4964,8 +5177,8 @@
             let expState = null;
 
             const $ = sel => ia.querySelector(sel);
-            const screens = { home: $('#iaHome'), category: $('#iaCategory'), experiment: $('#iaExperiment') };
-            const order = ['home', 'category', 'experiment'];
+            const screens = { home: $('#iaHome'), videos: $('#iaVideos'), category: $('#iaCategory'), experiment: $('#iaExperiment') };
+            const order = ['home', 'videos', 'category', 'experiment'];
             const callouts = document.querySelectorAll('#lab .lab-callout');
             const navBtns = ia.querySelectorAll('.ia-nav__btn');
             const cat = id => CATS.find(c => c.id === id);
@@ -4977,7 +5190,7 @@
                     screens[n].classList.toggle('is-hidden-left', i < idx);
                     screens[n].classList.toggle('is-hidden-right', i > idx);
                 });
-                navBtns.forEach(b => b.classList.toggle('active', b.dataset.nav === 'home' && name === 'home'));
+                navBtns.forEach(b => b.classList.toggle('active', b.dataset.nav === name));
                 if (name === 'home') setCallout('home');
             }
 
@@ -5004,6 +5217,52 @@
                 return e.img
                     ? `<div class="${cls} has-img" style="background-image:url('${e.img}')" role="img" aria-label="${e.title}"></div>`
                     : `<div class="${cls}"${bg ? ` style="background:${bg}"` : ''}>${e.emoji}</div>`;
+            }
+
+            function videoPlayer(e) {
+                const bg = e.img ? `background-image:url('${e.img}')` : `background:linear-gradient(140deg, ${cat(e.cat).color}, #1E1145)`;
+                return `
+                    <button type="button" class="vid-player ia-vid" data-play="${e.id}">
+                        <div class="vid-thumb" style="${bg}">
+                            ${e.img ? '' : `<span class="ia-vid__emoji">${e.emoji}</span>`}
+                            <span class="vid-play" aria-hidden="true">▶</span>
+                            <span class="vid-tag">🎬 PASSO A PASSO</span>
+                        </div>
+                        <div class="vid-bar"><span></span></div>
+                        <div class="vid-title">${e.title}</div>
+                    </button>`;
+            }
+
+            function renderVideos() {
+                const lista = [...EXPS].sort((a, b) => (b.img ? 1 : 0) - (a.img ? 1 : 0));
+                screens.videos.innerHTML = `
+                    <div class="ia-home__top">
+                        <div class="ia-home__hello">🎬 Aba de vídeos</div>
+                        <div class="ia-home__name">Assista e faça junto</div>
+                        <div class="ia-cat-hero__sub" style="margin-top:6px">Cada experimento com o passo a passo gravado</div>
+                    </div>
+                    <div class="ia-section-title">▶ Em destaque</div>
+                    <div style="margin:0 16px">${videoPlayer(exp(FEATURED))}</div>
+                    <div class="ia-section-title">Todos os vídeos</div>
+                    <div class="ia-list" style="padding-top:0">
+                        ${lista.map(e => `
+                            <button type="button" class="ia-item" data-open-video="${e.id}">
+                                <div class="vid-item__thumb" style="${e.img ? `background-image:url('${e.img}')` : `background:${cat(e.cat).soft}`}">${e.img ? '<span>▶</span>' : e.emoji}</div>
+                                <div class="ia-item__body">
+                                    <div class="ia-item__title">${e.title}</div>
+                                    <div class="ia-item__meta">${cat(e.cat).emoji} ${cat(e.cat).name}</div>
+                                </div>
+                                <div class="ia-item__check" style="border-color:#C4B5FD;color:var(--primary)">▶</div>
+                            </button>`).join('')}
+                    </div>`;
+                screens.videos.scrollTop = 0;
+            }
+
+            function playVideo(btn) {
+                ia.querySelectorAll('.ia-vid.playing').forEach(v => { if (v !== btn) v.classList.remove('playing'); });
+                btn.classList.toggle('playing');
+                ia.querySelectorAll('.ia-vid .vid-play').forEach(i => { i.textContent = i.closest('.ia-vid').classList.contains('playing') ? '❚❚' : '▶'; });
+                if (btn.classList.contains('playing')) toast('▶️ Assistindo o passo a passo');
             }
 
             function renderHome() {
@@ -5090,6 +5349,10 @@
                     <div class="ia-progress">
                         <div class="ia-progress__row"><span>Seu progresso</span><span id="iaPct">0%</span></div>
                         <div class="ia-bar"><div class="ia-bar__fill" id="iaPctBar"></div></div>
+                    </div>
+                    <div class="ia-card" data-anchor="video">
+                        <div class="ia-card__title">🎬 Vídeo do passo a passo</div>
+                        ${videoPlayer(e)}
                     </div>
                     ${e.img ? `
                     <div class="ia-card" data-anchor="sheet">
@@ -5181,6 +5444,17 @@
             ia.addEventListener('click', ev => {
                 const t = ev.target.closest('button');
                 if (!t) return;
+                if (t.dataset.play) { playVideo(t); setCallout('video'); return; }
+                if (t.dataset.openVideo) {
+                    openExperiment(t.dataset.openVideo);
+                    setCallout('video');
+                    setTimeout(() => {
+                        scrollToAnchor(screens.experiment, 'video');
+                        const v = screens.experiment.querySelector('.ia-vid');
+                        if (v && !v.classList.contains('playing')) playVideo(v);
+                    }, 350);
+                    return;
+                }
                 if (t.dataset.zoom) {
                     const z = $('#iaZoom');
                     z.querySelector('img').src = t.dataset.zoom;
@@ -5233,6 +5507,12 @@
                     $('#iaReward').classList.remove('show');
                     go('home');
                     screens.home.scrollTop = 0;
+                    return;
+                }
+                if (t.dataset.nav === 'videos') {
+                    renderVideos();
+                    go('videos');
+                    setCallout('video');
                     return;
                 }
                 if (t.dataset.nav) {
@@ -5432,7 +5712,7 @@
                 </div>
                 <ul class="popup__list">
                     <li><span>✓</span> +100 experimentos científicos</li>
-                    <li><span>✓</span> Passo a passo ilustrado</li>
+                    <li><span>✓</span> Passo a passo ilustrado e em vídeo</li>
                     <li><span>✓</span> Materiais simples do dia a dia</li>
                     <li><span>✓</span> PDF + 4 bônus no plano Completo</li>
                     <li><span>✓</span> Garantia de 7 dias</li>
