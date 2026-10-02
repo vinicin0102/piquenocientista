@@ -292,9 +292,9 @@
         .mockup-container {
             background: linear-gradient(145deg, var(--primary), var(--primary-light));
             border-radius: 24px;
-            padding: 30px;
+            padding: 12px;
             box-shadow: var(--shadow-xl), var(--shadow-glow);
-            max-width: 380px;
+            max-width: 580px;
             position: relative;
             transform: perspective(800px) rotateY(-5deg) rotateX(2deg);
             transition: transform 0.4s ease;
@@ -302,6 +302,13 @@
 
         .mockup-container:hover {
             transform: perspective(800px) rotateY(0deg) rotateX(0deg);
+        }
+
+        .mockup-image {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
         }
 
         .mockup-cover {
@@ -368,14 +375,14 @@
         }
 
         .mockup-floating-badge--top {
-            top: -15px;
-            right: -30px;
+            top: -38px;
+            right: -20px;
             animation: float 4s ease-in-out infinite;
         }
 
         .mockup-floating-badge--bottom {
-            bottom: 20px;
-            left: -35px;
+            bottom: -38px;
+            left: -20px;
             animation: float 5s ease-in-out infinite 1s;
         }
 
@@ -1576,8 +1583,8 @@
             }
 
             .mockup-container {
-                max-width: 280px;
-                margin: 0 auto;
+                max-width: 100%;
+                margin: 30px auto 20px;
                 transform: none;
             }
 
@@ -2155,13 +2162,7 @@
                             <div class="mockup-floating-badge mockup-floating-badge--top">
                                 <span>✨</span> Acesso Imediato
                             </div>
-                            <div class="mockup-cover">
-                                <div class="mockup-cover__icon">🧪🔬</div>
-                                <div class="mockup-cover__title">GUIA<br>EXPERIMENTOS CIENTÍFICOS</div>
-                                <div class="mockup-cover__number">+100</div>
-                                <div class="mockup-cover__exp">EXPERIÊNCIAS</div>
-                                <div class="mockup-cover__subtitle">Para fazer com seu filho</div>
-                            </div>
+                            <img class="mockup-image" src="img/guia-mockup.webp" alt="Guia +100 Experimentos Científicos para Fazer com Seu Filho: livro, tablet e celular com exemplos de experimentos" width="1536" height="1024">
                             <div class="mockup-floating-badge mockup-floating-badge--bottom">
                                 <span>🎉</span> Só R$ 9,90
                             </div>
