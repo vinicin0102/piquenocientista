@@ -552,6 +552,89 @@
             margin-top: -20px;
         }
 
+        /* ===== EXPERIMENT CAROUSEL ===== */
+        .exp-carousel {
+            margin: 0 auto 48px;
+            max-width: 960px;
+        }
+
+        .exp-carousel__title {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 24px;
+        }
+
+        .exp-carousel__track {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            padding: 8px 4px 16px;
+            scrollbar-width: none;
+        }
+
+        .exp-carousel__track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .exp-carousel__slide {
+            flex: 0 0 calc((100% - 40px) / 3);
+            scroll-snap-align: start;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--white);
+            box-shadow: var(--shadow-md);
+        }
+
+        .exp-carousel__slide img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .exp-carousel__dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .exp-carousel__dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: none;
+            padding: 0;
+            background: #D9CCF7;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .exp-carousel__dot.active {
+            background: var(--primary);
+            transform: scale(1.25);
+        }
+
+        @media (max-width: 900px) {
+            .exp-carousel__slide {
+                flex-basis: calc((100% - 20px) / 2);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .exp-carousel__title {
+                font-size: 1.25rem;
+            }
+
+            .exp-carousel__slide {
+                flex-basis: 82%;
+                scroll-snap-align: center;
+            }
+        }
+
         /* ===== PRODUCT SECTION ===== */
         .product {
             background: var(--white);
@@ -2255,6 +2338,18 @@
                 </div>
             </div>
 
+            <div class="exp-carousel fade-in" id="expCarousel">
+                <h3 class="exp-carousel__title">ALGUNS DOS EXPERIMENTOS QUE VOCÊ VAI RECEBER</h3>
+                <div class="exp-carousel__track">
+                    <div class="exp-carousel__slide"><img src="img/exp-agua-que-nao-cai.jpg" alt="Experimento: a água que não cai" width="768" height="1376" loading="lazy"></div>
+                    <div class="exp-carousel__slide"><img src="img/exp-planta-bebe-agua.jpg" alt="Experimento: como uma planta bebe água?" width="768" height="1376" loading="lazy"></div>
+                    <div class="exp-carousel__slide"><img src="img/exp-misturando-cores.jpg" alt="Experimento: misturando as cores" width="768" height="1376" loading="lazy"></div>
+                    <div class="exp-carousel__slide"><img src="img/exp-ima.jpg" alt="Experimento: o que um ímã consegue atrair?" width="768" height="1376" loading="lazy"></div>
+                    <div class="exp-carousel__slide"><img src="img/exp-arco-iris.jpg" alt="Experimento: o arco-íris no copo" width="768" height="1376" loading="lazy"></div>
+                </div>
+                <div class="exp-carousel__dots"></div>
+            </div>
+
             <a href="#oferta" class="cta-button cta-button--purple">QUERO ACESSAR O GUIA</a>
         </div>
     </section>
@@ -3193,6 +3288,62 @@
 
     <!-- ===== JAVASCRIPT ===== -->
     <script>
+        // Experiment carousel (auto-advance, swipeable)
+        (function () {
+            const root = document.getElementById('expCarousel');
+            if (!root) return;
+            const track = root.querySelector('.exp-carousel__track');
+            const slides = Array.from(track.children);
+            const dotsWrap = root.querySelector('.exp-carousel__dots');
+            let paused = false;
+
+            const dots = slides.map((_, i) => {
+                const dot = document.createElement('button');
+                dot.className = 'exp-carousel__dot';
+                dot.setAttribute('aria-label', 'Ir para o experimento ' + (i + 1));
+                dot.addEventListener('click', () => goTo(i));
+                dotsWrap.appendChild(dot);
+                return dot;
+            });
+
+            function currentIndex() {
+                const left = track.scrollLeft;
+                let best = 0;
+                slides.forEach((s, i) => {
+                    if (Math.abs(s.offsetLeft - track.offsetLeft - left) < Math.abs(slides[best].offsetLeft - track.offsetLeft - left)) best = i;
+                });
+                return best;
+            }
+
+            function maxIndex() {
+                return slides.findIndex(s => s.offsetLeft - track.offsetLeft >= track.scrollWidth - track.clientWidth - 2);
+            }
+
+            function goTo(i) {
+                const target = slides[i];
+                const offset = target.offsetLeft - track.offsetLeft - (track.clientWidth - target.clientWidth) / 2 * (getComputedStyle(target).scrollSnapAlign.includes('center') ? 1 : 0);
+                track.scrollTo({ left: offset, behavior: 'smooth' });
+            }
+
+            function updateDots() {
+                const idx = currentIndex();
+                dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+            }
+
+            track.addEventListener('scroll', () => requestAnimationFrame(updateDots));
+            ['mouseenter', 'touchstart', 'focusin'].forEach(e => root.addEventListener(e, () => { paused = true; }, { passive: true }));
+            ['mouseleave', 'touchend', 'focusout'].forEach(e => root.addEventListener(e, () => { paused = false; }, { passive: true }));
+
+            setInterval(() => {
+                if (paused) return;
+                const last = maxIndex();
+                const idx = currentIndex();
+                goTo(last !== -1 && idx >= last ? 0 : idx + 1);
+            }, 3000);
+
+            updateDots();
+        })();
+
         // FAQ Toggle
         function toggleFaq(btn) {
             const item = btn.parentElement;
